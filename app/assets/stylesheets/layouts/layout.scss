@@ -1,0 +1,32 @@
+@import '../variables';
+
+#application-container {
+	padding-top: $body_padding;
+}
+.large-brand-text {
+	font-size: 20px;
+	color: $darkBrand;
+}
+.container {
+	text-align: center;
+	padding: 40px;
+	font-family: Gill Sans;
+	h1 {
+		color: $darkBrand;
+		font-size: 35px;
+		font-weight: 600;
+	}
+}
+.flash-messages{
+	margin-top: $body_padding;
+	margin-bottom: -$body_padding !important;
+}
+@media (max-width: 767px) {
+	ul.nav {
+		display: inline;
+		text-align: center;
+	}
+}
+html, body{
+	background-color: #F0F0F0 !important;
+}

@@ -1,0 +1,16 @@
+language: ruby
+rvm:
+- 2.3.0
+script: npm install -g yarn
+deploy:
+  provider: heroku
+  api_key:
+    secure: ec5N1Mu8gIUXBNzGAUh29UM3DXSiBcA5eoMETX9KeYeum/lv87pXuzjiKQRc3KM9SkkB4JSi0ia8C58A+z8r2AxQnxA3eVGgkJ+lN7G+AwU29CIzmjI3qf0vH95pAEO3y/Bud8stiPpSnapzckMQx/65M/g0hKgnjgOQNTm3goStYUMYd8OtvjxfgXa2lxDAkf15hcmkXtsKHpdjG1FK66CyrKudYDcmqxk5EWqVxb8dcRkVxK4Ha+IXfrlYFIuWeiuSoHQRKuLyRenyHtFDvk/v+VLuPBhVreRiQgCvsNmH2OI0hbHchr03v01FfKbgza9R/RFL9jUATEe7jyOkKTCL4aPcipUU8UrhUv4+Qe9921KlWQA/KvaLT/kSbxLgUlrME15wXu7ne/AeOkEZjTHojztaRxFNJfubFCP7F9a6GAjeaAf4kcFMu72dqMRj6UHRgqlzm8Hn+DqAkyqwpI8XE6lIZqwtdf1cwzGjbXJLAKIr0KP6CDioEznldIVU4RkLm7IjYvj1l1DRuERmGAbwZ839OMaLlwR3m1uOCnsYrXqzSmys//IN04JN+YFw1E5r3H3A8BNDCGk3zOZAtSTU1QN6Mi6x8N+/9RCOoxRBz0KlFDBHipBtOuiCJmog7rH4+C6LnE+AtYJXVhn+DQKg1Tx6S+jkWJh3DK8cY8c=
+  app:
+    master: alldid-staging
+    prod: alldid
+  on:
+    repo: dben89x/alldid
+  skip_cleanup: true
+notifications:
+  email: false

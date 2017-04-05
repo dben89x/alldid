@@ -1,0 +1,116 @@
+@import '../variables';
+
+//////////  USER FORMS  //////////
+.user-form {
+	width: 500px;
+	color: $white;
+	text-align: center;
+	display: inline-block;
+	border: 1px solid gray;
+	border-radius: 6px;
+	padding: 60px 20px;
+	background-color: $darkest;
+	box-shadow: -1px -1px 6px 1px lighten($darkest, 15%);
+	a {
+		color: white;
+	}
+	a:hover, a:focus {
+		color: $white;
+		text-decoration: none;
+	}
+	h3 {
+		padding: 15px;
+		margin-bottom: 25px;
+		border-top: 2px solid $white;
+		border-bottom: 2px solid $white;
+	}
+}
+.user-field {
+	position: relative;
+}
+.user-input {
+	width: 300px;
+	height: 34px;
+	padding: 6px 12px 6px 35px;
+	margin: 10px;
+	font-size: 16px;
+	line-height: 1.42857143;
+	color: $white;
+	background-color: $darkest;
+	background-image: none;
+	border: 1px solid $white;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+
+	&:focus {
+		box-shadow: 0 0 3px 2px $lightBrand;
+		outline: none;
+		border: none;
+	}
+}
+.fa-icon {
+	position: absolute;
+	color: $darkBrand;
+	left: 90px;
+	font-size: 22px;
+	top: 12px;
+}
+.brand-btn {
+	border: 2px solid $darkBrand;
+	border-radius: 6px;
+	background-color: transparent;
+	color: $darkBrand;
+	transition: 0.2s;
+
+	&:hover, &:focus {
+		background-color: $darkBrand;
+		outline: none;
+		color: $darkest;
+		text-decoration: none;
+	}
+}
+.red-btn {
+	border: 2px solid red;
+	border-radius: 6px;
+	background-color: transparent;
+	color: red;
+	transition: 0.2s;
+
+	&:hover, &:focus {
+		background-color: red;
+		outline: none;
+		color: $white;
+		text-decoration: none;
+	}
+}
+.med-btn {
+	width: 300px;
+	padding: 5px 10px;
+	font-size: 18px;
+	margin: 10px;
+}
+.large-btn {
+	width: 400px;
+	font-size: 25px;
+	padding: 10px 20px;
+	border-width: 3px;
+}
+@media (max-width: 600px) {
+	.user-form {
+		width: 400px;
+		padding: 60px 10px;
+	}
+	.fa-icon { left: 50px; }
+}
+@media (max-width: 450px) {
+	.user-form { width: 350px; }
+	.fa-icon { left: 25px; }
+}
+@media (max-width: 390px) {
+	.user-form { width: 330px; }
+	.fa-icon { left: 20px; }
+}

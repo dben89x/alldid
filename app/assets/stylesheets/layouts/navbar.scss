@@ -1,0 +1,54 @@
+@import '../variables';
+
+.navbar {
+	background-color: $darkest;
+	overflow: hidden;
+	transition: 0.3s;
+	color: $darkBrand;
+}
+span.icon-bar {
+	background-color: $lightBrand;
+}
+ul.nav {
+	height: 52px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	@media (max-width: 767px) { display: inline;}
+}
+.nav-pills {
+	li {
+		margin: 0 5px;
+		a {
+			float: none;
+			display: inline-block;
+		}
+	}
+}
+.navbar a {
+	transition: 0.3s;
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+	span.fa {
+		margin-right: 5px;
+	}
+}
+
+.navbar a:hover, .navbar a:focus {
+	color: $lightBrand;
+	text-decoration: none;
+	background-color: transparent !important;
+}
+.navbar a:focus {
+	background-color: transparent;
+}
+
+.navbar a.active {
+	background-color: #4CAF50;
+	color: white;
+}

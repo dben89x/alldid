@@ -1,0 +1,37 @@
+%nav.navbar.navbar-fixed-top
+	.container-fluid
+		.navbar-header
+			%button.navbar-toggle{"data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+				%span.icon-bar
+				%span.icon-bar
+				%span.icon-bar
+			%a.navbar-brand=link_to "Alldid", root_path
+		#navbar.collapse.navbar-collapse
+			%ul.nav.navbar-nav.nav-pills.nav-stacked
+				%li
+					=link_to about_path do
+						%span.fa.fa-users
+						About Us
+				%li
+					=link_to faq_path do
+						%span.fa.fa-question-circle
+						FAQ
+			%ul.nav.navbar-nav.navbar-right.nav-pills.nav-stacked
+				-unless current_user
+					%li
+						=link_to new_user_registration_path do
+							%span.fa.fa-user-plus
+							Sign Up
+					%li
+						=link_to new_user_session_path do
+							%span.fa.fa-sign-in
+							Sign In
+				-else
+					%li
+						=link_to edit_user_registration_path(current_user) do
+							%span.fa.fa-user
+							=current_user.email
+					%li
+						=link_to destroy_user_session_path(current_user), method: :delete do
+							%span.fa.fa-sign-out
+							Sign Out
