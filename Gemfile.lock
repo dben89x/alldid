@@ -99,7 +99,6 @@ GEM
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
-    libv8 (5.3.332.38.5-x86_64-darwin-14)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -112,8 +111,6 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
-    mini_racer (0.1.9)
-      libv8 (~> 5.3)
     minitest (5.10.1)
     multi_json (1.12.1)
     nio4r (2.0.0)
@@ -222,7 +219,6 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   json
   listen (~> 3.0.5)
-  mini_racer
   pg (~> 0.20.0)
   puma (~> 3.0)
   rails (~> 5.0.1)
