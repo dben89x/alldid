@@ -1,7 +1,7 @@
 @import '../variables';
 
 #application-container {
-	padding-top: $body_padding;
+	// padding-top: $body_padding;
 }
 .large-brand-text {
 	font-size: 20px;
@@ -16,6 +16,9 @@
 		font-size: 35px;
 		font-weight: 600;
 	}
+}
+.fade-in, .initial-fade-in-short, .initial-fade-in-long {
+	opacity: 0;
 }
 .flash-messages{
 	margin-top: $body_padding;

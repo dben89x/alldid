@@ -1,34 +1,45 @@
 @import 'variables';
 
 #home {
-	.banner {
-		display: flex;
-		height: calc(100vh - #{$body_padding});
-		background-image: url('banner-image.png');
+	h1{
+		font-family: Arial Narrow;
+		font-weight:600;
+		font-size: 40px;
+		line-height: 1.5;
+	}
+	#banner {
+		// height: calc(100vh - #{$body_padding});
+		text-align: center;
+		height: 100vh;
+		background-image: url('banner4.jpg');
 		background-size: cover;
-
-		color: $white;
+		position: relative;
+		color: white;
 		padding: 15vh 13vw;
+		.content {
+			background: rgba(0,0,0,0.5);
+			border-radius: 6px;
+			padding: 40px;
+			position: absolute;
+			width:70%;
+			left:15%;
+			right:15%;
+			height:50%;
+			top: 25%;
 
-		.text{
-			width: 50%;
-			h1{
-				font-size: 40px;
-				line-height: 1.5;
+		}
+		.text {
+			h1 {
+				// color: #DB162F;
 			}
 			h2 {
 				font-size: 20px;
+				// color: #17BEBB;
 				line-height: 1.5;
 			}
 		}
-		.buttons{
-			width: 50%;
-			position: relative;
-		}
 		.banner-btns {
-			position: absolute;
-			top: 40%;
-			left: 20%;
+			margin-top: 10%;
 		}
 		@media (max-width: 1100px) {
 			& {
@@ -50,6 +61,43 @@
 			padding: 40px 10vw;
 			.text h1 { font-size: 25px; }
 			.buttons { height: 60px; }
+		}
+	}
+	#how-it-works{
+		height:500px;
+		width:100%;
+		background-color: black;
+		text-align: center;
+		padding: 40px;
+
+		.content {
+			h3.fade-in {
+				display: inline-block;
+			}
+			color:white;
+			.columns {
+				position: relative;
+				margin-top:40px;
+
+				.column {
+					width: 33%;
+					display: inline-block;
+					.fa {
+						font-size:60px;
+					}
+					h3 {
+						// color: #DB162F;
+						color: lighten($darkBrand,15%);
+					}
+					h4 {
+						color: $lightBrand;
+					}
+					p {
+						font-size: 16px;
+						padding: 10px 30px;
+					}
+				}
+			}
 		}
 	}
 }

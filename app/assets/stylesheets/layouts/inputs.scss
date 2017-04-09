@@ -73,6 +73,55 @@
 		text-decoration: none;
 	}
 }
+.white-btn {
+	border: 2px solid white;
+	border-color: rgba(255,255,255,0.8);
+	border-radius: 6px;
+	background-color: transparent;
+	color: rgba(255,255,255,0.8);
+	transition: 0.3s;
+	& a {
+		position: relative;
+	}
+
+	&:hover, &:focus {
+		background: rgba(0,0,0,0.15);
+		outline: none;
+		border-color: rgba(255,255,255,1);
+		color: white;
+		text-decoration: none;
+	}
+}
+
+.white-btn span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+	font-family: FontAwesome;
+	top: -25px;
+}
+
+.white-btn span:after {
+	content: '\f101';
+	position: absolute;
+	opacity: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.white-btn:hover span {
+	padding-right: 25px;
+}
+
+.white-btn:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+.half-hr {
+	width: 75%;
+}
 .red-btn {
 	border: 2px solid red;
 	border-radius: 6px;

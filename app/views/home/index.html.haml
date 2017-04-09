@@ -1,23 +1,39 @@
 #home
-	.banner
-		.text
-			%h1
-				Your Perfect Barber.
-				%br
-				Every time.
-				%br
-				No guessing.
-			%h2
-				Find your perfect barber with our optimized search tool.
-				%br
-				Your barber knows what you want before you get there.
-				%br
-				Also, fight this homeless guy!
-				%br
-				You can do it all with Alldid.
+	#banner
+		.content.initial-fade-in-short
+			.text
+				%h1
+					%p.black-white FIND YOUR PERFECT BARBER. NO GUESSING.
+				%h2
+					Match with your ideal barber. They'll know what you want before you get there.
 
-		.buttons
-			.banner-btns
-				=link_to search_path, class: 'brand-btn large-btn' do
-					.fa.fa-search
-					Find your Barber Now
+			.buttons.initial-fade-in-long
+				.banner-btns
+					=link_to search_path, class: 'white-btn large-btn' do
+						Find your Barber Now
+						%span
+
+	#how-it-works
+		.content
+			%h3.fade-in
+				HOW IT WORKS
+				%hr.half-hr.fade-in
+			.columns
+				.column.fade-in
+					.fa.fa-edit
+					%h3 Personalize
+					%h4 Create your custom hair profile
+					%p
+						We personalize your individual hair profile, style, and preferences. These criteria then get plugged into our matching algorithm to find you the most proficient barber for your needs.
+				.column.fade-in
+					.fa.fa-users
+					%h3 Match
+					%h4 Choose your barber
+					%p
+						Once we match you with your recommended barbers, you get to view their profiles and select your favorite. They'll be able to view yours as well, so they know your hair before you get there!
+				.column.fade-in
+					.fa.fa-calendar
+					%h3 Book
+					%h4 Book your appointment online
+					%p
+						Book your appointment online Book your appointment online Book your appointment online Book your appointment online Book your appointment online Book your appointment online

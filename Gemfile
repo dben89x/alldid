@@ -36,6 +36,8 @@ gem 'cancan', '~> 1.6.10'
 # JS
 gem 'webpack-rails', '~> 0.9.10'
 gem 'react_on_rails', '~> 6.8.1'
+gem 'coffee-rails', '~> 4.2.0'
+gem 'jquery-rails'
 
 group :development, :test do
 	gem 'byebug', platform: :mri
