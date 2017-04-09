@@ -78,7 +78,7 @@
 	border-color: rgba(255,255,255,0.8);
 	border-radius: 6px;
 	background-color: transparent;
-	color: rgba(255,255,255,0.8);
+	color: rgba(255,255,255,0.9);
 	transition: 0.3s;
 	& a {
 		position: relative;
@@ -121,6 +121,7 @@
 
 .half-hr {
 	width: 75%;
+	opacity: 0;
 }
 .red-btn {
 	border: 2px solid red;

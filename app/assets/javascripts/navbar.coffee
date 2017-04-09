@@ -1,6 +1,7 @@
 $(document).ready ->
 	checkScroll = ->
 		startY = $('.navbar').height() * 2
+		console.log('foobar')
 		#The point where the navbar changes in px
 		if $(window).scrollTop() > startY
 			$('.navbar').addClass 'scrolled'

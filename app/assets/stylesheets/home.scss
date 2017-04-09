@@ -24,37 +24,40 @@
 			width:70%;
 			left:15%;
 			right:15%;
-			height:50%;
 			top: 25%;
 
 		}
 		.text {
-			h1 {
-				// color: #DB162F;
-			}
 			h2 {
 				font-size: 20px;
-				// color: #17BEBB;
 				line-height: 1.5;
+				margin-bottom: 40px;
 			}
-		}
-		.banner-btns {
-			margin-top: 10%;
 		}
 		@media (max-width: 1100px) {
 			& {
 				display: block;
 				.text, .buttons{ width: 100%; }
-				.buttons { margin-top: 40px; }
-				.banner-btns { left: 0; }
+				h1 { font-size: 30px }
+				h1 { font-size: 30px }
 			}
 		}
 		@media (max-width: 600px) {
 			& {
-				height: 100%;
-				.text h1 { font-size: 30px; }
+				.text h1 { font-size: 25px; }
 				.text h2 { font-size: 18px; }
 				.banner-btns .large-btn { font-size: 18px; }
+				.large-btn span {
+					top: -18px;
+					&:hover { right: -15px; }
+				}
+				.large-btn:hover span { padding-right: 15px; }
+				.content {
+					width:90%;
+					left:5%;
+					right:5%;
+					top: 25%;
+				}
 			}
 		}
 		@media (max-width: 400px) {
@@ -62,9 +65,15 @@
 			.text h1 { font-size: 25px; }
 			.buttons { height: 60px; }
 		}
+		@media (max-width: 370px) {
+			.content {
+				padding: 40px 10px;
+				.large-btn { font-size: 18px }
+			}
+		}
 	}
 	#how-it-works{
-		height:500px;
+		height:100%;
 		width:100%;
 		background-color: black;
 		text-align: center;
@@ -75,6 +84,7 @@
 				display: inline-block;
 			}
 			color:white;
+
 			.columns {
 				position: relative;
 				margin-top:40px;
@@ -96,8 +106,19 @@
 						font-size: 16px;
 						padding: 10px 30px;
 					}
+
+				}
+				@media (max-width: 900px) {
+					display: inline;
+					.column {
+						width: 100%;
+						margin: 15px 0;
+					}
 				}
 			}
+		}
+		@media (max-width: 400px) {
+			padding: 40px 10px;
 		}
 	}
 }
