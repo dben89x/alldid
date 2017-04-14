@@ -1,0 +1,9 @@
+#footer-container
+	.container
+		#footer-nav-container
+			%p © #{Date.today.year} Alldid LLC
+			=link_to about_path do
+				About
+			="	•	"
+			=mail_to "dan@alldid.com", target: "_blank" do
+				Contact

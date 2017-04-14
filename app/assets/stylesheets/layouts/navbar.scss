@@ -1,22 +1,29 @@
 @import '../variables';
 
 .navbar {
-	background-color: transparent;
 	overflow: hidden;
-	transition: 0.3s;
 	color: $darkBrand;
+	.container-fluid {
+		margin-right: 20px !important;
+		@media (max-width: 767px) { margin-right: 10px !important; }
+	}
+
 }
 .navbar-header a {
 	padding: 4px 16px !important;
-	transition: 0.5s;
 	&:hover {
 		img {
 			opacity: 0.8;
 		}
 	}
 }
+.signup-link {
+	border: 2px solid white;
+	padding: 6px 15px;
+	border-radius: 6px;
+}
 span.icon-bar {
-	background-color: $lightBrand;
+	background-color: white;
 }
 ul.nav {
 	height: 52px;
@@ -35,7 +42,6 @@ ul.nav {
 	}
 }
 .navbar a {
-	transition: 0.3s;
 	float: left;
 	display: block;
 	color: white;
@@ -43,23 +49,31 @@ ul.nav {
 	padding: 14px 16px;
 	text-decoration: none;
 	font-size: 17px;
-	span.fa {
+	span.fa, span.user-avatar {
 		margin-right: 5px;
 	}
-	&:after {
-		display: block;
-		content: '';
-		border-bottom: solid 1px white;
-		transform: scaleX(0);
-		transition: transform 250ms ease-in-out;
+	span.user-avatar {
+		border-radius: 50%;
 	}
-	&:hover:after { transform: scaleX(1); }
+	// &:after {
+		// display: block;
+		// content: '';
+		// border-bottom: solid 1px white;
+		// transform: scaleX(0);
+		// transition: transform 250ms ease-in-out;
+	// }
+	// &:hover:after { transform: scaleX(1); }
 }
 
 .navbar a:hover, .navbar a:focus {
-	color: white;
 	text-decoration: none;
 	background-color: transparent !important;
+	transition: 0.3s;
+	.link {
+		transition: 0.3s;
+		color: lighten($lightBrand, 15%);
+		border-color: lighten($lightBrand, 15%);
+	}
 }
 .navbar a:focus {
 	background-color: transparent;
@@ -69,8 +83,13 @@ ul.nav {
 	background-color: #4CAF50;
 	color: white;
 }
-
-.navbar {
+.navbar-transparent {
+	background-color: transparent;
+}
+.navbar-opaque {
+	background-color: black;
+}
+.navbar-transparent {
 	-webkit-transition: all 0.6s ease-out;
 	-moz-transition: all 0.6s ease-out;
 	-o-transition: all 0.6s ease-out;
@@ -78,7 +97,7 @@ ul.nav {
 	transition: all 0.6s ease-out;
 }
 
-.navbar.scrolled {
+.navbar-transparent.scrolled {
 	background: rgb(68, 68, 68); //IE
 	background: rgba(0, 0, 0, 0.5); //NON-IE
 }

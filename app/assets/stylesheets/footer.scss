@@ -1,0 +1,30 @@
+@import 'variables';
+
+#footer-container {
+	width: 100%;
+	background-color: black;
+	.container { padding: 15px; }
+}
+
+#footer-nav-container {
+	color: $white;
+	text-align: center;
+	float: none;
+	margin: 0 auto;
+}
+
+#footer-nav-container a {
+	text-decoration: none;
+	color: $white;
+	transition: 0.3s;
+}
+
+#footer-nav-container a:hover {
+	color: lighten($lightBrand, 20%);
+}
+
+#footer-copyright {
+	margin-top: 10px;
+	font-size: 10px;
+	text-align: right;
+}

@@ -1,15 +1,14 @@
 $(document).ready ->
 	checkScroll = ->
-		startY = $('.navbar').height() * 2
-		console.log('foobar')
+		startY = $('.navbar-transparent').height() * 2
 		#The point where the navbar changes in px
 		if $(window).scrollTop() > startY
-			$('.navbar').addClass 'scrolled'
+			$('.navbar-transparent').addClass 'scrolled'
 		else
-			$('.navbar').removeClass 'scrolled'
+			$('.navbar-transparent').removeClass 'scrolled'
 		return
 
-	if $('.navbar').length > 0
+	if $('.navbar-transparent').length > 0
 		$(window).on 'scroll load resize', ->
 			checkScroll()
 			return

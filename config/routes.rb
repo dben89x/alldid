@@ -3,8 +3,13 @@ Rails.application.routes.draw do
 	get 'faq' => 'home#faq'
 	get 'about' => 'home#about'
 	get 'search' => 'home#search'
+	get 'admin' => 'home#admin'
 
-	devise_for :users
+	resources :subscriptions, only: [:new, :create]
+	match 'pricing' => 'subscriptions#new', via: :get
 
-	# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+	devise_for :users, controllers: {sessions: 'sessions'}
+
+	resources :profiles, only: [:edit, :update, :show]
+
 end

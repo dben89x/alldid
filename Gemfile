@@ -10,11 +10,16 @@ end
 gem 'rails', '~> 5.0.1'
 gem 'puma', '~> 3.0'
 gem 'uglifier'
+gem 'therubyracer', '~> 0.12.3'
+
+# Payments
+gem 'stripe', '~> 2.2.0'
 
 # Utility
 gem 'haml', '~> 4.0.7'
 gem 'erb2haml'
 gem 'annotate'
+gem 'carrierwave', '~> 0.10.0'
 
 # Data
 gem 'pg', '~> 0.20.0'
@@ -38,6 +43,7 @@ gem 'webpack-rails', '~> 0.9.10'
 gem 'react_on_rails', '~> 6.8.1'
 gem 'coffee-rails', '~> 4.2.0'
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
 
 group :development, :test do
 	gem 'byebug', platform: :mri

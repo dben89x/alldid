@@ -1,4 +1,4 @@
-%nav.navbar.navbar-fixed-top
+%nav.navbar.navbar-fixed-top{class: (current_page?(root_path)) ? 'navbar-transparent' : 'navbar-opaque'}
 	.container-fluid
 		.navbar-header
 			%button.navbar-toggle{"data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
@@ -10,32 +10,32 @@
 			%ul.nav.navbar-nav.nav-pills.nav-stacked
 				%li
 					=link_to search_path do
-						%span.fa.fa-search
-						Search
-				%li
-					=link_to about_path do
-						%span.fa.fa-users
-						About Us
-				%li
-					=link_to faq_path do
-						%span.fa.fa-question-circle
-						FAQ
+						.link
+							%span.fa.fa-search
+							Search
 			%ul.nav.navbar-nav.navbar-right.nav-pills.nav-stacked
 				-unless current_user
 					%li
-						=link_to new_user_registration_path do
-							%span.fa.fa-user-plus
-							Sign Up
-					%li
 						=link_to new_user_session_path do
-							%span.fa.fa-sign-in
-							Sign In
+							.link
+								%span.fa.fa-sign-in
+								Sign In
+					%li
+						=link_to new_user_registration_path do
+							.link.signup-link
+								%span.fa.fa-user-plus
+								Sign Up
 				-else
 					%li
-						=link_to edit_user_registration_path(current_user) do
-							%span.fa.fa-user
-							=current_user.email
+						=link_to edit_profile_path(current_user.profile) do
+							.link
+								-if current_user.avatar
+									%span.user-avatar=image_tag(current_user.avatar, width: 30)
+								-else
+									%span.fa.fa-user
+								=current_user.name
 					%li
 						=link_to destroy_user_session_path(current_user), method: :delete do
-							%span.fa.fa-sign-out
-							Sign Out
+							.link
+								%span.fa.fa-sign-out
+								Sign Out

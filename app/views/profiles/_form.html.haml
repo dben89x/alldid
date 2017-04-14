@@ -1,0 +1,31 @@
+= form_for(profile) do |f|
+	- if profile.errors.any?
+		#error_explanation
+			%h2
+				= pluralize(profile.errors.count, "error")
+				prohibited this profile from being saved:
+			%ul
+				- profile.errors.full_messages.each do |message|
+					%li= message
+
+	.col-md-6
+		.profile-field
+			="First Name"
+			%br
+			= f.text_field :first_name, autofocus: true, class: 'input profile-input'
+			%br
+			%br
+
+			="Last Name"
+			= f.text_field :last_name, autofocus: true, class: 'input profile-input'
+
+	.col-md-6
+		.profile-field
+		-# .profile-field
+		-# 	="Gender"
+		-# 	%br
+		-# 	= f.select :gender, ["male", "female"], {allow_blank: "Gender"}, {class: 'input profile-input'}
+		-# 	%br
+		-# 	%br
+	.actions
+		= f.submit class: 'brand-btn med-btn'

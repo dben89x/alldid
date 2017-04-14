@@ -1,21 +1,21 @@
 @import '../variables';
 
 //////////  USER FORMS  //////////
-.user-form {
-	width: 500px;
-	color: $white;
+.form {
+	color: $darkBrand;
 	text-align: center;
 	display: inline-block;
 	border: 1px solid gray;
 	border-radius: 6px;
 	padding: 60px 20px;
-	background-color: $darkest;
-	box-shadow: -1px -1px 6px 1px lighten($darkest, 15%);
+	background-color: white;
+	box-shadow: 1px 1px 6px 1px darken(white, 50%);
 	a {
-		color: white;
+		color: $darkBrand;
+		font-weight: 700;
 	}
 	a:hover, a:focus {
-		color: $white;
+		color: lighten($darkBrand,10%);
 		text-decoration: none;
 	}
 	h3 {
@@ -28,17 +28,17 @@
 .user-field {
 	position: relative;
 }
-.user-input {
+.input {
 	width: 300px;
 	height: 34px;
-	padding: 6px 12px 6px 35px;
+	padding: 6px 12px;
 	margin: 10px;
 	font-size: 16px;
 	line-height: 1.42857143;
-	color: $white;
-	background-color: $darkest;
+	color: $darkest;
+	background-color: white;
 	background-image: none;
-	border: 1px solid $white;
+	border: 1px solid $darkest;
 	border-radius: 4px;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
@@ -47,28 +47,33 @@
 	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 
 	&:focus {
-		box-shadow: 0 0 3px 2px $lightBrand;
+		box-shadow: 0 0 3px 2px $darkBrand;
 		outline: none;
 		border: none;
 	}
 }
+.user-input {
+	padding: 6px 12px 6px 35px;
+}
 .fa-icon {
 	position: absolute;
 	color: $darkBrand;
-	left: 90px;
+	left: 75px;
 	font-size: 22px;
 	top: 12px;
 }
 .brand-btn {
-	border: 2px solid $darkBrand;
+	border: 2px solid rgba(94, 21, 19, 0.8);
 	border-radius: 6px;
 	background-color: transparent;
-	color: $darkBrand;
+	color: rgba(94, 21, 19, 0.9);
 	transition: 0.2s;
+	font-weight: 600;
 
 	&:hover, &:focus {
-		background-color: $darkBrand;
+		background: rgba(94, 21, 19, 0.2);
 		outline: none;
+		border-color: $darkest;
 		color: $darkest;
 		text-decoration: none;
 	}
@@ -149,18 +154,37 @@
 	padding: 10px 20px;
 	border-width: 3px;
 }
+.user-form {
+	width: 500px;
+}
 @media (max-width: 600px) {
 	.user-form {
 		width: 400px;
 		padding: 60px 10px;
 	}
-	.fa-icon { left: 50px; }
+	.fa-icon { left: 35px; }
 }
 @media (max-width: 450px) {
 	.user-form { width: 350px; }
-	.fa-icon { left: 25px; }
+	.input.user-input {margin: 10px 0;}
+	.fa-icon { left: 10px; }
 }
 @media (max-width: 390px) {
-	.user-form { width: 330px; }
-	.fa-icon { left: 20px; }
+	.user-form {
+		width: 330px;
+		padding: 60px 0px;
+	}
+	.fa-icon { left: 10px; }
+}
+@media (max-width: 355px) {
+	.user-form {
+		width: 295px;
+		.input.user-input {
+			width: 263px;
+		}
+	}
+	.fa-icon { left: 10px; }
+	#users .brand-btn.med-btn {
+		width: 263px;
+	}
 }

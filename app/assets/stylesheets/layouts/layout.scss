@@ -1,7 +1,9 @@
 @import '../variables';
 
 #application-container {
-	// padding-top: $body_padding;
+}
+.body-padding {
+	padding-top: $body_padding;
 }
 .large-brand-text {
 	font-size: 20px;
@@ -21,8 +23,9 @@
 	opacity: 0;
 }
 .flash-messages{
-	margin-top: $body_padding;
-	margin-bottom: -$body_padding !important;
+	// position: relative;
+	// margin-top: $body_padding;
+	// margin-bottom: -$body_padding !important;
 }
 @media (max-width: 767px) {
 	ul.nav {
