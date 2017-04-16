@@ -23,10 +23,10 @@ class ProfilesController < ApplicationController
 
 	private
 	def set_profile
-		@profile = Profile.find(params[:id])
+		@profile = current_user.is_a? Barber ? BarberProfile.find(params[:id]) : ClientProfile.find(params[:id])
 	end
 
 	def profile_params
-		params.require(:profile).permit(:name, :url, :nickname, :city, :state, :conference, :athletics_url, :enrollment, :selectivity)
+		params.require(:profile).permit(:avatar)
 	end
 end

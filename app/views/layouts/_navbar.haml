@@ -27,10 +27,13 @@
 								Sign Up
 				-else
 					%li
-						=link_to edit_profile_path(current_user.profile) do
+						-puts session.inspect
+						-puts "foobar: #{current_user.barber_profile}"
+						-puts "foobar: #{@user_profile}"
+						=link_to edit_profile_path(@user_profile) do
 							.link
 								-if current_user.avatar
-									%span.user-avatar=image_tag(current_user.avatar, width: 30)
+									%span.user-avatar=image_tag(current_user.avatar)
 								-else
 									%span.fa.fa-user
 								=current_user.name

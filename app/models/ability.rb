@@ -7,13 +7,13 @@ class Ability
 		can :manage, Profile, user_id: user.id
 		can :read, :all
 
-		if user.type === 'Admin'
+		if user.is_a? Admin
 			can :manage, :all
 
-		elsif user.type === 'Barber'
+		elsif user.is_a? Barber
 			can [:edit, :update], BarberProfile, barber_id: user.id
 
-		elsif user.type === 'Client'
+		elsif user.is_a? Client
 			can [:edit, :update], ClientProfile, client_id: user.id
 
 		end

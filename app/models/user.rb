@@ -32,6 +32,11 @@ class User < ApplicationRecord
 
 	def create_profile
 		Profile.create(user_id: self.id)
+		if self.is_a? Barber
+			BarberProfile.create(barber_id: self.id)
+		elsif self.is_a? Client
+			ClientProfile.create(client_id: self.id)
+		end
 	end
 
 end

@@ -52,8 +52,11 @@ ul.nav {
 	span.fa, span.user-avatar {
 		margin-right: 5px;
 	}
-	span.user-avatar {
+	span.user-avatar img{
 		border-radius: 50%;
+		width:35px;
+		height:35px;
+
 	}
 	// &:after {
 		// display: block;

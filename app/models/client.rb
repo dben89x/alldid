@@ -21,4 +21,6 @@
 
 class Client < User
 	delegate :hair_type, :hair_width, :hair_density, :perfect_barber_id, to: :client_profile
+	
+	has_one :client_profile
 end

@@ -8,16 +8,34 @@
 				- profile.errors.full_messages.each do |message|
 					%li= message
 
-	.col-md-6
-		.profile-field
-			="First Name"
-			%br
-			= f.text_field :first_name, autofocus: true, class: 'input profile-input'
-			%br
-			%br
-
-			="Last Name"
-			= f.text_field :last_name, autofocus: true, class: 'input profile-input'
+	-if profile.avatar.nil?
+		#avatar-preview.hidden
+		#empty-avatar-preview
+			.text You don't have an avatar yet.
+	-else
+		#avatar-preview.hidden
+		#current-avatar{style: "background-image: url(#{profile.avatar})"}
+	%br/
+	=f.file_field :avatar, id: "avatar-upload", style: 'display:inline'
+	= f.hidden_field :avatar_cache
+	%br
+	%br
+	#profile-name
+		.col-md-6
+			= f.text_field :first_name, autofocus: true, placeholder: "First name", class: 'profile-input profile-name-input'
+		.col-md-6
+			= f.text_field :last_name, autofocus: false, placeholder: "Last name", class: 'profile-input profile-name-input'
+	#profile-headline
+		.col-md-12
+			= f.text_field :headline, autofocus: false, placeholder: "Headline", class: 'profile-input profile-name-input'
+	#profile-bio
+		.col-md-12
+			= f.text_area :bio, autofocus: false, placeholder: "Bio", class: 'profile-input profile-name-input'
+	-# Name
+	-# Description
+	-# Bio
+	-# > Skills
+	-# > Endorsements
 
 	.col-md-6
 		.profile-field

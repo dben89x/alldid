@@ -14,10 +14,11 @@
 #  last_name        :string
 #  avatar           :string
 #
-
+require 'carrierwave/orm/activerecord'
 class Profile < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :organization
+	mount_uploader :avatar, AvatarUploader
 
 	def name
 		first_name || self.user.email

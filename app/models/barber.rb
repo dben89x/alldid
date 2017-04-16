@@ -22,6 +22,7 @@
 class Barber < User
 	has_many :styles
 	has_many :skills
+	has_one :barber_profile
 
 	delegate :bio, to: :barber_profile
 

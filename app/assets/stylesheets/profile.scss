@@ -1,0 +1,38 @@
+@import 'variables';
+
+#avatar-preview, #empty-avatar-preview, #current-avatar {
+	width:150px !important;
+	height:150px !important;
+	border-radius:50% !important;
+	background-size:cover !important;
+	display: inline-flex;
+}
+#empty-avatar-preview {
+	background-color: #f0f0f0;
+	position: relative;
+	.text {
+		padding: 0 10px;
+		color: darken($white,10%);
+		position: absolute;
+		top: 60px;
+		font-size:15px;
+		line-height: 1;
+	}
+}
+.profile-name-input {
+	border: none;
+	border-bottom: 1px solid lighten($lightBrand,10%);
+	font-size: 20px;
+	width: 100%;
+	padding: 20px 20px 0 20px;
+	text-align: center;
+	&:focus {
+		outline:none;
+		box-shadow: 0 4px 4px -4px $lightBrand;
+	}
+}
+input[type=file] {
+	width: 75px;
+	display:inline;
+
+}

@@ -20,6 +20,7 @@ gem 'haml', '~> 4.0.7'
 gem 'erb2haml'
 gem 'annotate'
 gem 'carrierwave', '~> 0.10.0'
+gem 'active_record-acts_as'
 
 # Data
 gem 'pg', '~> 0.20.0'
@@ -54,6 +55,10 @@ group :development do
 	gem 'web-console', '>= 3.3.0'
 	gem 'listen', '~> 3.0.5'
 	gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :production do
+	gem 'fog', require: 'fog/aws'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
