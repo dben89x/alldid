@@ -1,6 +1,6 @@
 #users
 	.container
-		.form.dark-form.user-form
+		.form.light-form.user-form
 			%h2 Forgot your password?
 			= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
 				= devise_error_messages!
@@ -8,7 +8,7 @@
 					.user-field
 						.fa-icon
 							%i.fa.fa-user
-						= f.email_field :email, autofocus: true, placeholder: "Email", class: 'user-input email'
+						= f.email_field :email, autofocus: true, placeholder: "Email", class: 'user-input input light-input email'
 				.actions
 
 					= f.submit "Send me reset password instructions", class: 'brand-btn med-btn'

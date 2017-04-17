@@ -17,26 +17,31 @@
 #  updated_at             :datetime         not null
 #  type                   :string
 #  profile_id             :integer
+#  first_name             :string
+#  last_name              :string
+#  avatar                 :string
+#  headline               :string
+#  location               :string
+#  zip                    :string
+#  haircut_count          :integer
 #
-
+require 'carrierwave/orm/activerecord'
 class User < ApplicationRecord
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable,
 				 :recoverable, :rememberable, :trackable, :validatable
 
-	has_one :profile
-	delegate :first_name, :last_name, :avatar, :current_style_id, :haircut_count, :location, :zip, :hourly_rate, to: :profile
-	after_create :create_profile
-	delegate :full_name, :name, to: :profile
+	belongs_to :organization
 
-	def create_profile
-		Profile.create(user_id: self.id)
-		if self.is_a? Barber
-			BarberProfile.create(barber_id: self.id)
-		elsif self.is_a? Client
-			ClientProfile.create(client_id: self.id)
-		end
+	mount_uploader :avatar, AvatarUploader
+
+	def name
+		first_name || self.email
+	end
+
+	def full_name
+		"#{first_name} #{last_name}"
 	end
 
 end

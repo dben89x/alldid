@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 	resources :subscriptions, only: [:new, :create]
 	match 'pricing' => 'subscriptions#new', via: :get
 
-	devise_for :users, controllers: {sessions: 'sessions'}
-
-	resources :profiles, only: [:edit, :update, :show]
-
+	devise_for :users, controllers: {registrations: 'registrations', sessions: 'sessions'}
+	devise_scope :user do
+		get 'profile' =>  'registrations#profile'
+	end
 end

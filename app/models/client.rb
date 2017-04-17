@@ -17,10 +17,14 @@
 #  updated_at             :datetime         not null
 #  type                   :string
 #  profile_id             :integer
+#  first_name             :string
+#  last_name              :string
+#  avatar                 :string
+#  headline               :string
+#  location               :string
+#  zip                    :string
+#  haircut_count          :integer
 #
 
 class Client < User
-	delegate :hair_type, :hair_width, :hair_density, :perfect_barber_id, to: :client_profile
-	
-	has_one :client_profile
 end

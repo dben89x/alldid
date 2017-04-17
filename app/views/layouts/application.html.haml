@@ -16,6 +16,6 @@
 	%body
 		=render 'layouts/navbar'
 		#application-container{class: (current_page?(root_path)) ? '' : 'body-padding'}
-			=flash_messages
+			-# =flash_messages
 			= yield
 			=render 'layouts/footer'

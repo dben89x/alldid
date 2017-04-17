@@ -17,13 +17,17 @@
 #  updated_at             :datetime         not null
 #  type                   :string
 #  profile_id             :integer
+#  first_name             :string
+#  last_name              :string
+#  avatar                 :string
+#  headline               :string
+#  location               :string
+#  zip                    :string
+#  haircut_count          :integer
 #
 
-class Barber < User
+class Barber < ActiveRecord::Base
 	has_many :styles
 	has_many :skills
-	has_one :barber_profile
-
-	delegate :bio, to: :barber_profile
 
 end

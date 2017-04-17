@@ -10,16 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170416022419) do
+ActiveRecord::Schema.define(version: 20170416230625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "barber_profiles", force: :cascade do |t|
-    t.integer "barber_id"
-    t.text    "bio"
-    t.index ["barber_id"], name: "index_barber_profiles_on_barber_id", using: :btree
-  end
 
   create_table "barber_services", force: :cascade do |t|
     t.integer "user_id"
@@ -39,15 +33,6 @@ ActiveRecord::Schema.define(version: 20170416022419) do
     t.index ["user_id"], name: "index_barber_styles_on_user_id", using: :btree
   end
 
-  create_table "client_profiles", force: :cascade do |t|
-    t.integer "client_id"
-    t.integer "hair_type"
-    t.integer "hair_width"
-    t.integer "hair_density"
-    t.integer "perfect_barber_id"
-    t.index ["client_id"], name: "index_client_profiles_on_client_id", using: :btree
-  end
-
   create_table "endorsements", force: :cascade do |t|
     t.integer "barber_id"
     t.integer "client_id"
@@ -60,22 +45,6 @@ ActiveRecord::Schema.define(version: 20170416022419) do
   create_table "organizations", force: :cascade do |t|
     t.string  "location"
     t.integer "zip"
-  end
-
-  create_table "profiles", force: :cascade do |t|
-    t.integer "hourly_rate"
-    t.string  "location"
-    t.integer "zip"
-    t.integer "haircut_count"
-    t.integer "organization_id"
-    t.integer "user_id"
-    t.integer "current_style_id"
-    t.string  "first_name"
-    t.string  "last_name"
-    t.string  "avatar"
-    t.string  "headline"
-    t.index ["organization_id"], name: "index_profiles_on_organization_id", using: :btree
-    t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -112,9 +81,22 @@ ActiveRecord::Schema.define(version: 20170416022419) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "type"
-    t.integer  "profile_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "avatar"
+    t.string   "headline"
+    t.string   "location"
+    t.string   "zip"
+    t.integer  "haircut_count"
+    t.integer  "hair_type"
+    t.integer  "hair_width"
+    t.integer  "hair_density"
+    t.integer  "perfect_barber_id"
+    t.integer  "current_style_id"
+    t.text     "bio"
+    t.integer  "hourly_rate"
+    t.integer  "organization_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["profile_id"], name: "index_users_on_profile_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

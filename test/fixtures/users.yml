@@ -17,6 +17,13 @@
 #  updated_at             :datetime         not null
 #  type                   :string
 #  profile_id             :integer
+#  first_name             :string
+#  last_name              :string
+#  avatar                 :string
+#  headline               :string
+#  location               :string
+#  zip                    :string
+#  haircut_count          :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
