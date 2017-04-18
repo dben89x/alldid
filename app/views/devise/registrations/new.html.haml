@@ -5,22 +5,33 @@
 			= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
 
 				= devise_error_messages!
+				.col-md-6
+					%span{class:"user-type-radios"}
+						%label#client-radio
+							=f.radio_button :type, 'Client', id: 'client-radio-btn'
+							Client
+
+				.col-md-6
+					%span{class:"user-type-radios"}
+						%label#barber-radio
+							=f.radio_button :type, 'Barber', id: 'barber-radio-btn'
+							Barber
 
 				.col-md-12
 					.user-field
 						.fa-icon
 							%i.fa.fa-user
-						= f.email_field :email, autofocus: true, placeholder: "Email", class: 'user-input input light-input email'
+						= f.email_field :email, autofocus: true, placeholder: "Email", class: 'user-input input email'
 				.col-md-12
 					.user-field
 						.fa-icon
 							%i.fa.fa-lock
-						= f.password_field :password, autocomplete: "off", placeholder: "Password (#{@minimum_password_length} character minimum)", class: 'user-input input light-input password'
+						= f.password_field :password, autocomplete: "off", placeholder: "Password (#{@minimum_password_length} character minimum)", class: 'user-input input password'
 				.col-md-12
 					.user-field
 						.fa-icon
 							%i.fa.fa-lock
-						= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation", class: 'user-input input light-input password'
+						= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation", class: 'user-input input password'
 				%br
-				= f.submit "Create Account", class: 'brand-btn med-btn'
+				= f.submit "Create Account", class: 'brand-btn med-btn light-brand-btn'
 			= render "devise/shared/links"

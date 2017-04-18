@@ -25,6 +25,7 @@
 #  zip                    :string
 #  haircut_count          :integer
 #
+
 require 'carrierwave/orm/activerecord'
 class User < ApplicationRecord
 	# Include default devise modules. Others available are:
@@ -33,7 +34,7 @@ class User < ApplicationRecord
 				 :recoverable, :rememberable, :trackable, :validatable
 
 	belongs_to :organization
-
+	validates_presence_of :type, :email, :password
 	mount_uploader :avatar, AvatarUploader
 
 	def name

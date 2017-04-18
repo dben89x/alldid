@@ -1,0 +1,141 @@
+@import 'variables';
+#search-container {
+	height: calc(100vh - #{$body_padding});
+}
+#client-sidebar-container {
+	background: $body_color;
+	padding: 40px 20px;
+	height: 100%;
+	position: relative;
+	.user-avatar {
+		border-radius: 50%;
+		width:150px;
+		height: 150px;
+		text-align: center;
+		position: absolute;
+		left: calc(50% - 75px);
+		background-image: url('test-avatar');
+		background-size: cover;
+	}
+}
+#barber-container {
+	background: $body_color;
+	height: 100%;
+}
+#featured-barber {
+	height:30%;
+	position: relative;
+
+	.barber {
+		height: 100%;
+
+		.barber-image {
+			top: calc(50% - 75px);
+			height: 150px;
+			width: 150px;
+			left: calc(50% - 75px);
+			-webkit-animation-name: yellowPulse;
+			-webkit-animation-duration: 2s;
+			-webkit-animation-iteration-count: infinite;
+		}
+	}
+	// background: rgba(25,88,108,0.7);
+}
+#barbers {
+	height: 70%;
+	overflow-y: scroll;
+	background: $body_color;
+	.barber {
+		margin: 20px;
+		border-radius: 6px;
+		background: white;
+		height: 150px;
+
+		.barber-image {
+			top: calc(50% - 50px);
+			height: 100px;
+			width: 100px;
+			left: calc(60% - 50px);
+		}
+	}
+}
+.barber {
+	position: relative;
+
+	.barber-favorite {
+		position: absolute;
+		color: darken($white,10%);
+		font-size: 20px;
+		transition: 0.3s;
+		font-weight: 900;
+		left: 10px;
+		top: 10px;
+
+		&:hover {
+			cursor: pointer;
+			color: #CC9900;
+		}
+		&.faved {color: #CC9900;}
+	}
+
+	.fa-usd { color: #29651D }
+	.fa-map-marker { margin-right: 5px;}
+	.barber-avatar {
+		position: absolute;
+		width: 15%;
+		height:100%;
+		top: 0;
+		padding: 20px;
+
+		.barber-image {
+			position: absolute;
+			background-image: url('test-avatar');
+			background-size: cover;
+			border-radius: 50%;
+		}
+	}
+	.barber-details {
+		position: absolute;
+		padding: 20px;
+		left: 15%;
+		width: 50%;
+		height: 100%;
+
+		.barber-name {
+			font-weight: 600;
+			font-size: 20px;
+			color: $darkBrand;
+		}
+		.barber-location {
+			font-weight: 600;
+			font-size: 18px;
+			color: $lightBrand;
+		}
+		.barber-headline {
+			font-weight: 600;
+			font-size: 17px;
+			color: darken($white, 15%);
+		}
+	}
+	.skills-and-styles {
+		position: absolute;
+		padding: 20px;
+		left: 65%;
+		height: 100%;
+		width: 35%;
+
+		
+	}
+}
+@-webkit-keyframes yellowPulse {
+	from { -webkit-box-shadow: 0 0 9px rgba(255, 204, 0, 0.8); }
+	50% { -webkit-box-shadow: 0 0 18px rgba(255, 204, 0, 0.9); }
+	to { -webkit-box-shadow: 0 0 9px rgba(255, 204, 0, 1); }
+}
+// .is_animating {
+// 	animation: heart-burst .8s steps(28) 1;
+// }
+// @keyframes heart-burst {
+//  from {background-position:left;}
+//  to { background-position:right;}
+// }

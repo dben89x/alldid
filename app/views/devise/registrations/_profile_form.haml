@@ -25,19 +25,10 @@
 	#user-bio
 		.col-md-12
 			= f.text_area :bio, autofocus: false, placeholder: "Bio", class: 'profile-input profile-name-input'
-	-# Name
-	-# Description
-	-# Bio
-	-# > Skills
+	#user-styles
+		=react_component 'UserStyles', props: {styles: @barbers, featured: @featured_barber}, prerender: true
+	#user-services
 	-# > Endorsements
 
-	.col-md-6
-		.user-field
-		-# .user-field
-		-# 	="Gender"
-		-# 	%br
-		-# 	= f.select :gender, ["male", "female"], {allow_blank: "Gender"}, {class: 'input profile-input'}
-		-# 	%br
-		-# 	%br
 	.actions
-		= f.submit class: 'brand-btn med-btn'
+		= f.submit "Update Profile", class: 'brand-btn light-brand-btn med-btn'

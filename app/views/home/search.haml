@@ -1,3 +1,2 @@
-#about
-	.container
-		%h1 Search
+#search
+	=react_component('SearchContainer', props: {barbers: @barbers, featured: @featured_barber}, prerender: true)

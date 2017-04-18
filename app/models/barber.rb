@@ -26,7 +26,7 @@
 #  haircut_count          :integer
 #
 
-class Barber < ActiveRecord::Base
+class Barber < User
 	has_many :styles
 	has_many :skills
 

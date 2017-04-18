@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170416230625) do
+ActiveRecord::Schema.define(version: 20170418190504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,19 @@ ActiveRecord::Schema.define(version: 20170416230625) do
     t.integer "zip"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "hair_type"
+    t.integer "hair_width"
+    t.integer "hair_density"
+    t.integer "perfect_barber_id"
+    t.integer "current_style_id"
+    t.text    "bio"
+    t.integer "hourly_rate"
+    t.integer "organization_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
+  end
+
   create_table "ratings", force: :cascade do |t|
     t.integer "barber_id"
     t.integer "client_id"
@@ -65,6 +78,27 @@ ActiveRecord::Schema.define(version: 20170416230625) do
     t.string "name"
     t.string "description"
     t.string "url"
+  end
+
+  create_table "user_favorites", force: :cascade do |t|
+    t.integer "profile_id"
+    t.integer "user_id"
+    t.index ["profile_id"], name: "index_user_favorites_on_profile_id", using: :btree
+    t.index ["user_id"], name: "index_user_favorites_on_user_id", using: :btree
+  end
+
+  create_table "user_services", force: :cascade do |t|
+    t.integer "profile_id"
+    t.integer "service_id"
+    t.index ["profile_id"], name: "index_user_services_on_profile_id", using: :btree
+    t.index ["service_id"], name: "index_user_services_on_service_id", using: :btree
+  end
+
+  create_table "user_styles", force: :cascade do |t|
+    t.integer "profile_id"
+    t.integer "style_id"
+    t.index ["profile_id"], name: "index_user_styles_on_profile_id", using: :btree
+    t.index ["style_id"], name: "index_user_styles_on_style_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -88,15 +122,9 @@ ActiveRecord::Schema.define(version: 20170416230625) do
     t.string   "location"
     t.string   "zip"
     t.integer  "haircut_count"
-    t.integer  "hair_type"
-    t.integer  "hair_width"
-    t.integer  "hair_density"
-    t.integer  "perfect_barber_id"
-    t.integer  "current_style_id"
-    t.text     "bio"
-    t.integer  "hourly_rate"
-    t.integer  "organization_id"
+    t.integer  "profile_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["profile_id"], name: "index_users_on_profile_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

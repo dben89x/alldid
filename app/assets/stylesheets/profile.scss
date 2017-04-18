@@ -26,9 +26,13 @@
 	width: 100%;
 	padding: 20px 20px 0 20px;
 	text-align: center;
+	margin-top: 5px;
 	&:focus {
 		outline:none;
 		box-shadow: 0 4px 4px -4px $lightBrand;
+	}
+	&input[type=text_area] {
+		outline: 1px solid $lightBrand;
 	}
 }
 input[type=file] {
