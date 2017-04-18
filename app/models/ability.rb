@@ -11,10 +11,10 @@ class Ability
 			can :manage, :all
 
 		elsif user.is_a? Barber
-			can [:edit, :update], BarberProfile, barber_id: user.id
+			can [:edit, :update], Profile, user_id: user.id
 
 		elsif user.is_a? Client
-			can [:edit, :update], ClientProfile, client_id: user.id
+			can [:edit, :update], Profile, user_id: user.id
 
 		end
 

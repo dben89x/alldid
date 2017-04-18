@@ -9,7 +9,5 @@ Rails.application.routes.draw do
 	match 'pricing' => 'subscriptions#new', via: :get
 
 	devise_for :users, controllers: {registrations: 'registrations', sessions: 'sessions'}
-	devise_scope :user do
-		get 'profile' =>  'registrations#profile'
-	end
+	resources :profiles, only: [:show, :edit, :update]
 end

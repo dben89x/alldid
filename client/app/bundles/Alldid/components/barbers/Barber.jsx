@@ -1,6 +1,8 @@
 import React from 'react';
 import ClientSidebar from './ClientSidebar';
 import BarberContainer from './BarberContainer';
+import StyleTag from '../forms/StyleTag';
+import ServiceTag from '../forms/ServiceTag';
 import _ from 'underscore';
 
 export default class SearchContainer extends React.Component {
@@ -9,10 +11,14 @@ export default class SearchContainer extends React.Component {
 	}
 
 	render () {
-		const { name, headline, location, price } = this.props.barber
+		const { name, headline, location, price, styles, services } = this.props.barber
+
 		var priceString = ``
 		_.times( price, () => priceString = `${priceString}<span class='fa fa-usd'/>` )
 		const priceHtml = {__html: priceString}
+
+		const barber_styles = styles.map( (style) => <StyleTag name={style} key={Math.random(100)}/>)
+		const barber_services = services.map( (service) => <ServiceTag name={service} key={Math.random(100)}/>)
 
 		return (
 			<div className='barber'>
@@ -33,12 +39,12 @@ export default class SearchContainer extends React.Component {
 						{headline}
 					</div>
 				</div>
-				<div className='skills-and-styles'>
-					<div className='skills'>
-
+				<div className='services-and-styles'>
+					<div className='services'>
+						{barber_services}
 					</div>
 					<div className='styles'>
-						
+						{barber_styles}
 					</div>
 				</div>
 				<span className='barber-favorite fa fa-star-o'/>

@@ -98,7 +98,7 @@
 		position: absolute;
 		padding: 20px;
 		left: 15%;
-		width: 50%;
+		width: 45%;
 		height: 100%;
 
 		.barber-name {
@@ -117,14 +117,14 @@
 			color: darken($white, 15%);
 		}
 	}
-	.skills-and-styles {
+	.services-and-styles {
 		position: absolute;
 		padding: 20px;
-		left: 65%;
+		left: 60%;
 		height: 100%;
-		width: 35%;
+		width: 40%;
 
-		
+
 	}
 }
 @-webkit-keyframes yellowPulse {

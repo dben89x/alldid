@@ -16,14 +16,8 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  type                   :string
-#  profile_id             :integer
-#  first_name             :string
-#  last_name              :string
-#  avatar                 :string
-#  headline               :string
-#  location               :string
-#  zip                    :string
 #  haircut_count          :integer
+#  profile_id             :integer
 #
 
 class Barber < User

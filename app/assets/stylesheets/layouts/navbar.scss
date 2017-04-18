@@ -41,6 +41,15 @@ ul.nav {
 		}
 	}
 }
+.link.settings{
+	display: inline;
+	.settings-text {
+		display: none;
+		@media (max-width: 767px) {
+			display: inherit;
+		}
+	}
+}
 .navbar a {
 	float: left;
 	display: block;
@@ -54,8 +63,8 @@ ul.nav {
 	}
 	span.user-avatar img{
 		border-radius: 50%;
-		width:35px;
-		height:35px;
+		width:30px;
+		height:30px;
 
 	}
 	// &:after {

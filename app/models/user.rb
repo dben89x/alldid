@@ -16,14 +16,8 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  type                   :string
-#  profile_id             :integer
-#  first_name             :string
-#  last_name              :string
-#  avatar                 :string
-#  headline               :string
-#  location               :string
-#  zip                    :string
 #  haircut_count          :integer
+#  profile_id             :integer
 #
 
 require 'carrierwave/orm/activerecord'
@@ -34,15 +28,14 @@ class User < ApplicationRecord
 				 :recoverable, :rememberable, :trackable, :validatable
 
 	belongs_to :organization
+	has_one :profile
 	validates_presence_of :type, :email, :password
-	mount_uploader :avatar, AvatarUploader
+	after_create :create_profile
+	delegate :name, to: :profile
+	delegate :avatar, to: :profile
 
-	def name
-		first_name || self.email
-	end
-
-	def full_name
-		"#{first_name} #{last_name}"
+	def create_profile
+		Profile.create(user_id: self.id)
 	end
 
 end

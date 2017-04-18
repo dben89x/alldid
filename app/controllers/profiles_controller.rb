@@ -1,18 +1,21 @@
 class ProfilesController < ApplicationController
-
-	before_action :set_profile, only: [:show, :edit, :update, :destroy]
+	before_action :set_profile, only: [:show, :edit, :update]
 	load_and_authorize_resource
 
 	def show
 	end
 
 	def edit
+		if current_user.is_a? Barber
+			@styles = Style.all
+			@services = Service.all
+		end
 	end
 
 	def update
 		respond_to do |format|
 			if @profile.update(profile_params)
-				format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+				format.html { redirect_to root_path, notice: 'Profile was successfully updated.' }
 				format.json { render :show, status: :ok, location: @profile }
 			else
 				format.html { render :edit }
@@ -23,10 +26,14 @@ class ProfilesController < ApplicationController
 
 	private
 	def set_profile
-		@profile = current_user.is_a? Barber ? BarberProfile.find(params[:id]) : ClientProfile.find(params[:id])
+		@profile = Profile.find_by(user_id: current_user.id)
 	end
 
 	def profile_params
-		params.require(:profile).permit(:avatar)
+		params.require(:profile).permit(
+			:hair_type, :hair_width, :hair_density, :bio, :hourly_rate, :first_name,
+			:last_name, :avatar, :headline, :location, :zip
+		)
+
 	end
 end

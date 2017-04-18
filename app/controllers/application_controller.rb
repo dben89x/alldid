@@ -1,11 +1,15 @@
 class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
-	helper_method :signed_in_root_path
+	before_action :configure_permitted_parameters, if: :devise_controller?
 
-	def signed_in_root_path(current_user)
-		'/'
+	protected
+
+	def configure_permitted_parameters
+		devise_parameter_sanitizer.permit(:sign_up) do |user_params|
+			user_params.permit(:email, :password, :type)
+		end
 	end
-
+	
 	# before_filter :get_user_profile
 
 	# def get_user_profile

@@ -31,20 +31,32 @@ class HomeController < ApplicationController
 		]
 		@barbers = []
 		10.times do
+			barber_styles = []
+			rand(1..3).times { barber_styles << styles.sample }
+			barber_services = []
+			rand(1..3).times { barber_services << services.sample }
 			@barbers << {
 				name: Faker::GameOfThrones.character,
 				headline: Faker::Lorem.sentence,
 				bio: Faker::Lorem.paragraph,
 				location: Faker::GameOfThrones.city,
 				price: [1,2,3].sample,
+				styles: barber_styles,
+				services: barber_services
 			}
 		end
+		barber_styles = []
+		rand(1..3).times { barber_styles << styles.sample }
+		barber_services = []
+		rand(1..3).times { barber_services << services.sample }
 		@featured_barber = {
 			name: Faker::GameOfThrones.character,
 			headline: Faker::Lorem.sentence,
 			bio: Faker::Lorem.paragraph,
 			location: Faker::GameOfThrones.city,
 			price: [1,2,3].sample,
+			styles: barber_styles,
+			services: barber_services
 		}
 	end
 end

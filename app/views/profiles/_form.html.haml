@@ -1,49 +1,39 @@
-= form_for(profile) do |f|
-	- if profile.errors.any?
+= form_for(@profile) do |f|
+	- if @profile.errors.any?
 		#error_explanation
 			%h2
-				= pluralize(profile.errors.count, "error")
+				= pluralize(@profile.errors.count, "error")
 				prohibited this profile from being saved:
 			%ul
-				- profile.errors.full_messages.each do |message|
+				- @profile.errors.full_messages.each do |message|
 					%li= message
 
-	-if profile.avatar.nil?
+	-if current_user.profile[:avatar].nil?
 		#avatar-preview.hidden
 		#empty-avatar-preview
 			.text You don't have an avatar yet.
 	-else
 		#avatar-preview.hidden
-		#current-avatar{style: "background-image: url(#{profile.avatar})"}
+		#current-avatar{style: "background-image: url(#{current_user.profile.avatar})"}
 	%br/
 	=f.file_field :avatar, id: "avatar-upload", style: 'display:inline'
 	= f.hidden_field :avatar_cache
 	%br
 	%br
-	#profile-name
+	#user-name
 		.col-md-6
 			= f.text_field :first_name, autofocus: true, placeholder: "First name", class: 'profile-input profile-name-input'
 		.col-md-6
 			= f.text_field :last_name, autofocus: false, placeholder: "Last name", class: 'profile-input profile-name-input'
-	#profile-headline
+	#user-headline
 		.col-md-12
 			= f.text_field :headline, autofocus: false, placeholder: "Headline", class: 'profile-input profile-name-input'
-	#profile-bio
-		.col-md-12
-			= f.text_area :bio, autofocus: false, placeholder: "Bio", class: 'profile-input profile-name-input'
-	-# Name
-	-# Description
-	-# Bio
-	-# > Skills
-	-# > Endorsements
 
-	.col-md-6
-		.profile-field
-		-# .profile-field
-		-# 	="Gender"
-		-# 	%br
-		-# 	= f.select :gender, ["male", "female"], {allow_blank: "Gender"}, {class: 'input profile-input'}
-		-# 	%br
-		-# 	%br
+	-if current_user.is_a? Barber
+		= render 'barber_form', f: f
+	-elsif current_user.is_a? Client
+		= render 'client_form', f: f
+	-elsif current_user.is_a? Admin
+
 	.actions
-		= f.submit class: 'brand-btn light-brand-btn med-btn'
+		= f.submit "Update Profile", class: 'brand-btn light-brand-btn med-btn'
