@@ -9,7 +9,7 @@ export default class SearchContainer extends React.Component {
 
 	render () {
 		return (
-			<div id="barber-container" className='col-md-9'>
+			<div id="barber-container" className='col-md-10'>
 				<FeaturedBarber featured={this.props.featured}/>
 				<Barbers barbers={this.props.barbers}/>
 			</div>

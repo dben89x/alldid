@@ -7,7 +7,7 @@ export default class ClientSidebar extends React.Component {
 
 	render () {
 		return (
-			<div id='client-sidebar-container' className='col-md-3'>
+			<div id='client-sidebar-container' className='col-md-2'>
 				<div className='user-avatar'/>
 			</div>
 		);

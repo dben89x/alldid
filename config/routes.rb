@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 
 	devise_for :users, controllers: {registrations: 'registrations', sessions: 'sessions'}
 	resources :profiles, only: [:show, :edit, :update]
-	resources :user_favorites, only: [:create]
+	resources :user_favorites, only: [:create, :destroy]
+	resources :barbers, only: [:show]
 end

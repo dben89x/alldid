@@ -33,10 +33,11 @@ export default class SearchContainer extends React.Component {
 
 			}
 		});
+		event.preventDefault();
 	}
 
 	render () {
-		const { name, headline, location, price, styles, services, avatar } = this.props.barber
+		const { id, name, headline, location, price, styles, services, avatar } = this.props.barber
 
 		var priceString = ``
 		_.times( price, () => priceString = `${priceString}<span class='fa fa-usd'/>` )
@@ -47,34 +48,42 @@ export default class SearchContainer extends React.Component {
 		// var avatarStyle = { backgroundImage: `url(${avatar})` };
 
 		return (
-			<div className='barber'>
-				<div className='barber-avatar'>
-					<div className='barber-image'/>
+			<a href={`/barbers/${id}`}>
+				<div className='barber'>
+					<div className='barber-avatar'>
+						<div className='barber-image'/>
+					</div>
+					<div className='barber-details-container'>
+						<div className='barber-details'>
+							<div className='barber-name'>
+								{name}
+							</div>
+							<div className='barber-location'>
+								<span className='fa fa-map-marker'/>{location}
+							</div>
+							<div className='barber-price'>
+								<span dangerouslySetInnerHTML={ priceHtml }/>
+							</div>
+							<div className='barber-headline'>
+								{headline}
+							</div>
+						</div>
+						<div className='services-and-styles'>
+							<div className='styles-header'>Styles:</div>
+							<div className='styles'>
+								{barber_styles}
+							</div>
+
+							<div className='services-header'>Services:</div>
+							<div className='services'>
+								{barber_services}
+							</div>
+						</div>
+					</div>
+
+					<span className='barber-favorite fa fa-star-o' onClick={this.handleFavorite}/>
 				</div>
-				<div className='barber-details'>
-					<div className='barber-name'>
-						{name}
-					</div>
-					<div className='barber-location'>
-						<span className='fa fa-map-marker'/>{location}
-					</div>
-					<div className='barber-price'>
-						<span dangerouslySetInnerHTML={ priceHtml }/>
-					</div>
-					<div className='barber-headline'>
-						{headline}
-					</div>
-				</div>
-				<div className='services-and-styles'>
-					<div className='services'>
-						{barber_services}
-					</div>
-					<div className='styles'>
-						{barber_styles}
-					</div>
-				</div>
-				<span className='barber-favorite fa fa-star-o' onClick={this.handleFavorite}/>
-			</div>
+			</a>
 		);
 	}
 }
