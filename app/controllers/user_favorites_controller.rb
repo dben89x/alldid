@@ -1,7 +1,6 @@
 class UserFavoritesController < ApplicationController
 	def create
 		@favorite = UserFavorite.new(params[:favorite])
-		@favorite.profile_id = current_user.profile.id
 		
 		respond_to do |format|
 			if @favorite.save

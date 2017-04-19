@@ -16,7 +16,7 @@ export default class SearchContainer extends React.Component {
 
 	handleFavorite(event) {
 		const { profile_id, barber_id } = this.props
-		console.log( event.target)
+		const target = event.target
 		this.state.xhr = $.ajax({
 			url: `/user_favorites`,
 			method: 'POST',
@@ -27,12 +27,9 @@ export default class SearchContainer extends React.Component {
 			},
 			dataType: 'json',
 			success: (newData) => {
-				this.setState({ user_styles: newData }, function(){
-					this.setState({ showResultsLink: (this.state.xhr !== null || this.state.xhr.readyState === 4)})
-				});
-				// $(this).toggleClass 'fa-star'
-				// $(this).toggleClass 'fa-star-o'
-				// $(this).toggleClass 'faved'
+				$(target).toggleClass('fa-star')
+				$(target).toggleClass('fa-star-o')
+				$(target).toggleClass('faved')
 
 			}
 		});
@@ -42,7 +39,6 @@ export default class SearchContainer extends React.Component {
 		const { first_name, headline, location, price, styles, services, avatar } = this.props.barber
 
 		var priceString = ``
-		console.log(`foo ${price}`)
 		_.times( price, () => priceString = `${priceString}<span class='fa fa-usd'/>` )
 		const priceHtml = {__html: priceString}
 
