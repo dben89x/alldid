@@ -33,11 +33,8 @@ class User < ApplicationRecord
 	validates_presence_of :type, :email, :password
 	after_create :create_profile
 
-	delegate :name, to: :profile
-	delegate :avatar, to: :profile
-	delegate :user_styles, to: :profile
-	delegate :user_services, to: :profile
-	delegate :user_favorites, to: :profile
+	delegate :first_name, :last_name, :name, :avatar, :headline, :bio, :location,
+	:hourly_rate, :user_styles, :user_services, :user_favorites, to: :profile
 
 	def create_profile
 		Profile.create(user_id: self.id)

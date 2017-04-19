@@ -1,10 +1,13 @@
 class UserFavoritesController < ApplicationController
 	def create
+		@favorite = UserFavorite.new(params[:favorite])
+		@favorite.profile_id = current_user.profile.id
+		
 		respond_to do |format|
-			if favorite = UserFavorite.create(favorite_params)
-				format.json
+			if @favorite.save
+				format.json { render json: @favorite }
 			else
-				format.json { render json: favorite.errors, status: :unprocessable_entity }
+				format.json { render json: @favorite.errors, status: :unprocessable_entity }
 			end
 		end
 	end

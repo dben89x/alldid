@@ -30,26 +30,19 @@ class HomeController < ApplicationController
 			"Overall trim"
 		]
 		@barbers = []
-		rates = []
-		100.times {rates << rand(20..50)}
+		rates = User.includes(:profile).where.not(profiles: {hourly_rate: nil}).pluck(:hourly_rate)
 		quadrant_values = calculate_price_comparisons(rates)
 
-		10.times do
-			barber_styles = []
-			rand(1..3).times { barber_styles << styles.sample }
-			barber_services = []
-			rand(1..3).times { barber_services << services.sample }
-
-			rate = rates.sample
-			price = find_price_quadrant(quadrant_values, rate)
-			@barbers << {
-				name: Faker::GameOfThrones.character,
-				headline: Faker::Lorem.sentence,
-				bio: Faker::Lorem.paragraph,
-				location: Faker::GameOfThrones.city,
-				price: price,
-				styles: barber_styles,
-				services: barber_services
+		@barbers =  Barber.all.collect do |barber|
+			{
+				id: barber.id,
+				name: barber.name,
+				headline: barber.headline,
+				bio: barber.bio,
+				location: barber.location,
+				price: find_price_quadrant(quadrant_values, barber.hourly_rate),
+				styles: barber.styles.pluck(:name),
+				services: barber.services.pluck(:name)
 			}
 		end
 		@featured_barber = @barbers.sample
@@ -57,7 +50,6 @@ class HomeController < ApplicationController
 
 	# Returns an array of quadrant price values
 	def calculate_price_comparisons(all_rates)
-		# all_rates = User.includes(:profile).where.not(hourly_rate: nil).pluck(:hourly_rate)
 		sorted_rates = all_rates.sort
 		rates_count = all_rates.count
 
@@ -70,6 +62,7 @@ class HomeController < ApplicationController
 			quadrant_values << upper_quadrant_bound_value
 			quadrant += 1
 		end
+		quadrant_values[3] = sorted_rates.max
 		quadrant_values
 	end
 

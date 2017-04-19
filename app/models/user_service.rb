@@ -8,6 +8,6 @@
 #
 
 class UserService < ActiveRecord::Base
-	belongs_to :profile
+	belongs_to :profile, inverse_of: :user_services
 	belongs_to :service
 end
