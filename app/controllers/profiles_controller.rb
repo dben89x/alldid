@@ -7,8 +7,10 @@ class ProfilesController < ApplicationController
 
 	def edit
 		if current_user.is_a? Barber
-			@styles = Style.all
-			@services = Service.all
+			@all_styles = Style.all.pluck(:name)
+			@all_services = Service.all.pluck(:name)
+			@user_styles = current_user.styles.pluck(:name)
+			@user_services = current_user.services.pluck(:name)
 		end
 	end
 
@@ -34,6 +36,5 @@ class ProfilesController < ApplicationController
 			:hair_type, :hair_width, :hair_density, :bio, :hourly_rate, :first_name,
 			:last_name, :avatar, :headline, :location, :zip
 		)
-
 	end
 end

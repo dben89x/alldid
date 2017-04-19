@@ -22,8 +22,13 @@
 
 class Profile < ActiveRecord::Base
 
-	belongs_to :user
 	mount_uploader :avatar, AvatarUploader
+
+	belongs_to :user
+	has_many :user_styles, inverse_of: :profile
+	has_many :user_services, inverse_of: :profile
+	has_many :user_favorites, inverse_of: :profile
+
 	delegate :email, to: :user
 
 	def name

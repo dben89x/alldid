@@ -21,7 +21,4 @@
 #
 
 class Barber < User
-	has_many :styles
-	has_many :skills
-
 end

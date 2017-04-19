@@ -29,13 +29,30 @@ class User < ApplicationRecord
 
 	belongs_to :organization
 	has_one :profile
+
 	validates_presence_of :type, :email, :password
 	after_create :create_profile
+
 	delegate :name, to: :profile
 	delegate :avatar, to: :profile
+	delegate :user_styles, to: :profile
+	delegate :user_services, to: :profile
+	delegate :user_favorites, to: :profile
 
 	def create_profile
 		Profile.create(user_id: self.id)
+	end
+
+	def services
+		Service.where(id: self.user_services.pluck(:service_id).uniq)
+	end
+
+	def styles
+		Style.where(id: self.user_styles.pluck(:style_id).uniq)
+	end
+
+	def favorites
+		User.where(id: self.user_favorites.pluck(:user_id).uniq)
 	end
 
 end

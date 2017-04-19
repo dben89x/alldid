@@ -8,6 +8,6 @@
 #
 
 class UserStyle < ActiveRecord::Base
-	belongs_to :profile
-	belongs_to :style
+	belongs_to :profile, inverse_of: :user_styles
+	belongs_to :style, inverse_of: :user_styles
 end

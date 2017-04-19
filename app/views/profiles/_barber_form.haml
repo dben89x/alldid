@@ -2,7 +2,12 @@
 	.col-md-12
 		= f.text_area :bio, autofocus: false, placeholder: "Bio", class: 'profile-input profile-name-input'
 
-#user-styles
-	=react_component 'UserStyles', props: {styles: @styles}, prerender: true
-#user-services
-	=react_component 'UserServices', props: {services: @services}, prerender: true
+.col-md-12
+	%h4 Your Styles:
+	#user-styles
+		=react_component 'UserStyles', props: {all_styles: @all_styles, user_styles: @user_styles, profile_id: @profile.id}, prerender: true
+
+.col-md-12
+	%h4 Your Services
+	#user-services
+		=react_component 'UserServices', props: {all_services: @all_services, user_styles: @user_styles, profile_id: @profile.id}, prerender: true

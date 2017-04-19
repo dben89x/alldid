@@ -8,6 +8,22 @@ import _ from 'underscore';
 export default class SearchContainer extends React.Component {
 	constructor(props) {
 		super(props)
+		this.state = {
+			xhr: null,
+		}
+	}
+
+	handleFavorite() {
+		const profile_id = this.props.profile_id
+		this.state.xhr = $.ajax({
+			url: `/user_favorites`,
+			method: 'POST',
+			success: (newData) => {
+				this.setState({ user_styles: newData }, function(){
+					this.setState({ showResultsLink: (this.state.xhr !== null || this.state.xhr.readyState === 4)})
+				});
+			}
+		});
 	}
 
 	render () {
@@ -47,7 +63,7 @@ export default class SearchContainer extends React.Component {
 						{barber_styles}
 					</div>
 				</div>
-				<span className='barber-favorite fa fa-star-o'/>
+				<span className='barber-favorite fa fa-star-o' onClick={this.handleFavorite}/>
 			</div>
 		);
 	}
