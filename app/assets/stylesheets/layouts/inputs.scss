@@ -84,11 +84,12 @@ span.pseudo-radio {
 }
 .style-tag, .service-tag {
 	display: inline-block;
-	border: 3px solid black;
+	border: 2px solid black;
 	border-radius: 6px;
 	padding: 0 5px;
-	margin: 5px;
+	margin: 3px;
 	font-weight: 700;
+	font-size: 12px;
 }
 .light-tag {
 	background: rgba(25,88,108,0.2);

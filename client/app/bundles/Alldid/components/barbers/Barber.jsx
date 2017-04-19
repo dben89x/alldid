@@ -36,7 +36,7 @@ export default class SearchContainer extends React.Component {
 	}
 
 	render () {
-		const { first_name, headline, location, price, styles, services, avatar } = this.props.barber
+		const { name, headline, location, price, styles, services, avatar } = this.props.barber
 
 		var priceString = ``
 		_.times( price, () => priceString = `${priceString}<span class='fa fa-usd'/>` )
@@ -53,7 +53,7 @@ export default class SearchContainer extends React.Component {
 				</div>
 				<div className='barber-details'>
 					<div className='barber-name'>
-						{first_name}
+						{name}
 					</div>
 					<div className='barber-location'>
 						<span className='fa fa-map-marker'/>{location}
