@@ -20,6 +20,7 @@ module ApplicationHelper
 	def get_react_barber_objects(collection)
 		rates = User.includes(:profile).where.not(profiles: {hourly_rate: nil}).pluck(:hourly_rate)
 		quadrant_values = calculate_price_comparisons(rates)
+		current_user = current_user ? current_user : User.all.sample
 		
 		collection.collect do |barber|
 			{
