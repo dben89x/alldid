@@ -27,16 +27,21 @@
 								Sign Up
 				-else
 					%li
-						-@profile = true
-						=link_to edit_profile_path(current_user) do
+						=link_to '/favorites' do
+							.link.favorites
+								%span.fa.fa-star
+								%span.favorites-text Favorite Barbers
+
+					%li
+						=link_to '/profile' do
 							.link
 								-if current_user.profile[:avatar]
 									%span.user-avatar=image_tag(current_user.avatar)
 								-else
 									%span.fa.fa-user
 								=current_user.name
-					%li
 
+					%li
 						-@settings = true
 						=link_to edit_user_registration_path(current_user) do
 							.link.settings

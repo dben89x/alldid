@@ -1,5 +1,5 @@
 import React from 'react';
-import Barber from './Barber';
+import BarberLink from './BarberLink';
 
 export default class FeaturedBarber extends React.Component {
 	constructor(props) {
@@ -9,7 +9,7 @@ export default class FeaturedBarber extends React.Component {
 	render () {
 		return (
 			<div id='featured-barber'>
-				<Barber barber={this.props.featured} title="Your Perfect Barber"/>
+				<BarberLink barber={this.props.featured} title="Your Perfect Barber"/>
 			</div>
 		);
 	}

@@ -11,7 +11,7 @@ export default class SearchContainer extends React.Component {
 		return (
 			<div id="search-container">
 				<ClientSidebar/>
-				<BarberContainer barbers={this.props.barbers} featured={this.props.featured}/>
+				<BarberContainer barbers={this.props.barbers} featured={this.props.featured} profileId={this.props.profileId}/>
 			</div>
 		);
 	}

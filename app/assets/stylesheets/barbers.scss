@@ -24,13 +24,25 @@
 #barber-container {
 	background: $body_color;
 	height: 100%;
+	h1 {
+		color: $darkBrand;
+		text-align: center;
+	}
 }
 #featured-barber {
 	height:30%;
 	position: relative;
 
 	.barber {
+		margin: 20px 5px;
+		border-radius: 6px;
+		background: white;
 		height: 100%;
+		-webkit-animation-name: yellowPulse;
+		-webkit-animation-duration: 2s;
+		-webkit-animation-iteration-count: infinite;
+		z-index: 5;
+
 		.barber-image {
 			top: calc(50% - 75px);
 			position: static;
@@ -72,7 +84,7 @@
 	// background: rgba(25,88,108,0.7);
 }
 #barbers {
-	height: 70%;
+	height: 65%;
 	overflow-y: scroll;
 	background: $body_color;
 	.barber {
@@ -97,6 +109,14 @@
 					left: calc(50% - 50px);
 				}
 			}
+		}
+	}
+}
+.barber-link {
+	&:hover {
+		.barber {
+			transition: 0.3s;
+			background: rgba(25,88,108, 0.2) !important;
 		}
 	}
 }
@@ -169,7 +189,7 @@
 			.barber-headline {
 				font-weight: 600;
 				font-size: 15px;
-				color: darken($white, 15%);
+				color: darken($white, 25%);
 			}
 			@media (max-width: 767px) {
 				& {
@@ -215,6 +235,52 @@
 				text-align: center;
 				left: 0;
 			}
+		}
+	}
+}
+#barber-show {
+	.barber {
+		height: 100%;
+		width: 800px;
+		left: calc(50% - 400px);
+		.barber-avatar {
+			width: 100%;
+			position:static;
+			height: 240px;
+			.barber-image {
+				top:20px;
+				left: calc(50% - 100px);
+				height: 200px;
+				width: 200px;
+			}
+		}
+		.barber-details-container {
+			width: 100%;
+			left: 0;
+			position: relative;
+			padding-top: 0;
+
+			.barber-details {
+				width: 100%;
+				position: initial;
+				text-align: center;
+
+				.barber-name, .barber-location, .barber-price, .barber-headline {
+					width: 100%;
+				}
+			}
+			.services-and-styles {
+				text-align: center;
+				width: 100%;
+				position: static;
+				height: auto;
+				text-align: center;
+				left: 0;
+				@media (max-width: 767px) {display: initial}
+			}
+		}
+		.additionalAttributes {
+			text-align: center;
 		}
 	}
 }

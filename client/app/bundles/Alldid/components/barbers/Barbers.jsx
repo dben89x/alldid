@@ -1,5 +1,6 @@
 import React from 'react';
 import Barber from './Barber';
+import BarberLink from './BarberLink';
 
 export default class SearchContainer extends React.Component {
 	constructor(props) {
@@ -7,12 +8,17 @@ export default class SearchContainer extends React.Component {
 	}
 
 	render () {
-		var count = 0;
-		const barbers = this.props.barbers.map( (barber) => <Barber barber={barber} key={barber.id}/>)
-		
+		const { barbers, links, profileId } = this.props;
+		var newbarbers;
+		if (links) {
+			newbarbers = barbers.map( (barber) => <BarberLink barber={barber} key={barber.id} profileId={profileId} links={links}/>)
+		} else {
+			newbarbers = barbers.map( (barber) => <Barber barber={barber} key={barber.id} profileId={profileId} links={links}/>)
+		}
+
 		return (
 			<div id="barbers">
-				{barbers}
+				{newbarbers}
 			</div>
 		);
 	}
