@@ -38,7 +38,8 @@ export default class UserServices extends React.Component {
 		return (
 			<div className='user-services'>
 				<Select
-					name="Services"
+					name="profile[services]"
+					id="profile_services"
 					multi={true}
 					joinValues={true}
 					options={services}

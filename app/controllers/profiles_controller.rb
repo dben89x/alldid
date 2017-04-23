@@ -16,6 +16,18 @@ class ProfilesController < ApplicationController
 
 	def update
 		respond_to do |format|
+			@profile.user_styles.delete_all
+			@profile.user_services.delete_all
+
+			params[:profile][:services].split(',').each do |service|
+				service = Service.find_by(name: service)
+				@profile.user_services.create(profile: @profile, service: service)
+			end
+			params[:profile][:styles].split(',').each do |style|
+				style = Style.find_by(name: style)
+				@profile.user_styles.create(profile: @profile, style: style)
+			end
+
 			if @profile.update(profile_params)
 				format.html { redirect_to root_path, notice: 'Profile was successfully updated.' }
 				format.json { render :show, status: :ok, location: @profile }
@@ -34,7 +46,8 @@ class ProfilesController < ApplicationController
 	def profile_params
 		params.require(:profile).permit(
 			:hair_type, :hair_width, :hair_density, :bio, :hourly_rate, :first_name,
-			:last_name, :avatar, :headline, :location, :zip
+			:last_name, :avatar, :headline, :location, :zip, :avatar_cache, :facebook,
+			:instagram, :twitter
 		)
 	end
 end

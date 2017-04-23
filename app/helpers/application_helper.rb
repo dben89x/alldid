@@ -6,13 +6,15 @@ module ApplicationHelper
 
 	def flash_messages(opts = {})
 		flash.each do |msg_type, message|
-			concat(content_tag(:div, message, class: "flash-messages alert #{bootstrap_class_for(msg_type)} alert-dismissible", role: 'alert') do
-				concat(content_tag(:button, class: 'close', data: { dismiss: 'alert' }) do
-					concat content_tag(:span, '&times;'.html_safe, 'aria-hidden' => true)
-					concat content_tag(:span, 'Close', class: 'sr-only')
+			unless msg_type == 'success' || msg_type == 'notice'
+				concat(content_tag(:div, message, class: "flash-messages alert #{bootstrap_class_for(msg_type)} alert-dismissible", role: 'alert') do
+					concat(content_tag(:button, class: 'close', data: { dismiss: 'alert' }) do
+						concat content_tag(:span, '&times;'.html_safe, 'aria-hidden' => true)
+						concat content_tag(:span, 'Close', class: 'sr-only')
+					end)
+					concat message
 				end)
-				concat message
-			end)
+			end
 		end
 		nil
 	end
@@ -20,9 +22,9 @@ module ApplicationHelper
 	def get_react_barber_objects(collection)
 		rates = User.includes(:profile).where.not(profiles: {hourly_rate: nil}).pluck(:hourly_rate)
 		quadrant_values = calculate_price_comparisons(rates)
-		current_user = current_user ? current_user : User.all.sample
-		
+
 		collection.collect do |barber|
+			favorite = current_user ? current_user.user_favorites.where(user_id: barber.id).present? : false
 			{
 				id: barber.id,
 				name: barber.name,
@@ -32,7 +34,7 @@ module ApplicationHelper
 				price: find_price_quadrant(quadrant_values, barber.hourly_rate),
 				styles: barber.styles.pluck(:name),
 				services: barber.services.pluck(:name),
-				favorite: current_user.user_favorites.where(user_id: barber.id).present?
+				favorite: favorite
 			}
 		end
 	end

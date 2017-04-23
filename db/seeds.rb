@@ -1,12 +1,11 @@
-styles = [ "buzz cut",
-	"french crop",
+styles = [ "french crop",
 	"pompadour",
 	"quiff",
-	"shaped afro/modern hightop fade",
+	"shaped afro",
 	"shoulder length",
 	"side parting",
 	"slick back",
-	"textured cut with fringe" ]
+	"textured fringe" ]
 
 services = [ "Classic haircut",
 	"Buzz cut",
@@ -15,7 +14,7 @@ services = [ "Classic haircut",
 	"Shampoo",
 	"Hair color",
 	"Neck shave",
-	"Kid’s Haircut (12 and younger)",
+	"Kid’s Haircut",
 	"Overall trim" ]
 
 Style.delete_all

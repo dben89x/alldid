@@ -97,6 +97,9 @@ ul.nav {
 }
 .navbar-transparent {
 	background-color: transparent;
+	@media (max-width: 767px) {
+		background-color: black;
+	}
 }
 .navbar-opaque {
 	background-color: black;

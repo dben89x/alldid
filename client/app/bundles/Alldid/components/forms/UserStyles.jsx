@@ -39,7 +39,8 @@ export default class UserStyles extends React.Component {
 		return (
 			<div className='user-styles'>
 				<Select
-					name="Styles"
+					name="profile[styles]"
+					id="profile_styles"
 					multi={true}
 					joinValues={true}
 					options={styles}

@@ -1,6 +1,18 @@
 #user-bio
 	.col-md-12
-		= f.text_area :bio, autofocus: false, placeholder: "Bio", class: 'profile-input profile-name-input'
+		= f.text_area :bio, autofocus: false, rows: 5, placeholder: "Bio", class: 'profile-input profile-name-input'
+
+#facebook-input
+	.col-md-12
+		=f.text_field :facebook, placeholder: "Facebook", class: 'profile-input profile-name-input'
+
+#instagram-input
+	.col-md-12
+		=f.text_field :instagram, placeholder: "Instagram", class: 'profile-input profile-name-input'
+
+#twitter-input
+	.col-md-12
+		=f.text_field :twitter, placeholder: "Twitter", class: 'profile-input profile-name-input'
 
 .col-md-12
 	%h4 Your Styles:
@@ -10,4 +22,4 @@
 .col-md-12
 	%h4 Your Services
 	#user-services
-		=react_component 'UserServices', props: {all_services: @all_services, user_styles: @user_styles, profile_id: @profile.id}, prerender: true
+		=react_component 'UserServices', props: {all_services: @all_services, user_services: @user_services, profile_id: @profile.id}, prerender: true

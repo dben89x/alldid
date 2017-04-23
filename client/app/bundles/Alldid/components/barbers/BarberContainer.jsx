@@ -8,10 +8,13 @@ export default class SearchContainer extends React.Component {
 	}
 
 	render () {
+		const { featured, barbers, profileId } = this.props;
+
+		const featuredBarber = featured ? <FeaturedBarber featured={ featured }/> : null
 		return (
 			<div id="barber-container" className='col-md-10'>
-				<FeaturedBarber featured={this.props.featured}/>
-				<Barbers barbers={this.props.barbers} profileId={this.props.profileId} links={true}/>
+				{ featuredBarber }
+				<Barbers barbers={ barbers } profileId={ profileId } links={true}/>
 			</div>
 		);
 	}

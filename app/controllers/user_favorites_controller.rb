@@ -2,9 +2,12 @@ class UserFavoritesController < ApplicationController
 	include ApplicationHelper
 
 	def index
-		@favorites = get_react_barber_objects(current_user.favorites)
-		# @barbers = @favorites.collect {|fav| fav.user}
-		@profile_id = current_user.profile.id
+		begin
+			@favorites = get_react_barber_objects(current_user.favorites)
+			@profile_id = current_user.profile.id
+		rescue
+			redirect_to new_user_session_path
+		end
 	end
 
 	def create

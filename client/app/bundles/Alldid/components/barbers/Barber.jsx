@@ -1,6 +1,5 @@
 import React from 'react';
 import StyleTag from '../forms/StyleTag';
-import ServiceTag from '../forms/ServiceTag';
 import BarberShowAttributes from './BarberShowAttributes';
 import _ from 'underscore';
 
@@ -12,8 +11,14 @@ export default class SearchContainer extends React.Component {
 			favoriteClass: `${this.props.barber.favorite ? 'fa-star faved' : 'fa-star-o'}`,
 			xhr: null,
 		}
+		console.log(this.props.barber.favorite)
 		this.handleFavorite = this.handleFavorite.bind(this)
 		this.toggleFaStar = this.toggleFaStar.bind(this)
+		this.handleSocialClick = this.handleSocialClick.bind(this)
+	}
+
+	handleSocialClick(event) {
+		event.preventDefault();
 	}
 
 	handleFavorite(event) {
@@ -63,7 +68,6 @@ export default class SearchContainer extends React.Component {
 		const priceHtml = {__html: priceString}
 
 		const barberStyles = styles.map( (style) => <StyleTag name={style} key={Math.random(100)}/>)
-		const barberServices = services.map( (service) => <ServiceTag name={service} key={Math.random(100)}/>)
 		// var avatarStyle = { backgroundImage: `url(${avatar})` };
 		const additionalAttributes = this.props.links === undefined ? null : <BarberShowAttributes barber={this.props.barber}/>
 
@@ -88,20 +92,20 @@ export default class SearchContainer extends React.Component {
 						</div>
 					</div>
 					<div className='services-and-styles'>
-						<div className='styles-header'>Styles:</div>
+						<div className='styles-header'>Styles and Endorsements:</div>
 						<div className='styles'>
 							{barberStyles}
 						</div>
-
-						<div className='services-header'>Services:</div>
-						<div className='services'>
-							{barberServices}
-						</div>
+						{ additionalAttributes }
 					</div>
-					{ additionalAttributes }
 				</div>
 
 				<span className={`barber-favorite fa ${this.state.favoriteClass}`} onClick={this.handleFavorite}/>
+				<div className={'social-icons'}>
+					<span className='fa fa-facebook-square' onClick={this.handleSocialClick} value={'/'}/>
+					<span className='fa fa-twitter-square' onClick={this.handleSocialClick} value={'/'}/>
+					<span className='fa fa-instagram' onClick={this.handleSocialClick} value={'/'}/>
+				</div>
 			</div>
 		);
 	}
