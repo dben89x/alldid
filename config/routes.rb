@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
 	resources :subscriptions, only: [:new, :create]
 	match 'pricing' => 'subscriptions#new', via: :get
+	devise_scope :user do
+		get 'signup_modal', to: 'devise/registrations#new'
+	end
+	get 'calendar' => 'home#calendar'
 
 	devise_for :users, controllers: {registrations: 'registrations', sessions: 'sessions'}
 	resources :profiles, only: [:show, :update]
@@ -16,4 +20,5 @@ Rails.application.routes.draw do
 	resources :barbers, only: [:show]
 	match 'profile' => 'profiles#edit', via: :get
 	get 'dashboard' => 'admin#dashboard'
+	resources :user_steps
 end

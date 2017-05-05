@@ -11,17 +11,13 @@ export default class SearchContainer extends React.Component {
 			favoriteClass: `${this.props.barber.favorite ? 'fa-star faved' : 'fa-star-o'}`,
 			xhr: null,
 		}
-		console.log(this.props.barber.favorite)
-		this.handleFavorite = this.handleFavorite.bind(this)
-		this.toggleFaStar = this.toggleFaStar.bind(this)
-		this.handleSocialClick = this.handleSocialClick.bind(this)
 	}
 
-	handleSocialClick(event) {
+	handleSocialClick = (event) => {
 		event.preventDefault();
 	}
 
-	handleFavorite(event) {
+	handleFavorite = (event) => {
 		event.preventDefault();
 		const profileId = this.props.profileId
 		const barberId = this.props.barber.id
@@ -54,7 +50,7 @@ export default class SearchContainer extends React.Component {
 		}
 	}
 
-	toggleFaStar(target) {
+	toggleFaStar = (target) => {
 		$(target).toggleClass('fa-star')
 		$(target).toggleClass('fa-star-o')
 		$(target).toggleClass('faved')

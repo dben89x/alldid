@@ -13,6 +13,7 @@ import UserStyles from '../components/forms/UserStyles';
 import StyleTag from '../components/forms/StyleTag';
 import UserServices from '../components/forms/UserServices';
 import ServiceTag from '../components/forms/ServiceTag';
+import Calendar from '../components/calendar/Calendar';
 
 ReactOnRails.register({
 	SearchContainer,
@@ -28,4 +29,5 @@ ReactOnRails.register({
 	StyleTag,
 	UserServices,
 	ServiceTag,
+	Calendar
 });

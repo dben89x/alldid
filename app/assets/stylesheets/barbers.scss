@@ -302,10 +302,12 @@
 	}
 }
 #barber-show {
+	padding: 20px;
 	.barber {
 		height: 100%;
 		width: 800px;
 		left: calc(50% - 400px);
+		margin: 0;
 		.barber-avatar {
 			width: 100%;
 			position:static;
@@ -322,6 +324,7 @@
 			left: 0;
 			position: relative;
 			padding-top: 0;
+			display: inline-block;
 
 			.barber-details {
 				width: 100%;
@@ -340,10 +343,20 @@
 				text-align: center;
 				left: 0;
 				@media (max-width: 767px) {display: initial}
+
+				.endorsement-tag:hover span:after{
+					cursor: pointer;
+					font-family: FontAwesome;
+					content: '\f067';
+				}
 			}
 		}
 		.additionalAttributes {
 			text-align: center;
+		}
+		@media(max-width: 950px) {
+			width:100%;
+			left: 0;
 		}
 	}
 }

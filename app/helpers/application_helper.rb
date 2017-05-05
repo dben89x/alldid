@@ -22,9 +22,10 @@ module ApplicationHelper
 	def get_react_barber_objects(collection)
 		rates = User.includes(:profile).where.not(profiles: {hourly_rate: nil}).pluck(:hourly_rate)
 		quadrant_values = calculate_price_comparisons(rates)
+		user = current_user
 
 		collection.collect do |barber|
-			favorite = current_user ? current_user.user_favorites.where(user_id: barber.id).present? : false
+			favorite = user ? user.user_favorites.where(user_id: barber.id).present? : false
 			{
 				id: barber.id,
 				name: barber.name,

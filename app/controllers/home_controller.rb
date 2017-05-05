@@ -1,6 +1,10 @@
 class HomeController < ApplicationController
 	include ApplicationHelper
 
+	def calendar
+
+	end
+	
 	def index
 	end
 

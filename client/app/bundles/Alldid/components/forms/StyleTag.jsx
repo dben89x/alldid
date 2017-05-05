@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'underscore';
 
 export default class StyleTag extends React.Component {
 	constructor(props) {
@@ -7,10 +6,15 @@ export default class StyleTag extends React.Component {
 	}
 
 	render () {
+		var styles = {
+
+		}
 		return (
-			<div className='style-tag light-tag'>
+			<div className='style-tag light-tag style-endorsement-tag'>
 				{this.props.name}
-				<br/>
+				<div className='endorsement-tag'>
+					<span className='content' data-endorsements='5'/>
+				</div>
 			</div>
 		);
 	}
