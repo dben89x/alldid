@@ -60,6 +60,7 @@ export default class SearchContainer extends React.Component {
 		const { id, name, headline, location, price, services, avatar, endorsements } = this.props.barber
 
 		var priceString = ``
+		console.log(price)
 		_.times( price, () => priceString = `${priceString}<span class='fa fa-usd'/>` )
 		const priceHtml = {__html: priceString}
 

@@ -38,6 +38,10 @@ class Profile < ActiveRecord::Base
 		first_name.present? ? first_name : email
 	end
 
+	def current_style_name
+		Style.find(self.current_style_id).name
+	end
+
 	def full_name
 		"#{first_name} #{last_name}"
 	end

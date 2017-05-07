@@ -1,0 +1,15 @@
+#client-style
+	.col-md-12.styles-container
+		%h4 Choose Your Style:
+		#user-styles
+			-@styles.each do |style|
+				.image-container.nonselected.selected
+					=image_tag("styles/#{style.url}", width: 170, class: 'style-img')
+					.overlay
+						.text
+							=style.name.capitalize
+
+#preferred-price
+	.col-md-12
+		%h4 Choose Your Price:
+		=f.text_field :facebook, placeholder: "Facebook", class: 'profile-input profile-name-input'

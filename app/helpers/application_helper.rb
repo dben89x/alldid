@@ -34,6 +34,8 @@ module ApplicationHelper
 					endorsed: bs.endorsements.where(client_id: user.id).any?
 				}
 			end
+			barber_styles = barber_styles.sort_by {|s| s[:endorsements]}.reverse
+
 			favorite = user ? user.user_favorites.where(user_id: barber.id).present? : false
 			{
 				id: barber.id,

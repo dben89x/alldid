@@ -6,13 +6,11 @@ class ProfilesController < ApplicationController
 	end
 
 	def edit
-		if current_user.is_a? Barber
-			@styles = Style.all
-			@all_styles = Style.all.pluck(:name)
-			@all_services = Service.all.pluck(:name)
-			@user_styles = current_user.styles.pluck(:name)
-			@user_services = current_user.services.pluck(:name)
-		end
+		@styles = Style.all
+		@all_styles = Style.all.pluck(:name)
+		@all_services = Service.all.pluck(:name)
+		@user_styles = current_user.styles.pluck(:name)
+		@user_services = current_user.services.pluck(:name)
 	end
 
 	def update
@@ -46,9 +44,9 @@ class ProfilesController < ApplicationController
 
 	def profile_params
 		params.require(:profile).permit(
-			:hair_type, :hair_width, :hair_density, :bio, :hourly_rate, :first_name,
-			:last_name, :avatar, :headline, :location, :zip, :avatar_cache, :facebook,
-			:instagram, :twitter
+		:hair_type, :hair_width, :hair_density, :bio, :hourly_rate, :first_name,
+		:last_name, :avatar, :headline, :location, :zip, :avatar_cache, :facebook,
+		:instagram, :twitter
 		)
 	end
 end

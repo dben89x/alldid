@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 	def calendar
 
 	end
-	
+
 	def index
 	end
 
@@ -16,6 +16,17 @@ class HomeController < ApplicationController
 
 	def search
 		@barbers = get_react_barber_objects(Barber.all)
+
+		@barbers = filterBarbers(@barbers)
+		puts @barbers
+
+		# @barbers.each do |barber|
+		# 	barber[:barberStyles] = barber[:barberStyles].slice(0,3)
+		# end
+
+
+		# sort_by {|i| [i[:city], i[:date]]}
+		# @barbers.sort_by {|b| }
 		if current_user
 			@featured_barber = @barbers.sample
 			@profile_id = current_user.profile
@@ -23,6 +34,36 @@ class HomeController < ApplicationController
 			@location = current_user.location.present? ? current_user.location : Faker::GameOfThrones.city
 			@price = [1,2,3,4].sample
 		end
+	end
+
+	def filterBarbers(barbers)
+		newBarbers = []
+
+		results = get_top_barbers_by_style(barbers)
+		top_style_barbers = results.pluck(:barber)
+
+		top_style_barbers.each do |tsb|
+			newBarbers << tsb
+		end
+		barbers = barbers - top_style_barbers
+
+		barbers = barbers.sort_by {|b| b[:price]}
+		barbers.each do |b|
+			newBarbers << b
+		end
+
+		newBarbers
+	end
+
+	def get_top_barbers_by_style(barbers)
+		current_style_name = current_user.profile.current_style_name
+		results = []
+		barbers.each do |b|
+			elements = b[:barberStyles].select {|bs| bs[:name] == current_style_name }
+			results << {barber: b, element: elements[0]} if elements.present?
+		end
+
+		results.sort_by {|r| r[:element][:endorsements]}.reverse
 	end
 
 end
