@@ -14,10 +14,16 @@
 	.col-md-12
 		=f.text_field :twitter, placeholder: "Twitter", class: 'profile-input profile-name-input'
 
-.col-md-12
+.col-md-12.styles-container
 	%h4 Your Styles:
 	#user-styles
-		=react_component 'UserStyles', props: {all_styles: @all_styles, user_styles: @user_styles, profile_id: @profile.id}, prerender: true
+		-@styles.each do |style|
+			.image-container.nonselected.selected
+				=image_tag("styles/#{style.url}", width: 170, class: 'style-img')
+				.overlay
+					.text
+						=style.name.capitalize
+		-# =react_component 'UserStyles', props: {all_styles: @all_styles, user_styles: @user_styles, profile_id: @profile.id}, prerender: true
 
 .col-md-12
 	%h4 Your Services

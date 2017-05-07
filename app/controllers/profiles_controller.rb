@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
 
 	def edit
 		if current_user.is_a? Barber
+			@styles = Style.all
 			@all_styles = Style.all.pluck(:name)
 			@all_services = Service.all.pluck(:name)
 			@user_styles = current_user.styles.pluck(:name)

@@ -277,6 +277,9 @@
 			font-size: 15px;
 			font-weight: 600;
 		}
+		.styles-header, .services-header {
+			margin: 7px 0;
+		}
 		.styles-header {
 			color: $lightBrand;
 		}
@@ -344,8 +347,17 @@
 				left: 0;
 				@media (max-width: 767px) {display: initial}
 
-				.endorsement-tag:hover span:after{
+				.endorsement-tag .content {
+					pointer-events: none;
+				}
+				.endorsement-tag:hover {
 					cursor: pointer;
+				}
+				.endorsed:hover span:after{
+					font-family: FontAwesome;
+					content: '\f068';
+				}
+				.not-endorsed:hover span:after{
 					font-family: FontAwesome;
 					content: '\f067';
 				}

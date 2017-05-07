@@ -21,4 +21,8 @@ Rails.application.routes.draw do
 	match 'profile' => 'profiles#edit', via: :get
 	get 'dashboard' => 'admin#dashboard'
 	resources :user_steps
+	resources :styles
+	resources :services
+	resources :endorsements, only: [:create, :destroy]
+	post 'delete_endorsement' => 'endorsements#delete_endorsement'
 end

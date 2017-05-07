@@ -21,4 +21,9 @@
 #
 
 class Barber < User
+
+	has_many :barber_styles, inverse_of: :barber
+	has_many :barber_services, inverse_of: :barber
+	has_many :endorsements, through: :barber_styles
+
 end

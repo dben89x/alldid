@@ -57,13 +57,13 @@ export default class SearchContainer extends React.Component {
 	}
 
 	render () {
-		const { id, name, headline, location, price, styles, services, avatar } = this.props.barber
+		const { id, name, headline, location, price, services, avatar, endorsements } = this.props.barber
 
 		var priceString = ``
 		_.times( price, () => priceString = `${priceString}<span class='fa fa-usd'/>` )
 		const priceHtml = {__html: priceString}
 
-		const barberStyles = styles.map( (style) => <StyleTag name={style} key={Math.random(100)}/>)
+		const barberStyles = this.props.barber.barberStyles.map( (barberStyle) => <StyleTag barberStyle={barberStyle} key={barberStyle.id} endorsements={barberStyle.endorsements}/>)
 		// var avatarStyle = { backgroundImage: `url(${avatar})` };
 		const additionalAttributes = this.props.links === undefined ? null : <BarberShowAttributes barber={this.props.barber}/>
 

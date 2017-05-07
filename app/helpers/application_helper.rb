@@ -25,6 +25,15 @@ module ApplicationHelper
 		user = current_user
 
 		collection.collect do |barber|
+			barber_styles = barber.barber_styles.collect do |bs|
+				{
+					id: bs.id,
+					name: bs.name,
+					clientId: user.id,
+					endorsements: bs.endorsements.count,
+					endorsed: bs.endorsements.where(client_id: user.id).any?
+				}
+			end
 			favorite = user ? user.user_favorites.where(user_id: barber.id).present? : false
 			{
 				id: barber.id,
@@ -33,9 +42,10 @@ module ApplicationHelper
 				bio: barber.bio,
 				location: barber.location,
 				price: find_price_quadrant(quadrant_values, barber.hourly_rate),
-				styles: barber.styles.pluck(:name),
+				barberStyles: barber_styles,
 				services: barber.services.pluck(:name),
-				favorite: favorite
+				favorite: favorite,
+				endorsements: barber.endorsements.count
 			}
 		end
 	end

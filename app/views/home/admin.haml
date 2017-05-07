@@ -1,0 +1,30 @@
+#admin
+	.container
+		%h1
+			Admin Dashboard
+		%h3 Styles
+		.styles
+			=link_to new_style_path, class: 'large-btn brand-btn light-brand-btn cms-btn' do
+				%span.fa.fa-plus-circle
+				="New Style"
+			%br
+			%br
+			%br
+
+			=link_to styles_path, class: 'large-btn brand-btn light-brand-btn cms-btn' do
+				%span.fa.fa-pencil
+				="Edit Existing Styles"
+
+
+		%h3 Services
+		.services
+			=link_to new_service_path, class: 'large-btn brand-btn light-brand-btn cms-btn' do
+				%span.fa.fa-plus-circle
+				="New Service"
+			%br
+			%br
+			%br
+
+			=link_to services_path, class: 'large-btn brand-btn light-brand-btn cms-btn' do
+				%span.fa.fa-pencil
+				="Edit Existing Services"

@@ -24,3 +24,5 @@ node_modules
 
 # Ignore application configuration
 /config/application.yml
+
+ideas.md

@@ -3,13 +3,13 @@
 # Table name: barber_services
 #
 #  id         :integer          not null, primary key
-#  user_id    :integer
+#  barber_id  :integer
 #  service_id :integer
 #  rate       :integer
 #  minutes    :integer
 #
 
 class BarberService < ActiveRecord::Base
-	belongs_to :user
+	belongs_to :barber, inverse_of: :barber_services
 	belongs_to :service
 end

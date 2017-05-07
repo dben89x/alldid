@@ -1,8 +1,7 @@
 import React from 'react';
-import moment from 'moment';
+// import moment from 'moment';
 import _ from 'underscore';
-import InfiniteCalendar from 'react-infinite-calendar';
-// import 'react-infinite-calendar/styles.css';
+// import InfiniteCalendar from 'react-infinite-calendar';
 
 export default class Calendar extends React.Component {
 	constructor(props) {

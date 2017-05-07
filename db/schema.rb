@@ -10,36 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170423202850) do
+ActiveRecord::Schema.define(version: 20170507024750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "barber_services", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "barber_id"
     t.integer "service_id"
     t.integer "rate"
     t.integer "minutes"
+    t.index ["barber_id"], name: "index_barber_services_on_barber_id", using: :btree
     t.index ["service_id"], name: "index_barber_services_on_service_id", using: :btree
-    t.index ["user_id"], name: "index_barber_services_on_user_id", using: :btree
   end
 
   create_table "barber_styles", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "skill_id"
+    t.integer "barber_id"
     t.integer "rate"
     t.integer "minutes"
-    t.index ["skill_id"], name: "index_barber_styles_on_skill_id", using: :btree
-    t.index ["user_id"], name: "index_barber_styles_on_user_id", using: :btree
+    t.integer "style_id"
+    t.index ["barber_id"], name: "index_barber_styles_on_barber_id", using: :btree
   end
 
   create_table "endorsements", force: :cascade do |t|
-    t.integer "barber_id"
     t.integer "client_id"
-    t.integer "style_id"
-    t.index ["barber_id"], name: "index_endorsements_on_barber_id", using: :btree
+    t.integer "barber_style_id"
     t.index ["client_id"], name: "index_endorsements_on_client_id", using: :btree
-    t.index ["style_id"], name: "index_endorsements_on_style_id", using: :btree
   end
 
   create_table "organizations", force: :cascade do |t|

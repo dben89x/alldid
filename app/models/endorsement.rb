@@ -2,14 +2,13 @@
 #
 # Table name: endorsements
 #
-#  id        :integer          not null, primary key
-#  barber_id :integer
-#  client_id :integer
-#  style_id  :integer
+#  id              :integer          not null, primary key
+#  client_id       :integer
+#  barber_style_id :integer
 #
 
 class Endorsement < ActiveRecord::Base
-	belongs_to :barber
+	belongs_to :barber_style, inverse_of: :endorsements
 	belongs_to :client
-	belongs_to :style
+	delegate :style, to: :barber_style
 end

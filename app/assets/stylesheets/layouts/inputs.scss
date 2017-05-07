@@ -53,6 +53,7 @@ span.pseudo-radio {
 		width: 100%;
 	}
 }
+
 .dark-form {
 	color: $darkBrand;
 	a { color: $darkBrand; }
@@ -102,9 +103,9 @@ span.pseudo-radio {
 	color: darken($grey, 40%);
 	position: absolute;
 	right: 9px;
-  top: 3px;
-  height: 20px;
-  width: 20px;
+	top: 3px;
+	height: 20px;
+	width: 20px;
 	text-align: center;
 	span:after {
 		content: attr(data-endorsements);
@@ -166,8 +167,17 @@ span.pseudo-radio {
 		text-decoration: none;
 	}
 }
+.cms-btn {
+	color: $lightBrand;
+	&:hover, &:focus {
+		transition: 0.5s;
+		border-color: darken($lightBrand, 10%);
+		color: darken($lightBrand, 10%);
+		background-color: rgba(26,177,136,0.1);
+	}
+}
 .light-brand-btn {
-	border-color: rgba(25,88,108,0.9);
+	border-color: rgba(25,88,108,0.9) !important;
 	color: rgba(25,88,108,0.9);
 	&:hover, &:focus {
 		background: rgba(25,88,108,0.2);
@@ -176,7 +186,7 @@ span.pseudo-radio {
 	}
 }
 .dark-brand-btn {
-	border-color: rgba(94, 21, 19, 0.8);
+	border-color: rgba(94, 21, 19, 0.8) !important;
 	color: rgba(94, 21, 19, 0.9);
 	&:hover, &:focus {
 		background: rgba(94, 21, 19, 0.2);

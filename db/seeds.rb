@@ -22,7 +22,7 @@ Service.delete_all
 User.delete_all
 
 styles.each do |style_name|
-	Style.create(name: style_name)
+	Style.create(name: style_name, url: "#{style_name.gsub(' ','-')}.png")
 end
 
 services.each do |service_name|
@@ -49,5 +49,14 @@ end
 	end
 	Service.all.sample(rand(3..4)).each do |service|
 		profile.user_services.new(service: service).save
+	end
+end
+
+Barber.all.each do |b|
+	[1,2,3,4,5].sample.times do
+		bs = b.barber_styles.create(style: Style.all.sample)
+		[1,2,3,4,5].sample.times do
+			bs.endorsements.create(client_id: Client.all.sample)
+		end
 	end
 end
