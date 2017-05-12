@@ -1,0 +1,17 @@
+@import 'variables';
+
+.react-calendar-container {
+	display: inline-flex;
+	@media (max-width: 800px) {
+		display: block;
+	}
+	.react-calendar {
+		display: inline-block;
+	}
+	.daily-events {
+		display: inline-block;
+	}
+}
+#calendar, .fc-widget-content {
+	background: rgba(25, 88, 108, 0.05) !important
+}

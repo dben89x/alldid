@@ -36,3 +36,10 @@
 html, body{
 	background-color: #F0F0F0 !important;
 }
+html {
+	min-height: 100%;
+	position: relative;
+}
+body {
+	margin: 0 0 80px !important;
+}

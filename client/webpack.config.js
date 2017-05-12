@@ -1,6 +1,6 @@
 /* eslint comma-dangle: ["error",
- {"functions": "never", "arrays": "only-multiline", "objects":
- "only-multiline"} ] */
+{"functions": "never", "arrays": "only-multiline", "objects":
+"only-multiline"} ] */
 
 const webpack = require('webpack');
 const pathLib = require('path');
@@ -25,6 +25,11 @@ const config = {
 	},
 	plugins: [
 		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
+		new webpack.ProvidePlugin({
+				$: "jquery",
+				"window.jQuery": "jquery",
+				"moment": "moment"
+		}),
 	],
 	module: {
 		rules: [
@@ -43,6 +48,10 @@ const config = {
 				use: 'babel-loader',
 				exclude: /node_modules/,
 			},
+			{
+				test: /\.css$/,
+				loader:'style!css!'
+			}
 		],
 	},
 };

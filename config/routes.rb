@@ -20,9 +20,12 @@ Rails.application.routes.draw do
 	resources :barbers, only: [:show]
 	match 'profile' => 'profiles#edit', via: :get
 	get 'dashboard' => 'admin#dashboard'
+
 	resources :user_steps
 	resources :styles
 	resources :services
+	resources :schedules
+
 	resources :endorsements, only: [:create, :destroy]
 	post 'delete_endorsement' => 'endorsements#delete_endorsement'
 end

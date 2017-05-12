@@ -18,22 +18,18 @@ class HomeController < ApplicationController
 		@barbers = get_react_barber_objects(Barber.all)
 
 		@barbers = filterBarbers(@barbers)
-		puts @barbers
 
-		# @barbers.each do |barber|
-		# 	barber[:barberStyles] = barber[:barberStyles].slice(0,3)
-		# end
-
-
-		# sort_by {|i| [i[:city], i[:date]]}
-		# @barbers.sort_by {|b| }
-		if current_user
-			@featured_barber = @barbers.sample
-			@profile_id = current_user.profile
-			@style = current_user.current_style_id.present? ? current_user.style.name : Style.all.sample.name
-			@location = current_user.location.present? ? current_user.location : Faker::GameOfThrones.city
-			@price = [1,2,3,4].sample
+		@barbers.each do |barber|
+			barber[:barberStyles] = barber[:barberStyles].slice(0,3)
 		end
+
+		@featured_barber = @barbers[0]
+		@barbers = @barbers - [@featured_barber]
+		@profile_id = current_user.profile
+		@style = current_user.current_style_id.present? ? current_user.style.name : Style.all.sample.name
+		@location = current_user.location.present? ? current_user.location : Faker::GameOfThrones.city
+		@price = [1,2,3,4].sample
+
 	end
 
 	def filterBarbers(barbers)

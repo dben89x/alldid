@@ -9,11 +9,14 @@ import BarberLink from '../components/barbers/BarberLink';
 import Barbers from '../components/barbers/Barbers';
 import BarberContainer from '../components/barbers/BarberContainer';
 import BarberShowAttributes from '../components/barbers/BarberShowAttributes';
+
 import UserStyles from '../components/forms/UserStyles';
 import StyleTag from '../components/forms/StyleTag';
 import UserServices from '../components/forms/UserServices';
 import ServiceTag from '../components/forms/ServiceTag';
+
 import Calendar from '../components/calendar/Calendar';
+import DailyEvents from '../components/calendar/DailyEvents';
 
 ReactOnRails.register({
 	SearchContainer,
@@ -29,5 +32,6 @@ ReactOnRails.register({
 	StyleTag,
 	UserServices,
 	ServiceTag,
-	Calendar
+	Calendar,
+	DailyEvents
 });

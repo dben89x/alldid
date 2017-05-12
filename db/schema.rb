@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507024750) do
+ActiveRecord::Schema.define(version: 20170508221922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,18 @@ ActiveRecord::Schema.define(version: 20170507024750) do
     t.integer "client_id"
     t.integer "barber_style_id"
     t.index ["client_id"], name: "index_endorsements_on_client_id", using: :btree
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer  "client_id"
+    t.integer  "barber_id"
+    t.integer  "service_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text     "notes"
+    t.index ["barber_id"], name: "index_events_on_barber_id", using: :btree
+    t.index ["client_id"], name: "index_events_on_client_id", using: :btree
+    t.index ["service_id"], name: "index_events_on_service_id", using: :btree
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -74,15 +86,27 @@ ActiveRecord::Schema.define(version: 20170507024750) do
     t.index ["client_id"], name: "index_ratings_on_client_id", using: :btree
   end
 
+  create_table "schedules", force: :cascade do |t|
+    t.integer "barber_id"
+    t.index ["barber_id"], name: "index_schedules_on_barber_id", using: :btree
+  end
+
   create_table "services", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
+    t.string  "name"
+    t.string  "description"
+    t.integer "minutes"
   end
 
   create_table "styles", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "url"
+  end
+
+  create_table "unavailable_day", force: :cascade do |t|
+    t.integer  "schedule_id"
+    t.datetime "date"
+    t.index ["schedule_id"], name: "index_unavailable_day_on_schedule_id", using: :btree
   end
 
   create_table "user_favorites", force: :cascade do |t|
