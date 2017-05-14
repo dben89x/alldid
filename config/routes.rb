@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 	resources :styles
 	resources :services
 	resources :schedules
+	resources :events
 
 	resources :endorsements, only: [:create, :destroy]
 	post 'delete_endorsement' => 'endorsements#delete_endorsement'

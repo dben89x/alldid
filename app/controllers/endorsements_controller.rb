@@ -1,5 +1,6 @@
 class EndorsementsController < ApplicationController
-
+	skip_before_action :verify_authenticity_token
+	
 	def create
 		unless Endorsement.where({client_id: params[:endorsement][:client_id], barber_style_id: params[:endorsement][:barber_style_id]}).any?
 			@endorsement = Endorsement.new(endorsement_params)

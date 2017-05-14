@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'underscore';
-import InfiniteCalendar from 'react-infinite-calendar';
+import InfiniteCalendar, {withDateSelection} from 'react-infinite-calendar';
 import DailyEvents from './DailyEvents';
 import $ from 'jquery';
 // import css from './ric.scss';
@@ -10,6 +10,7 @@ export default class Calendar extends React.Component {
 		super(props)
 		this.state = {
 			fcDate: new Date(),
+			selectedDay: new Date(),
 		}
 	}
 
@@ -27,7 +28,7 @@ export default class Calendar extends React.Component {
 			var calWidth = 400
 			var calHeight = windowHeight - footerHeight - navbarHeight
 			var showHeader = true
-		} else if (windowWidth >= 600) {
+		} else {
 			var calWidth = windowWidth
 			var calHeight = (windowHeight - navbarHeight - footerHeight - calWeekdaysHeight)/2
 			var showHeader = false
@@ -46,9 +47,11 @@ export default class Calendar extends React.Component {
 						displayOptions={{
 							showHeader: showHeader
 						}}
+						selected={this.state.selectedDay}
 						onSelect={date => {
-							this.setState({fcDate: date})
-							setScrollDate(date)
+							this.setState({fcDate: date}, () => {
+								this.setState({selectedDay: date})
+							})
 						}}
 						theme={{
 							floatingNav: {
@@ -66,7 +69,15 @@ export default class Calendar extends React.Component {
 						}}
 						/>
 				</div>
-				<DailyEvents calWidth={calWidth} calHeight={calHeight} date={this.state.fcDate}/>
+				<DailyEvents
+					calWidth={calWidth}
+					calHeight={calHeight}
+					date={this.state.fcDate}
+					barber={this.props.barber}
+					client={this.props.client}
+					services={this.props.services}
+					styles={this.props.styles}
+					/>
 			</div>
 		);
 	}

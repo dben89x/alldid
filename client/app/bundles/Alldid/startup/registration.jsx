@@ -17,6 +17,7 @@ import ServiceTag from '../components/forms/ServiceTag';
 
 import Calendar from '../components/calendar/Calendar';
 import DailyEvents from '../components/calendar/DailyEvents';
+import AppointmentModal from '../components/calendar/AppointmentModal';
 
 ReactOnRails.register({
 	SearchContainer,
@@ -33,5 +34,6 @@ ReactOnRails.register({
 	UserServices,
 	ServiceTag,
 	Calendar,
-	DailyEvents
+	DailyEvents,
+	AppointmentModal
 });

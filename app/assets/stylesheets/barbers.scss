@@ -96,7 +96,6 @@
 					font-size: 13px;
 				}
 			}
-
 		}
 	}
 	// background: rgba(25,88,108,0.7);
@@ -127,6 +126,12 @@
 					top:20px;
 					left: calc(50% - 50px);
 				}
+			}
+		}
+		.barber-book {
+			margin: 25px 0 0;
+			a {
+				padding: 5px 10px;
 			}
 		}
 	}
@@ -162,7 +167,7 @@
 		&:hover {
 			cursor: pointer;
 			color: #CC9900;
-			font-size: 27px;
+			font-size: 26px;
 		}
 		&.faved {color: #CC9900;}
 	}

@@ -2,7 +2,10 @@ class HomeController < ApplicationController
 	include ApplicationHelper
 
 	def calendar
-
+		@barber = Barber.find(params[:barber])
+		@client = current_user
+		@services = @barber.services
+		@styles = @barber.styles
 	end
 
 	def index

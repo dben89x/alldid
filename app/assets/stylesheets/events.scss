@@ -1,0 +1,37 @@
+@import 'variables';
+
+.form.event-form {
+	background-color: $lightBrandRgba ;
+
+	.input {
+		box-shadow: none;
+		border: 1px solid $lightBrand;
+		&:focus {
+			box-shadow: 0 0 6px 1px $lightBrand;
+		}
+	}
+	@media (max-width: 450px) {
+		&.modal {
+			padding: 60px 0;
+			.modal-body {
+				padding: 15px 0;
+				width: 100%;
+				.col-md-12 {
+					padding: 0;
+					width: 100%;
+					label, select {
+						padding: 0;
+						width: 100%;
+						.input {
+							margin: 10px 0;
+							width: 90% !important;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.event-modal-body {
+	display: inline-block;
+}

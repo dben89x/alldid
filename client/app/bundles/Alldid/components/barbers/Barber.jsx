@@ -25,7 +25,7 @@ export default class SearchContainer extends React.Component {
 
 		if (this.state.favorite) {
 			this.state.xhr = $.ajax({
-				url: `/delete_favorite/`,
+				url: `/delete_favorite`,
 				method: 'POST',
 				data: {
 					"user_id": barberId,
@@ -64,8 +64,10 @@ export default class SearchContainer extends React.Component {
 		const priceHtml = {__html: priceString}
 
 		const barberStyles = this.props.barber.barberStyles.map( (barberStyle) => <StyleTag barberStyle={barberStyle} key={barberStyle.id} endorsements={barberStyle.endorsements}/>)
-		// var avatarStyle = { backgroundImage: `url(${avatar})` };
 		const additionalAttributes = this.props.links === undefined ? null : <BarberShowAttributes barber={this.props.barber}/>
+	// var avatarStyle = { backgroundImage: `url(${avatar})` };
+
+		const bookLink = this.props.links === undefined ? null : <div className='barber-book'><a href={`/calendar?barber=${id}`} className="brand-btn small-btn light-brand-btn">Book Appointment</a></div>
 
 		return (
 			<div className='barber'>
@@ -86,14 +88,19 @@ export default class SearchContainer extends React.Component {
 						<div className='barber-headline'>
 							{headline}
 						</div>
+						{ bookLink }
 					</div>
+
 					<div className='services-and-styles'>
 						<div className='styles-header'>Styles and Endorsements:</div>
 						<div className='styles'>
 							{barberStyles}
 						</div>
+
 						{ additionalAttributes }
+
 					</div>
+
 				</div>
 
 				<span className={`barber-favorite fa ${this.state.favoriteClass}`} onClick={this.handleFavorite}/>
