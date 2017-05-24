@@ -1,11 +1,13 @@
+%script{src: "https://checkout.stripe.com/checkout.js"}
+:javascript
+	var handlers = []
 .container
-	%h1 Choose your plan
+	%h1 Create your Barbershop
 	.plans
+		-count = 0
 		-@plans.each do |plan|
-			.col-md-4
+			.col-md-4.col-md-offset-4
 				=form_tag subscriptions_path do
-					=hidden_field_tag 'stripe_price', plan[:stripe_price]
-					=hidden_field_tag 'description', "Subscription to #{plan[:name].capitalize} plan"
 					.plan
 						%article
 							- if flash[:error].present?
@@ -19,14 +21,52 @@
 
 						.name
 							=plan[:name].upcase
-						-# =link_to new_user_registration_path(plan: plan[:name]), class: 'free-trial-btn large-btn' do
-						-# 	Start your free trial
 
-						%script.stripe-button{"data-amount" => "#{plan[:stripe_price]}",
-							"data-description" => "#{plan[:name].capitalize} plan",
-							"data-key" => "#{Rails.configuration.stripe[:publishable_key]}",
-							"data-locale" => "auto",
-							src: "https://checkout.stripe.com/checkout.js"}
+						-if current_user
+							%button.subscription-btn.brand-btn{id: "subscriptionButton-#{count}", type: 'submit'}
+								="Create your #{plan[:name].capitalize}"
+						-else
+							=link_to new_user_registration_path, class: 'subscription-btn brand-btn non-user' do
+								="Create your #{plan[:name].capitalize}"
+						-if current_user
+							:javascript
+								handlers["#{count}"] = StripeCheckout.configure({
+									key: "#{ENV['stripe_publishable_key']}",
+									image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+									locale: 'auto',
+									token: function(token) {
+										$.ajax({
+											url: `/subscriptions`,
+											method: 'POST',
+											data: {
+												"stripeToken": token.id,
+												"stripeEmail": token.email,
+												"stripe_price": "#{plan[:stripe_price]}",
+												"plan": "#{plan[:name]}",
+												"description": "Subscription to #{plan[:name].capitalize} plan"
+											},
+											dataType: 'script',
+											success: `window.location = '/'`
+										});
+									}
+								});
+
+								document.getElementById("subscriptionButton-#{count}").addEventListener('click', function(e) {
+									// Open Checkout with further options:
+									handlers["#{count}"].open({
+										name: "#{plan[:name].capitalize}",
+										description: "Create your #{plan[:name]}",
+										email: "#{current_user.email}",
+										amount: "#{plan[:stripe_price]}"
+									});
+									e.preventDefault();
+								});
+
+								// Close Checkout on page navigation:
+								window.addEventListener('popstate', function() {
+									handler.close();
+								});
+
 
 						.features
 							Features:
@@ -35,3 +75,4 @@
 								%span.fa.fa-check-square-o
 								%span.feature=feature
 								%br
+			-count += 1

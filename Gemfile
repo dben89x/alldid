@@ -20,6 +20,7 @@ gem 'haml', '~> 4.0.7'
 gem 'erb2haml'
 gem 'annotate'
 gem 'carrierwave', '~> 0.10.0'
+gem 'zeroclipboard-rails'
 
 # Data
 gem 'pg', '~> 0.20.0'

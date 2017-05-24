@@ -18,6 +18,8 @@
 #  type                   :string
 #  haircut_count          :integer
 #  profile_id             :integer
+#  stripe_id              :string
+#  subscription_id        :integer
 #
 
 class Admin < User

@@ -12,6 +12,6 @@
 #  style_id   :integer
 #
 
-class Event < ActiveRecord::Base
+class Schedule < ActiveRecord::Base
 
 end

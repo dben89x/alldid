@@ -1,0 +1,70 @@
+@import 'variables';
+
+#organization {
+	display: grid;
+	.header {
+		color: $lightBrand;
+		font-size: 25px;
+		font-weight: 600;
+	}
+	h1.header {
+		font-size: 33px !important;
+	}
+	.members-list {
+		padding: 10px;
+	}
+	.links-container, #organization-link-text, #organization-link-button {
+		display: inline-block;
+	}
+	#organization-link-text, #organization-link-button {
+		border-radius: 6px;
+		padding: 5px 10px;
+		font-size: 18px;
+	}
+	span#organization-link-text {
+		border: 2px solid $grey;
+		background-color: lighten($grey,20%);
+		color: darken($grey,20%);
+	}
+	button#organization-link-button {
+		margin: 15px;
+		&:focus {
+			outline: none;
+		}
+	}
+	.section-container {
+		margin: 40px 0;
+	}
+	.organization-input {
+		border: none;
+		border-bottom: 1px solid lighten($lightBrand,10%);
+		background: transparent;
+		font-size: 20px;
+		width: 100%;
+		padding: 20px 20px 0 20px;
+		text-align: center;
+		&:focus {
+			outline:none;
+			box-shadow: 0 4px 4px -4px $lightBrand;
+		}
+		&input[type=text_area] {
+			outline: 1px solid $lightBrand;
+		}
+	}
+	.grey-text {
+		color: $grey;
+		font-size: 23px;
+		font-weight: 600;
+		@media (max-width: 550px) {
+			font-size: 15px;
+			font-weight: 500;
+		}
+	}
+	.delete-membership {
+		color: $red;
+		&:hover {
+			color: darken($red, 10%);
+			transition: 0.3s;
+		}
+	}
+}

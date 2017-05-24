@@ -1,0 +1,28 @@
+#cms
+	#organization.container
+		-organization_name = @organization.name.present? ? @organization.name : "your barber shop"
+		.section-container
+			%h1.header="Edit #{organization_name}"
+			=form_for organization_path(@organization), method: :PUT do |f|
+				.col-md-6.col-md-offset-3=f.text_field :name, placeholder: "#{@type} Name", class: 'organization-input'
+
+		.section-container
+			.links-container
+				.header="Your invite link:"
+				%button#organization-link-button.brand-btn{'data-clipboard-target' => 'organization-link-text'}
+					Copy link
+				%span#organization-link-text= "https://#{request.host}.com/?invite=#{@organization.code}"
+				%br
+				%br
+				.grey-text="Copy this link and give it to people you'd like to invite to your barber shop."
+
+		.section-container
+			.header="Your members:"
+			.members-list
+				.grey-text="You currently have #{pluralize(@organization.memberships.count, 'member')} in your barber shop."
+				%br
+				-if @organization.memberships.any?
+					-@organization.memberships.each do |membership|
+						= membership.user.email if membership.user
+						=link_to membership_path(membership), method: :delete, data: { confirm: "Are you sure?" }, class: 'delete-membership' do
+							.fa.fa-times

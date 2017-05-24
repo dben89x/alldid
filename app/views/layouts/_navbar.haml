@@ -26,17 +26,22 @@
 								%span.fa.fa-user-plus
 								Sign Up
 				-else
-					-if current_user.is_a? Client
-						%li
-							=link_to '/favorites' do
-								.link.favorites
-									%span.fa.fa-star
-									%span.favorites-text Favorite Barbers
-					-elsif current_user.is_a? Admin
+					-if current_user.is_a? Admin
 						%li
 							=link_to '/admin' do
 								.link
 									Dashboard
+					-if current_user.barber_admin?
+						%li
+							=link_to '/dashboard' do
+								.link
+									%span.fa.fa-lock
+									Dashboard
+					%li
+						=link_to '/favorites' do
+							.link.favorites
+								%span.fa.fa-star
+								%span.favorites-text Favorite Barbers
 
 					%li
 						=link_to '/profile' do

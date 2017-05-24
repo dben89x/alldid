@@ -18,6 +18,8 @@
 #  type                   :string
 #  haircut_count          :integer
 #  profile_id             :integer
+#  stripe_id              :string
+#  subscription_id        :integer
 #
 
 require 'carrierwave/orm/activerecord'
@@ -27,8 +29,11 @@ class User < ApplicationRecord
 	devise :database_authenticatable, :registerable,
 				 :recoverable, :rememberable, :trackable, :validatable
 
-	belongs_to :organization
 	has_one :profile
+
+	has_one :membership
+	delegate :organization, to: :membership
+	belongs_to :subscription
 
 	validates_presence_of :type, :email, :password
 	after_create :create_profile
@@ -55,6 +60,32 @@ class User < ApplicationRecord
 
 	def favorites
 		User.where(id: self.user_favorites.pluck(:user_id).uniq)
+	end
+
+	def stripe_subscription
+		if self.subscription.present?
+			self.subscription
+		elsif self.membership.present?
+			self.membership.subscription
+		else
+			nil
+		end
+	end
+
+	def barber_admin?
+		if self.membership.present?
+			self.organization.user == self
+		else
+			false
+		end
+	end
+
+	def stripe_subscription_object
+		Stripe::Subscription.retrieve(subscription.stripe_reference)
+	end
+
+	def active?
+		stripe_subscription.present? ? stripe_subscription.active? : false
 	end
 
 end

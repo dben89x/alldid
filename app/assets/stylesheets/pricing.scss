@@ -1,0 +1,68 @@
+@import 'variables';
+.checkout {
+	width: 200px;
+	height: 100px;
+	background: green;
+}
+.plans{
+	.col-md-4 {
+		padding: 20px;
+
+		.plan {
+			border: 1px solid transparent;
+			border-radius: 6px;
+			padding: 70px 20px;
+			height: 460px;
+			background: white;
+			box-shadow: 0 0 6px 1px darken(white,15%);
+			.stripe-button-el span{
+			}
+
+			.price {
+				color: $lightBrand;
+				.number {
+					font-size: 40px;
+				}
+				.term {
+					font-size: 20px;
+				}
+			}
+			.name {
+				color: $darkBrand;
+				font-size: 20px;
+				font-weight: 700;
+				margin-bottom: 20px;
+			}
+			.free-trial-btn {
+				color: white;
+				background-color: $lightBrand;
+				transition: 0.3s;
+
+				&:hover {
+					border-color: lighten($lightBrand, 50%);
+					color: lighten($lightBrand, 50%);
+
+					background: darken($lightBrand, 5%);
+				}
+			}
+			.features {
+				margin-top: 40px;
+				color: $darkBrand;
+				font-size: 20px;
+				font-weight: 700;
+				.feature {
+					color: $lightBrand;
+					font-size: 20px;
+					font-weight: 600;
+				}
+			}
+		}
+	}
+	.subscription-btn {
+		font-weight: 700;
+		border-width: 3px;
+		&.non-user {
+			padding: 5px 10px;
+		}
+	}
+}

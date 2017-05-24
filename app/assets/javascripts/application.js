@@ -15,5 +15,6 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require jquery.turbolinks
+//= require zeroclipboard
 //= require_tree ../../../client
 //= require_tree .

@@ -42,6 +42,10 @@ class Profile < ActiveRecord::Base
 		Style.find(self.current_style_id).name
 	end
 
+	def current_style
+		Style.find(self.current_style_id)
+	end
+
 	def full_name
 		"#{first_name} #{last_name}"
 	end

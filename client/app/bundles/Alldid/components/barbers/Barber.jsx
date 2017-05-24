@@ -57,11 +57,11 @@ export default class SearchContainer extends React.Component {
 	}
 
 	render () {
-		const { id, name, headline, location, price, services, avatar, endorsements } = this.props.barber
+		const { id, name, headline, location, services, avatar, endorsements } = this.props.barber
 
-		var priceString = ``
-		_.times( price, () => priceString = `${priceString}<span class='fa fa-usd'/>` )
-		const priceHtml = {__html: priceString}
+		// var priceString = ``
+		// _.times( price, () => priceString = `${priceString}<span class='fa fa-usd'/>` )
+		// const priceHtml = {__html: priceString}
 
 		const barberStyles = this.props.barber.barberStyles.map( (barberStyle) => <StyleTag barberStyle={barberStyle} key={barberStyle.id} endorsements={barberStyle.endorsements}/>)
 		const additionalAttributes = this.props.links === undefined ? null : <BarberShowAttributes barber={this.props.barber}/>
@@ -81,9 +81,6 @@ export default class SearchContainer extends React.Component {
 						</div>
 						<div className='barber-location'>
 							<span className='fa fa-map-marker'/>{location}
-						</div>
-						<div className='barber-price'>
-							<span dangerouslySetInnerHTML={ priceHtml }/>
 						</div>
 						<div className='barber-headline'>
 							{headline}

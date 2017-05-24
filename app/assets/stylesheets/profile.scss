@@ -47,6 +47,7 @@ input[type=file] {
 	margin:15px;
 	position: relative;
 	display: inline-block;
+	cursor: pointer;
 }
 .style-img, .overlay {
 	border-radius:40%;
@@ -64,26 +65,27 @@ input[type=file] {
 	opacity: 0;
 	transition: .5s ease;
 	background-color: rgba(0,0,0,0.5);
-	cursor: pointer;
 }
+
 .image-container.selected .overlay {
 	opacity: 1;
 }
 .image-container.selected:hover .overlay {
-	opacity: 0;
-}
-.image-container.selected {
-	box-shadow: 0px 0px 4px 3px black;
 }
 .image-container:hover .overlay {
 	opacity: 1;
 }
-#user-styles .text {
-	color: white;
-	font-size: 15px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
+#user-styles {
+	.overlay, .text, .style-img {
+		pointer-events: none;
+	}
+	.text {
+		color: white;
+		font-size: 15px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+	}
 }

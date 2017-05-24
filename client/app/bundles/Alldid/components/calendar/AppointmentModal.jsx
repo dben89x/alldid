@@ -83,7 +83,7 @@ export default class AppointmentModal extends React.Component {
 
 		// const startTimes =
 		// get start of day integer and end of day integer, subtract start from end, divide by (60*30(or something)) and add these increments to each consecutive count
-		
+
 		// const endTimes =
 
 		return (
@@ -100,7 +100,7 @@ export default class AppointmentModal extends React.Component {
 
 							<label>
 								Start Time:<br/>
-							<Select name="Start Time" options={styles} placeholder={this.state.startTime} value={this.state.startTime} onChange={(e) => this.handleSelectChange("startTime", e)} />
+							<Select name="Start Time" options={styles} placeholder={this.state.startTime} value={this.state.startTime} onChange={(e) => this.handleSelectChange("startTime", e)} disabled={true} />
 							</label>
 
 							<label>

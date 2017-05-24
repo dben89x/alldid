@@ -22,5 +22,6 @@
 #  subscription_id        :integer
 #
 
-class Client < User
+class AdminBarber < User
+
 end

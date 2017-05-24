@@ -6,6 +6,12 @@ module StripeSubscriptionService
 		)
 	end
 
+	def self.create_subscription(customer, params)
+		Stripe::Subscription.create(
+			subscription_params(customer.id, params[:plan])
+		)
+	end
+
 	def self.create_charge(customer, params)
 		Stripe::Charge.create(
 			charge_params(customer.id, params[:stripe_price], params[:description])
@@ -16,6 +22,13 @@ module StripeSubscriptionService
 		{
 			email: email,
 			source: token
+		}
+	end
+
+	def self.subscription_params(customer_id, plan)
+		{
+			customer: customer_id,
+			plan: plan
 		}
 	end
 

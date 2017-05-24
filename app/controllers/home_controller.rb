@@ -18,20 +18,24 @@ class HomeController < ApplicationController
 	end
 
 	def search
-		@barbers = get_react_barber_objects(Barber.all)
+		if current_user
+			@barbers = get_react_barber_objects(Barber.all)
 
-		@barbers = filterBarbers(@barbers)
+			@barbers = filterBarbers(@barbers)
 
-		@barbers.each do |barber|
-			barber[:barberStyles] = barber[:barberStyles].slice(0,3)
+			@barbers.each do |barber|
+				barber[:barberStyles] = barber[:barberStyles].slice(0,3)
+			end
+
+			@featured_barber = @barbers[0]
+			@barbers = @barbers - [@featured_barber]
+			@profile_id = current_user.profile
+			@style = current_user.current_style_id.present? ? current_user.style.name : Style.all.sample.name
+			@location = current_user.location.present? ? current_user.location : Faker::GameOfThrones.city
+			@price = [1,2,3,4].sample
+		else
+			redirect_to new_user_registration_path, alert: "Please create your account to access this page."
 		end
-
-		@featured_barber = @barbers[0]
-		@barbers = @barbers - [@featured_barber]
-		@profile_id = current_user.profile
-		@style = current_user.current_style_id.present? ? current_user.style.name : Style.all.sample.name
-		@location = current_user.location.present? ? current_user.location : Faker::GameOfThrones.city
-		@price = [1,2,3,4].sample
 
 	end
 

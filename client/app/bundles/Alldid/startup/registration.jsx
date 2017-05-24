@@ -10,6 +10,8 @@ import Barbers from '../components/barbers/Barbers';
 import BarberContainer from '../components/barbers/BarberContainer';
 import BarberShowAttributes from '../components/barbers/BarberShowAttributes';
 
+import ClientStyle from '../components/forms/ClientStyle';
+import BarberStyle from '../components/forms/BarberStyle';
 import UserStyles from '../components/forms/UserStyles';
 import StyleTag from '../components/forms/StyleTag';
 import UserServices from '../components/forms/UserServices';
@@ -29,11 +31,13 @@ ReactOnRails.register({
 	Barbers,
 	BarberContainer,
 	BarberShowAttributes,
-	UserStyles,
+	ClientStyle,
 	StyleTag,
 	UserServices,
 	ServiceTag,
 	Calendar,
 	DailyEvents,
-	AppointmentModal
+	AppointmentModal,
+	UserStyles,
+	BarberStyle
 });

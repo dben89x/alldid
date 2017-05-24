@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170514041305) do
+ActiveRecord::Schema.define(version: 20170524220159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,9 +51,26 @@ ActiveRecord::Schema.define(version: 20170514041305) do
     t.index ["service_id"], name: "index_events_on_service_id", using: :btree
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["organization_id"], name: "index_memberships_on_organization_id", using: :btree
+    t.index ["user_id"], name: "index_memberships_on_user_id", using: :btree
+  end
+
   create_table "organizations", force: :cascade do |t|
-    t.string  "location"
-    t.integer "zip"
+    t.string   "location"
+    t.integer  "zip"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "stripe_reference"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "code"
+    t.integer  "subscription_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -88,7 +105,15 @@ ActiveRecord::Schema.define(version: 20170514041305) do
   end
 
   create_table "schedules", force: :cascade do |t|
-    t.integer "barber_id"
+    t.integer  "barber_id"
+    t.string   "day"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "type"
+    t.datetime "date"
+    t.boolean  "has_lunch"
+    t.datetime "lunch_start"
+    t.datetime "lunch_end"
     t.index ["barber_id"], name: "index_schedules_on_barber_id", using: :btree
   end
 
@@ -104,10 +129,20 @@ ActiveRecord::Schema.define(version: 20170514041305) do
     t.string "url"
   end
 
-  create_table "unavailable_day", force: :cascade do |t|
-    t.integer  "schedule_id"
+  create_table "subscriptions", force: :cascade do |t|
+    t.string  "stripe_reference"
+    t.integer "subscription_status_id"
+    t.string  "customer_reference"
+    t.integer "user_id_id"
+    t.string  "plan"
+    t.index ["user_id_id"], name: "index_subscriptions_on_user_id_id", using: :btree
+  end
+
+  create_table "unavailable_days", force: :cascade do |t|
+    t.string   "description"
     t.datetime "date"
-    t.index ["schedule_id"], name: "index_unavailable_day_on_schedule_id", using: :btree
+    t.integer  "barber_id"
+    t.index ["barber_id"], name: "index_unavailable_days_on_barber_id", using: :btree
   end
 
   create_table "user_favorites", force: :cascade do |t|
@@ -147,6 +182,8 @@ ActiveRecord::Schema.define(version: 20170514041305) do
     t.string   "type"
     t.integer  "haircut_count"
     t.integer  "profile_id"
+    t.string   "stripe_id"
+    t.integer  "subscription_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["profile_id"], name: "index_users_on_profile_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

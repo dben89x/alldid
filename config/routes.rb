@@ -19,13 +19,18 @@ Rails.application.routes.draw do
 	match 'favorites' => 'user_favorites#index', via: :get
 	resources :barbers, only: [:show]
 	match 'profile' => 'profiles#edit', via: :get
-	get 'dashboard' => 'admin#dashboard'
+
 
 	resources :user_steps
 	resources :styles
 	resources :services
 	resources :schedules
 	resources :events
+	resources :memberships
+	resources :organizations
+
+	get 'admin' => 'admin#dashboard'
+	match 'dashboard' => 'organizations#edit', via: :get
 
 	resources :endorsements, only: [:create, :destroy]
 	post 'delete_endorsement' => 'endorsements#delete_endorsement'

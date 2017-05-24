@@ -43,7 +43,7 @@ module ApplicationHelper
 				headline: barber.headline,
 				bio: barber.bio,
 				location: barber.location,
-				price: find_price_quadrant(quadrant_values, barber.hourly_rate),
+				# price: find_price_quadrant(quadrant_values, barber.hourly_rate),
 				barberStyles: barber_styles,
 				services: barber.services.pluck(:name),
 				favorite: favorite,
@@ -70,12 +70,12 @@ module ApplicationHelper
 		quadrant_values
 	end
 
-	def find_price_quadrant(quadrant_values, rate)
-		quadrant_values.each_with_index do |value, index|
-			if rate <= value
-				return index + 1
-			end
-		end
-	end
+	# def find_price_quadrant(quadrant_values, rate)
+	# 	quadrant_values.each_with_index do |value, index|
+	# 		if rate <= value
+	# 			return index + 1
+	# 		end
+	# 	end
+	# end
 
 end

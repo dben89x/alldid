@@ -33,6 +33,7 @@ export default class DailyEvents extends React.Component {
 			timezone: "local",
 			defaultView: 'agendaDay',
 			defaultDate: this.props.date,
+			slotDuration: '00:30:00',
 			dayClick: (date, jsEvent, view) => {
 				this.setState({modalDate: date}, () =>{
 					console.log(`Modal date: ${date}`)

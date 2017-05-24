@@ -18,6 +18,8 @@
 #  type                   :string
 #  haircut_count          :integer
 #  profile_id             :integer
+#  stripe_id              :string
+#  subscription_id        :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

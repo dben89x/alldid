@@ -2,12 +2,7 @@
 	.col-md-12.styles-container
 		%h4 Choose Your Style:
 		#user-styles
-			-@styles.each do |style|
-				.image-container.nonselected.selected
-					=image_tag("styles/#{style.url}", width: 170, class: 'style-img')
-					.overlay
-						.text
-							=style.name.capitalize
+			=react_component('UserStyles', props: {styles: @styles, clientStyle: @client_style, profileId: @profile.id, userType: @user_type}, prerender: false)
 
 #preferred-price
 	.col-md-12

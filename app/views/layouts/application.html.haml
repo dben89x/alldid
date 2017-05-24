@@ -19,7 +19,7 @@
 		=render 'layouts/navbar'
 		#application-container{class: (current_page?(root_path)) ? '' : 'body-padding'}
 			= yield
-			=render 'layouts/footer'
+		=render 'layouts/footer'
 #myModal.modal.fade{role: "dialog"}
 	.modal-dialog
 		.modal-content

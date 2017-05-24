@@ -18,6 +18,8 @@
 #  type                   :string
 #  haircut_count          :integer
 #  profile_id             :integer
+#  stripe_id              :string
+#  subscription_id        :integer
 #
 
 class Barber < User
@@ -26,4 +28,7 @@ class Barber < User
 	has_many :barber_services, inverse_of: :barber
 	has_many :endorsements, through: :barber_styles
 
+	def styles
+		Style.where(id: self.barber_styles.pluck(:style_id).uniq)
+	end
 end

@@ -15,17 +15,11 @@
 		=f.text_field :twitter, placeholder: "Twitter", class: 'profile-input profile-name-input'
 
 .col-md-12.styles-container
-	%h4 Your Styles:
+	%h4 Select All Your Qualified Styles:
 	#user-styles
-		-@styles.each do |style|
-			.image-container.nonselected.selected
-				=image_tag("styles/#{style.url}", width: 170, class: 'style-img')
-				.overlay
-					.text
-						=style.name.capitalize
-		-# =react_component 'UserStyles', props: {all_styles: @all_styles, user_styles: @user_styles, profile_id: @profile.id}, prerender: true
+		=react_component 'UserStyles', props: {styles: @styles, barberStyles: @barber_styles, profileId: @profile.id, userType: @user_type}, prerender: false
 
 .col-md-12
 	%h4 Your Services
 	#user-services
-		=react_component 'UserServices', props: {all_services: @all_services, user_services: @user_services, profile_id: @profile.id}, prerender: true
+		-# =react_component 'UserServices', props: {all_services: @all_services, user_services: @user_services, profile_id: @profile.id}, prerender: true
