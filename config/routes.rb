@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 	resources :profiles, only: [:show, :update]
 	resources :user_favorites, only: [:create, :destroy], path: 'favorites'
 	post 'delete_favorite' => 'user_favorites#delete_favorite'
+	post 'delete_barber_style' => 'barber_styles#delete_barber_style'
 	match 'favorites' => 'user_favorites#index', via: :get
 	resources :barbers, only: [:show]
 	match 'profile' => 'profiles#edit', via: :get
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
 	resources :events
 	resources :memberships
 	resources :organizations
+	resources :barber_styles, only: [:create]
 
 	get 'admin' => 'admin#dashboard'
 	match 'dashboard' => 'organizations#edit', via: :get

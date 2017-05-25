@@ -35,6 +35,16 @@
 		outline: 1px solid $lightBrand;
 	}
 }
+.bio-input {
+	border-bottom: 1px solid lighten($lightBrand,10%);
+	border-left: 1px solid lighten($lightBrand,10%);
+	border-right: 1px solid lighten($lightBrand,10%);
+	border-radius: 2px;
+	&:focus {
+		box-shadow: 0px 2px 5px -1px;
+		// box-shadow: 0px 0px 6px 0px $lightBrand;
+	}
+}
 input[type=file] {
 	width: 75px;
 	display:inline;

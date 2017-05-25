@@ -13,7 +13,7 @@ export default class UserStyles extends React.Component {
 	}
 
 	render () {
-		const { styles, profileId, userType } = this.props
+		const { styles, profileId, userType, userId } = this.props
 		var props = this.props
 
 		var userStyles
@@ -26,7 +26,7 @@ export default class UserStyles extends React.Component {
 						break;
 					}
 				}
-				return <BarberStyle style={style} key={style.id} selected={selected} profileId={profileId}/>
+				return <BarberStyle style={style} key={style.id} selected={selected} userId={userId}/>
 			});
 		} else if (userType === "Client") {
 			userStyles = styles.map( function(style) {

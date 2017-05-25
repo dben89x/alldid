@@ -1,15 +1,11 @@
 # == Schema Information
 #
-# Table name: events
+# Table name: unavailable_days
 #
-#  id         :integer          not null, primary key
-#  client_id  :integer
-#  barber_id  :integer
-#  service_id :integer
-#  start_time :datetime
-#  end_time   :datetime
-#  notes      :text
-#  style_id   :integer
+#  id          :integer          not null, primary key
+#  description :string
+#  date        :datetime
+#  barber_id   :integer
 #
 
 class UnavailableDay < ActiveRecord::Base

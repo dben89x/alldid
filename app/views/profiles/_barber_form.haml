@@ -1,6 +1,6 @@
 #user-bio
 	.col-md-12
-		= f.text_area :bio, autofocus: false, rows: 5, placeholder: "Bio", class: 'profile-input profile-name-input'
+		= f.text_area :bio, autofocus: false, rows: 5, placeholder: "Bio", class: 'profile-input profile-name-input bio-input'
 
 #facebook-input
 	.col-md-12
@@ -17,7 +17,7 @@
 .col-md-12.styles-container
 	%h4 Select All Your Qualified Styles:
 	#user-styles
-		=react_component 'UserStyles', props: {styles: @styles, barberStyles: @barber_styles, profileId: @profile.id, userType: @user_type}, prerender: false
+		=react_component 'UserStyles', props: {styles: @styles, barberStyles: @barber_styles, profileId: @profile.id, userType: @user_type, userId: current_user.id}, prerender: false
 
 .col-md-12
 	%h4 Your Services

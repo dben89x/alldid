@@ -1,15 +1,17 @@
 # == Schema Information
 #
-# Table name: events
+# Table name: schedules
 #
-#  id         :integer          not null, primary key
-#  client_id  :integer
-#  barber_id  :integer
-#  service_id :integer
-#  start_time :datetime
-#  end_time   :datetime
-#  notes      :text
-#  style_id   :integer
+#  id          :integer          not null, primary key
+#  barber_id   :integer
+#  day         :string
+#  start_time  :datetime
+#  end_time    :datetime
+#  type        :string
+#  date        :datetime
+#  has_lunch   :boolean
+#  lunch_start :datetime
+#  lunch_end   :datetime
 #
 
 class Schedule < ActiveRecord::Base
