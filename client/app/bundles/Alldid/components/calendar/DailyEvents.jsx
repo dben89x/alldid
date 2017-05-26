@@ -3,7 +3,6 @@ import moment from 'moment';
 import fc from 'fullcalendar';
 import AppointmentModal from './AppointmentModal';
 
-
 export default class DailyEvents extends React.Component {
 	constructor(props) {
 		super(props)

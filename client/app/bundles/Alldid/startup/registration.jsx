@@ -21,6 +21,9 @@ import Calendar from '../components/calendar/Calendar';
 import DailyEvents from '../components/calendar/DailyEvents';
 import AppointmentModal from '../components/calendar/AppointmentModal';
 
+import Schedule from '../components/schedule/Schedule';
+import GeneralDay from '../components/schedule/GeneralDay';
+
 ReactOnRails.register({
 	SearchContainer,
 	Search,
@@ -39,5 +42,7 @@ ReactOnRails.register({
 	DailyEvents,
 	AppointmentModal,
 	UserStyles,
-	BarberStyle
+	BarberStyle,
+	Schedule,
+	GeneralDay
 });

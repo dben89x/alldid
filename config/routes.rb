@@ -20,7 +20,8 @@ Rails.application.routes.draw do
 	match 'favorites' => 'user_favorites#index', via: :get
 	resources :barbers, only: [:show]
 	match 'profile' => 'profiles#edit', via: :get
-
+	get 'schedule' => 'barbers#schedule'
+	post 'schedules' => 'barbers#create_schedule'
 
 	resources :user_steps
 	resources :styles

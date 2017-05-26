@@ -58,6 +58,10 @@ class User < ApplicationRecord
 		Style.find(self.current_style_id)
 	end
 
+	def default_avatar
+		avatar.file.present? ? avatar.file.url : '/assets/default-avatar.png'
+	end
+
 	def favorites
 		User.where(id: self.user_favorites.pluck(:user_id).uniq)
 	end
