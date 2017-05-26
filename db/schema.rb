@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526041939) do
+ActiveRecord::Schema.define(version: 20170526172106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 20170526041939) do
     t.integer  "day_id"
     t.integer  "start_time"
     t.integer  "end_time"
-    t.text     "json"
+    t.text     "json",       default: "{\n\t\t\"Sunday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Monday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Tuesday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Wednesday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Thursday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Friday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Saturday\": {\"start\": 900, \"end\": 1700, \"available\": true}\n\t\t}"
     t.index ["barber_id"], name: "index_schedules_on_barber_id", using: :btree
   end
 

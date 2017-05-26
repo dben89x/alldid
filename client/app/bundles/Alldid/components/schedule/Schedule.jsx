@@ -11,37 +11,26 @@ export default class Schedule extends React.Component {
 			schedule = JSON.parse(this.props.schedule.json)
 		} else {
 			schedule = {
-				"Sunday": {"start": 0, "end": 0},
-				"Monday": {"start": 0, "end": 0},
-				"Tuesday": {"start": 0, "end": 0},
-				"Wednesday": {"start": 0, "end": 0},
-				"Thursday": {"start": 0, "end": 0},
-				"Friday": {"start": 0, "end": 0},
-				"Saturday": {"start": 0, "end": 0}
+				"Sunday": {"start": 0, "end": 0, "available": true},
+				"Monday": {"start": 0, "end": 0, "available": true},
+				"Tuesday": {"start": 0, "end": 0, "available": true},
+				"Wednesday": {"start": 0, "end": 0, "available": true},
+				"Thursday": {"start": 0, "end": 0, "available": true},
+				"Friday": {"start": 0, "end": 0, "available": true},
+				"Saturday": {"start": 0, "end": 0, "available": true}
 			}
 		}
 		this.state = schedule
 	}
 
-	handleDayChange =(day, startOrEnd, time)=> {
-		if (startOrEnd === "start") {
-			var endTime = this.state[day].end
-			this.setState({[day]: {"start": time, "end": endTime} }, ()=>{
-				console.log(this.state)
-			})
-		} else if (startOrEnd === "end") {
-			var startTime = this.state[day].start
-			this.setState({[day]: {"start": startTime, "end": time} }, ()=>{
-				console.log(this.state)
-			})
-		}
+	handleDayChange =(day, startTime, endTime, available)=> {
+		this.setState({[day]: {"start": startTime, "end": endTime, "available": available} })
 	}
 
 	submitSchedule =(event)=> {
 		event.preventDefault()
 
 		var thisState = this.state
-		console.log(JSON.stringify(thisState))
 
 		$('.updateScheduleSpan').removeClass('fa-check').addClass('fa-spin fa-spinner')
 		this.state.xhr = $.ajax({
@@ -56,17 +45,23 @@ export default class Schedule extends React.Component {
 	render () {
 		const { barberId, days } = this.props
 		const sortedDays = _.sortBy(days, (day)=> day.id)
+		const thisState = this.state
 		const dayComponents = sortedDays.map( (day) =>
 			<GeneralDay key={day.id}
+				startTime={this.state[day.name].start}
+				endTime={this.state[day.name].end}
 				day={day}
-				handleDayChange={(day, startOrEnd, time) => this.handleDayChange(day, startOrEnd, time) } />
+				handleDayChange={(day, startOrEnd, time, available) => this.handleDayChange(day, startOrEnd, time, available) }
+			/>
 		)
 
 		return (
 			<div className='schedule'>
-				Set your normal hours:
+				<h3>Set your normal hours:</h3>
 				{dayComponents}
-				<button className='brand-btn light-brand-btn med-btn' onClick={this.submitSchedule}>Save Schedule<span className='fa updateScheduleSpan'/></button>
+				<button className='brand-btn light-brand-btn med-btn' onClick={this.submitSchedule}>
+					Save Schedule<span className='fa updateScheduleSpan'/>
+				</button>
 			</div>
 		);
 	}

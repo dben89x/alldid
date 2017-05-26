@@ -8,20 +8,31 @@ export default class GeneralDay extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			startTime: 0,
-			endTime: 0,
+			startTime: this.props.startTime,
+			endTime: this.props.endTime,
+			available: true
 		}
 	}
 
-	handleStartTimeChange =(day, startOrEnd, data)=> {
-		this.setState({startTime: data.value}, ()=> {
-			this.props.handleDayChange(day, startOrEnd, this.state.startTime)
+	handleAvailableChange =(event)=> {
+		const target = event.target
+		this.setState({available: target.checked}, ()=> {
+			const {startTime, endTime, available} = this.state
+			this.props.handleDayChange(this.props.day.name, startTime, endTime, available)
 		})
 	}
 
-	handleEndTimeChange =(day, startOrEnd, data)=> {
+	handleStartTimeChange =(data)=> {
+		this.setState({startTime: data.value}, ()=> {
+			const {startTime, endTime, available} = this.state
+			this.props.handleDayChange(this.props.day.name, startTime, endTime, available)
+		})
+	}
+
+	handleEndTimeChange =(data)=> {
 		this.setState({endTime: data.value}, ()=> {
-			this.props.handleDayChange(day, startOrEnd, this.state.endTime)
+			const {startTime, endTime, available} = this.state
+			this.props.handleDayChange(this.props.day.name, startTime, endTime, available)
 		})
 	}
 
@@ -37,21 +48,38 @@ export default class GeneralDay extends React.Component {
 
 		return (
 			<div className='day'>
-				<div className='name'>{day.name}</div>
+				<label className='name'>
+					{day.name}
+					<input
+						type='checkbox'
+						checked={this.state.available}
+						onChange={this.handleAvailableChange}
+						/>
+				</label>
+
+				<label>
+					<span className='day-select-label'>From</span>
 					<Select
 						name={day.name}
 						placeholder="Start time"
 						options={hours}
 						value={this.state.startTime}
-						onChange={(e) => this.handleStartTimeChange(day.name, "start", e)}
-					/>
+						onChange={this.handleStartTimeChange}
+						disabled={!this.state.available}
+						/>
+				</label>
+
+				<label>
+					<span className='day-select-label'>To</span>
 					<Select
 						name={day.name}
 						placeholder="End time"
 						options={hours}
 						value={this.state.endTime}
-						onChange={(e) => this.handleEndTimeChange(day.name, "end", e)}
-					/>
+						onChange={this.handleEndTimeChange}
+						disabled={!this.state.available}
+						/>
+				</label>
 			</div>
 		);
 	}

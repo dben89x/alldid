@@ -1,7 +1,32 @@
 @import "variables";
 
-.schedule {
-	.updateScheduleSpan {
-		margin-left: 10px;
+.appointments-container {
+	display: inline-block;
+}
+.schedule-container {
+	border-radius: 10px;
+	background: white;
+	display: inline-block;
+	margin: 40px 0;
+	padding: 40px 20px;
+
+	.schedule {
+		.updateScheduleSpan {
+			margin-left: 10px;
+		}
+		.day .name {
+			font-weight: 700;
+			font-size: 15px;
+			display: block;
+			input {
+				margin: 0 10px;
+			}
+		}
+		.Select {
+			margin: 0 20px;
+		}
+		.day-select-label {
+			display: block;
+		}
 	}
 }

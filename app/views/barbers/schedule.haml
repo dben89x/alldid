@@ -1,21 +1,22 @@
 #schedule
 	.container
-		%h3
-			Your appointments:
+		.appointments-container
+			%h3
+				Your appointments:
 
-		-Client.all.sample(3).each do |client|
-			.appointments.col-md-12{style:'text-align:left'}
-				.col-md-4
-					=link_to profile_path(client) do
-						=image_tag client.default_avatar, width: 35, class: 'avatar'
-						client.name
-				.col-md-2
-					Start
-				.col-md-2
-					End
-				.col-md-2
-					Style
-				.col-md-2
-					Services
+			-Client.all.sample(3).each do |client|
+				.appointments.col-md-12{style:'text-align:left'}
+					.col-md-4
+						=link_to profile_path(client) do
+							=image_tag client.default_avatar, width: 35, class: 'avatar'
+							client.name
+					.col-md-2
+						Start
+					.col-md-2
+						End
+					.col-md-2
+						Style
+					.col-md-2
+						Services
 
-		=react_component 'Schedule', props: {barberId: current_user.id, days: @days, schedule: @schedule}, prerender: false
+		=react_component 'Schedule', props: {barberId: current_user.id, days: @days, schedule: @schedule}, html_options: {class: 'schedule-container'}, prerender: false
