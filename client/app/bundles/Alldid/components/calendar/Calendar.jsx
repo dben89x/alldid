@@ -10,8 +10,20 @@ export default class Calendar extends React.Component {
 		super(props)
 		this.state = {
 			fcDate: new Date(),
+			fcStart: `9:00:00`,
+			fcEnd: '17:00:00',
 			selectedDay: new Date(),
 		}
+	}
+
+	updateDailyEvents =(date)=> {
+		var day = moment(date).format('dddd')
+		var start = this.props.schedule[day].start
+		var end = this.props.schedule[day].end
+
+		this.setState({fcDate: date, fcStart: start, fcEnd: end}, () => {
+			this.setState({selectedDay: date})
+		})
 	}
 
 	render () {
@@ -44,15 +56,12 @@ export default class Calendar extends React.Component {
 						height={calHeight}
 						selected={today}
 						minDate={lastWeek}
+						disabledDays={this.props.disabledDays}
 						displayOptions={{
 							showHeader: showHeader
 						}}
 						selected={this.state.selectedDay}
-						onSelect={date => {
-							this.setState({fcDate: date}, () => {
-								this.setState({selectedDay: date})
-							})
-						}}
+						onSelect={date => {this.updateDailyEvents(date)}}
 						theme={{
 							floatingNav: {
 								background: 'rgba(25, 88, 108, 0.9)',
@@ -77,6 +86,10 @@ export default class Calendar extends React.Component {
 					client={this.props.client}
 					services={this.props.services}
 					styles={this.props.styles}
+					schedule={this.props.schedule}
+					startTime={this.state.fcStart}
+					endTime={this.state.fcEnd}
+					minutes={this.props.minutes}
 					/>
 			</div>
 		);

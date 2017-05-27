@@ -1,13 +1,6 @@
 class HomeController < ApplicationController
 	include ApplicationHelper
 
-	def calendar
-		@barber = Barber.find(params[:barber])
-		@client = current_user
-		@services = @barber.services
-		@styles = @barber.styles
-	end
-
 	def index
 	end
 
@@ -15,6 +8,10 @@ class HomeController < ApplicationController
 	end
 
 	def about
+	end
+
+	def appointments
+		@events = Event.where(client_id: current_user.id)
 	end
 
 	def search

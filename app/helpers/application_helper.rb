@@ -20,8 +20,8 @@ module ApplicationHelper
 	end
 
 	def get_react_barber_objects(collection)
-		rates = User.includes(:profile).where.not(profiles: {hourly_rate: nil}).pluck(:hourly_rate)
-		quadrant_values = calculate_price_comparisons(rates)
+		# rates = User.includes(:profile).where.not(profiles: {hourly_rate: nil}).pluck(:hourly_rate)
+		# quadrant_values = calculate_price_comparisons(rates)
 		user = current_user
 
 		collection.collect do |barber|
@@ -37,13 +37,17 @@ module ApplicationHelper
 			barber_styles = barber_styles.sort_by {|s| s[:endorsements]}.reverse
 
 			favorite = user ? user.user_favorites.where(user_id: barber.id).present? : false
+
+			# Put this in barber hash once more data is collected
+			# price: find_price_quadrant(quadrant_values, barber.hourly_rate),
+
 			{
 				id: barber.id,
 				name: barber.name,
 				headline: barber.headline,
 				bio: barber.bio,
 				location: barber.location,
-				# price: find_price_quadrant(quadrant_values, barber.hourly_rate),
+				price: find_standard_price_comparisons(barber.rate),
 				barberStyles: barber_styles,
 				services: barber.services.pluck(:name),
 				favorite: favorite,
@@ -52,23 +56,34 @@ module ApplicationHelper
 		end
 	end
 
-	# Returns an array of quadrant price values
-	def calculate_price_comparisons(all_rates)
-		sorted_rates = all_rates.sort
-		rates_count = all_rates.count
-
-		quadrant_values = []
-		quadrant = 1
-		4.times do
-			quadrant_size = (rates_count - 1) / 4
-			upper_quadrant_bound_index = quadrant_size * quadrant
-			upper_quadrant_bound_value = sorted_rates[ upper_quadrant_bound_index ]
-			quadrant_values << upper_quadrant_bound_value
-			quadrant += 1
+	def find_standard_price_comparisons(rate)
+		case rate
+			when 0..25 then 1
+			when 25..50 then 2
+			when 50..75 then 3
+			when 75..1000 then 4
 		end
-		quadrant_values[3] = sorted_rates.max
-		quadrant_values
 	end
+
+	# Use this once we have more barber price data
+
+	# Returns an array of quadrant price values
+	# def calculate_price_comparisons(all_rates)
+		# sorted_rates = all_rates.sort
+		# rates_count = all_rates.count
+		#
+		# quadrant_values = []
+		# quadrant = 1
+		# 4.times do
+		# 	quadrant_size = (rates_count - 1) / 4
+		# 	upper_quadrant_bound_index = quadrant_size * quadrant
+		# 	upper_quadrant_bound_value = sorted_rates[ upper_quadrant_bound_index ]
+		# 	quadrant_values << upper_quadrant_bound_value
+		# 	quadrant += 1
+		# end
+		# quadrant_values[3] = sorted_rates.max
+		# quadrant_values
+	# end
 
 	# def find_price_quadrant(quadrant_values, rate)
 	# 	quadrant_values.each_with_index do |value, index|

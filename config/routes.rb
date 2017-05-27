@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 	devise_scope :user do
 		get 'signup_modal', to: 'devise/registrations#new'
 	end
-	get 'calendar' => 'home#calendar'
+	get 'calendar' => 'barbers#calendar'
 
 	devise_for :users, controllers: {registrations: 'registrations', sessions: 'sessions'}
 	resources :profiles, only: [:show, :update]
@@ -20,8 +20,10 @@ Rails.application.routes.draw do
 	match 'favorites' => 'user_favorites#index', via: :get
 	resources :barbers, only: [:show]
 	match 'profile' => 'profiles#edit', via: :get
+
 	get 'schedule' => 'barbers#schedule'
 	post 'schedules' => 'barbers#create_schedule'
+	get 'appointments' => 'home#appointments'
 
 	resources :user_steps
 	resources :styles

@@ -41,9 +41,9 @@ ul.nav {
 		}
 	}
 }
-.link.settings, .link.favorites{
+.link.settings, .link.favorites, .link.appointments, .link.profile{
 	display: inline;
-	.settings-text, .favorites-text {
+	.settings-text, .favorites-text, .appointments-text, .profile-text {
 		display: none;
 		@media (max-width: 767px) {
 			display: inherit;

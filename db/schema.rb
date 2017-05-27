@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526172106) do
+ActiveRecord::Schema.define(version: 20170527071021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20170526172106) do
     t.integer "perfect_barber_id"
     t.integer "current_style_id"
     t.text    "bio"
-    t.integer "hourly_rate"
+    t.integer "rate",              default: 0
     t.integer "organization_id"
     t.string  "first_name"
     t.string  "last_name"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20170526172106) do
     t.string  "facebook"
     t.string  "instagram"
     t.string  "twitter"
+    t.integer "minutes",           default: 0
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
@@ -165,6 +166,7 @@ ActiveRecord::Schema.define(version: 20170526172106) do
   create_table "user_services", force: :cascade do |t|
     t.integer "profile_id"
     t.integer "service_id"
+    t.integer "minutes"
     t.index ["profile_id"], name: "index_user_services_on_profile_id", using: :btree
     t.index ["service_id"], name: "index_user_services_on_service_id", using: :btree
   end

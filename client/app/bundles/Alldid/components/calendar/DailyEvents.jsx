@@ -8,21 +8,30 @@ export default class DailyEvents extends React.Component {
 		super(props)
 		this.state = {
 			modalShow: false,
-			modalDate: 0
+			modalStart: 0,
+			modalEnd: 0,
+			modalDate: 0,
 		}
 	}
 
 	componentDidUpdate(prevProps, prevState) {
 		$('#calendar').fullCalendar('gotoDate', this.props.date);
-		// if (prevProps.data !== this.props.data) {
-		// 	this.chart = c3.load({
-		// 		data: this.props.data
-		// 	});
+		// if (prevState !== this.state) {
 		// }
 	}
 
 	componentDidMount() {
 		this.renderCalendar()
+	}
+
+	updateModalProps =(date)=> {
+		var minutes = this.props.minutes
+		console.log(minutes)
+		var start = date.clone()
+		var end = date.clone().add(minutes, 'minutes')
+		this.setState({modalDate: date, modalStart: start, modalEnd: end}, () =>{
+			this.setState({modalShow: true})
+		})
 	}
 
 	renderCalendar = () => {
@@ -32,19 +41,13 @@ export default class DailyEvents extends React.Component {
 			timezone: "local",
 			defaultView: 'agendaDay',
 			defaultDate: this.props.date,
-			slotDuration: '00:30:00',
-			dayClick: (date, jsEvent, view) => {
-				this.setState({modalDate: date}, () =>{
-					console.log(`Modal date: ${date}`)
-					this.setState({modalShow: true})
-				})
-				console.log('Clicked on: ' + date)
-			},
+			slotDuration: '00:15:00',
+			dayClick: (date, jsEvent, view) => {this.updateModalProps(date)},
 			header: false,
 			columnFormat: 'dddd, MMM D',
 			height: windowHeight,
-			minTime: '06:00:00',
-			maxTime: '23:00:00',
+			minTime: this.props.startTime,
+			maxTime: this.props.endTime,
 			allDayDefault: false,
 			allDaySlot: false
 		});
@@ -60,6 +63,8 @@ export default class DailyEvents extends React.Component {
 					show={this.state.modalShow}
 					onHide={modalClose}
 					date={this.state.modalDate}
+					start={this.state.modalStart}
+					end={this.state.modalEnd}
 					barber={this.props.barber}
 					client={this.props.client}
 					services={this.props.services}

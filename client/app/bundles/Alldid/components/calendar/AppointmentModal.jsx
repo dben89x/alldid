@@ -8,27 +8,18 @@ export default class AppointmentModal extends React.Component {
 		super(props)
 
 		this.state = {
-			startTime: this.props.date,
-			endTime: this.props.date,
+			startTime: this.props.start,
+			endTime: this.props.end,
 			services: [],
 			style: '',
 			notes: '',
-
 			date: 0,
-
 			xhr: null,
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.setState({ date: nextProps.date, startTime: nextProps.date }, () => {
-			this.updateEndTime()
-		})
-	}
-
-	updateEndTime = () => {
-		const minutes = 60
-		this.setState({ endTime: (this.state.startTime + (20*minutes)) })
+		this.setState({ date: nextProps.date, startTime: nextProps.start, endTime: nextProps.end })
 	}
 
 	handleSubmit = (event) => {
@@ -61,12 +52,18 @@ export default class AppointmentModal extends React.Component {
 		this.setState({[name]: value});
 	}
 
-	handleMultiSelectChange = (name, data) => {
+	handleServicesChange = (name, data) => {
+		this.setState({[name]: data});
+		this.recalculateEndTime()
+	}
+
+	handleStyleChange = (name, data) => {
 		this.setState({[name]: data});
 	}
 
-	handleSelectChange = (name, data) => {
-		this.setState({[name]: data});
+	recalculateEndTime =()=> {
+		var end = this.state.endTime.add(20, 'minutes')
+		this.setState({endTime: end})
 	}
 
 	render () {
@@ -98,24 +95,34 @@ export default class AppointmentModal extends React.Component {
 
 						<div className='col-md-12'>
 
+							<div>
+								<div className='head'>Start Time:</div>
+								<div className='text'>{`${moment(startTime).format('h:mm A')}`}</div>
+							</div>
+
+							<div>
+								<div className='head'>End Time:</div>
+								<div className='text'>{`${moment(endTime).format('h:mm A')}`}</div>
+							</div>
+
 							<label>
-								Start Time:<br/>
-							<Select name="Start Time" options={styles} placeholder={this.state.startTime} value={this.state.startTime} onChange={(e) => this.handleSelectChange("startTime", e)} disabled={true} />
+								Style:
+								<br/>
+								<Select name="Style"
+									options={styles}
+									value={this.state.style}
+									onChange={(e) => this.handleStyleChange("style", e)} />
 							</label>
 
 							<label>
-								End Time:<br/>
-							<Select name="End Time" options={styles} value={this.state.endTime} onChange={(e) => this.handleSelectChange("endTime", e)} disabled={true} />
-							</label>
-
-							<label>
-								Style:<br/>
-								<Select name="Style" options={styles} value={this.state.style} onChange={(e) => this.handleSelectChange("style", e)} />
-							</label>
-
-							<label>
-								Services:<br/>
-								<Select name="Services" multi={true} joinValues={true} options={services} value={this.state.services[0] === "" ? null : this.state.services} onChange={(e) => this.handleMultiSelectChange("services", e)}/>
+								Services:
+								<br/>
+								<Select name="Services"
+									multi={true}
+									joinValues={true}
+									options={services}
+									value={this.state.services[0] === "" ? null : this.state.services}
+									onChange={(e) => this.handleServicesChange("services", e)}/>
 							</label>
 
 							<label className='col-md-12 col-sm-12'>
