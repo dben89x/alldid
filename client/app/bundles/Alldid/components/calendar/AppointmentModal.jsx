@@ -19,14 +19,14 @@ export default class AppointmentModal extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.setState({ date: nextProps.date, startTime: nextProps.start, endTime: nextProps.end })
+		this.setState({ date: nextProps.date, startTime: nextProps.start, endTime: nextProps.end, services: [] })
 	}
 
 	handleSubmit = (event) => {
 		event.preventDefault()
 
 		const { client, barber } = this.props
-		const { serviceId, startTime, endTime, notes } = this.state
+		const { styleId, startTime, endTime, notes } = this.state
 
 		this.state.xhr = $.ajax({
 			url: `/events`,
@@ -34,7 +34,7 @@ export default class AppointmentModal extends React.Component {
 			data: { "event": {
 				"client_id": client.id,
 				"barber_id": barber.id,
-				"service_id": serviceId,
+				"style_id": styleId,
 				"start_time": startTime,
 				"end_time": endTime,
 				"notes": notes

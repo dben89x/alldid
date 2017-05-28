@@ -58,10 +58,10 @@ module ApplicationHelper
 
 	def find_standard_price_comparisons(rate)
 		case rate
-			when 0..25 then 1
-			when 25..50 then 2
-			when 50..75 then 3
-			when 75..1000 then 4
+		when 0..20 then 1
+		when 20..40 then 2
+		when 40..60 then 3
+		when 60..1000 then 4
 		end
 	end
 

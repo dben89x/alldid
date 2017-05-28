@@ -9,7 +9,7 @@
 #  day_id     :integer
 #  start_time :integer
 #  end_time   :integer
-#  json       :text
+#  json       :text             default("{\n\t\t\"Sunday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Monday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Tuesday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Wednesday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Thursday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Friday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Saturday\": {\"start\": 900, \"end\": 1700, \"available\": true}\n\t\t}")
 #
 
 # JSON format:

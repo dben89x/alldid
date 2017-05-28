@@ -33,8 +33,8 @@
 		.col-md-12
 			=f.text_field :location, placeholder: "Location", class: 'profile-input profile-name-input'
 
-	= (render 'barber_form', f: f) if current_user.is_a? Barber
-	= (render 'client_form', f: f) if current_user.is_a? Client
-
 	.actions
 		= f.submit "Update Profile", class: 'brand-btn light-brand-btn med-btn'
+
+	= (render 'barber_form', f: f) if current_user.is_a? Barber
+	= (render 'client_form', f: f) if current_user.is_a? Client

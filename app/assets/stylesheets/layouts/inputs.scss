@@ -107,8 +107,12 @@ span.pseudo-radio {
 	height: 20px;
 	width: 20px;
 	text-align: center;
+
 	span:after {
 		content: attr(data-endorsements);
+	}
+	&.not-clickable {
+		pointer-events: none;
 	}
 }
 .light-tag {

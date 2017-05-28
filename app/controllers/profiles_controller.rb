@@ -4,6 +4,9 @@ class ProfilesController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
 	def show
+		@user = User.find(params[:id])
+		@profile = @user.profile
+		@user_type = @user.type
 	end
 
 	def edit
@@ -11,11 +14,17 @@ class ProfilesController < ApplicationController
 		@styles = Style.all
 		@user_type = current_user.type
 		@all_services = Service.all.pluck(:name)
+
 		if current_user.is_a? Barber
 			@barber_styles = current_user.barber_styles
+
 		elsif current_user.is_a? Client
 			@client_style = @profile.current_style
+			@hair_types = HairType.all
+			@hair_widths = HairWidth.all
+			@hair_densities = HairDensity.all
 		end
+
 		@user_services = current_user.services.pluck(:name)
 	end
 

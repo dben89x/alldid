@@ -7,13 +7,22 @@ export default class ClientSidebar extends React.Component {
 	}
 
 	render () {
-		const { style, price, userLocation } = this.props;
+		const { style, userLocation } = this.props;
 		const styleString = style ? style.toUpperCase() : null
 		const locationString = userLocation ? userLocation.toUpperCase() : null
 
-		var priceString = ``
-		_.times( price, () => priceString = `${priceString}<span class='fa fa-usd'/>` )
-		const priceHtml = {__html: priceString}
+		// Pricing
+		// var priceString = ``
+		// _.times( price, () => priceString = `${priceString}<span class='fa fa-usd'/>` )
+		// const priceHtml = {__html: priceString}
+
+		// <div className='price'>
+		// 	<h4>Preferred Price:</h4>
+		// 	<span dangerouslySetInnerHTML= { priceHtml } />
+		// 	<a href='/profile'>
+		// 		<span className='fa fa-pencil'/>
+		// 	</a>
+		// </div>
 
 		return (
 			<div id='client-sidebar-container' className='col-md-2'>
@@ -27,13 +36,7 @@ export default class ClientSidebar extends React.Component {
 						<span className='fa fa-pencil'/>
 					</a>
 				</div>
-				<div className='price'>
-					<h4>Preferred Price:</h4>
-					<span dangerouslySetInnerHTML= { priceHtml } />
-					<a href='/profile'>
-						<span className='fa fa-pencil'/>
-					</a>
-				</div>
+
 				<div className='location'>
 					<h4>Your Location:</h4>
 					<span>{ locationString }</span>

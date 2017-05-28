@@ -152,7 +152,7 @@
 		background: rgba(25,88,108, 0.2) !important;
 	}
 }
-.barber {
+.barber, .user {
 	position: relative;
 
 	.barber-favorite {
@@ -205,7 +205,7 @@
 			}
 		}
 	}
-	.barber-avatar {
+	.barber-avatar, .user-avatar {
 		position: absolute;
 		width: 17%;
 		height:100%;
@@ -216,14 +216,14 @@
 			height: 140px;
 		}
 
-		.barber-image {
+		.barber-image, .user-image {
 			position: absolute;
 			background-image: url('http://www.clubvelicotrasimeno.it/Portals/0/Users/061/29/829/Steve%20Murray.png');
 			background-size: cover;
 			border-radius: 50%;
 		}
 	}
-	.barber-details-container {
+	.barber-details-container, .user-details-container {
 		position: absolute;
 		display: inline-flex;
 		padding: 33px 20px;
@@ -238,21 +238,21 @@
 			padding-top: 0;
 		}
 
-		.barber-details {
+		.barber-details, .user-details {
 			width: 40%;
 			display: inline-block;
 
-			.barber-name {
+			.barber-name, .user-name {
 				font-weight: 600;
 				font-size: 20px;
 				color: $darkBrand;
 			}
-			.barber-location {
+			.barber-location, .user-location {
 				font-weight: 600;
 				font-size: 18px;
 				color: $lightBrand;
 			}
-			.barber-headline {
+			.barber-headline, .user-headline {
 				font-weight: 600;
 				font-size: 15px;
 				color: darken($white, 25%);
@@ -264,6 +264,9 @@
 					text-align: center;
 
 					.barber-name, .barber-location, .barber-price, .barber-headline {
+						width: 100%;
+					}
+					.user-name, .user-location, .user-price, .user-headline {
 						width: 100%;
 					}
 					.services-and-styles {
@@ -309,37 +312,40 @@
 		}
 	}
 }
-#barber-show {
+#barber-show, #user-show {
 	padding: 20px;
-	.barber {
+	.barber, .user{
 		height: 100%;
 		width: 800px;
 		left: calc(50% - 400px);
 		margin: 0;
-		.barber-avatar {
+		.barber-avatar, .user-avatar{
 			width: 100%;
 			position:static;
 			height: 240px;
-			.barber-image {
+			.barber-image, .user-image{
 				top:20px;
 				left: calc(50% - 100px);
 				height: 200px;
 				width: 200px;
 			}
 		}
-		.barber-details-container {
+		.barber-details-container, .user-details-container{
 			width: 100%;
 			left: 0;
 			position: relative;
 			padding-top: 0;
 			display: inline-block;
 
-			.barber-details {
+			.barber-details, .user-details{
 				width: 100%;
 				position: initial;
 				text-align: center;
 
 				.barber-name, .barber-location, .barber-price, .barber-headline {
+					width: 100%;
+				}
+				.user-name, .user-location, .user-price, .user-headline {
 					width: 100%;
 				}
 			}
@@ -374,6 +380,31 @@
 		@media(max-width: 950px) {
 			width:100%;
 			left: 0;
+		}
+	}
+}
+
+.user {
+	box-shadow: 0 0 9px rgba(0, 0, 0, 0.2);
+	margin: 20px;
+	border-radius: 6px;
+	background: white;
+	@media (max-width: 767px) {height: auto;}
+
+	.user-image {
+		top: calc(50% - 50px);
+		height: 100px;
+		width: 100px;
+		left: calc(50% - 50px);
+	}
+	@media (max-width: 767px) {
+		& {margin: 10px 0}
+		.user-avatar {
+			width: 100%;
+			.user-image {
+				top:20px;
+				left: calc(50% - 50px);
+			}
 		}
 	}
 }

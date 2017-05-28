@@ -56,8 +56,6 @@ input[type=file] {
 .style-img, .overlay {
 	border-radius:40%;
 }
-
-
 .overlay {
 	position: absolute;
 	top: 0;
@@ -91,5 +89,77 @@ input[type=file] {
 		left: 50%;
 		transform: translate(-50%, -50%);
 		-ms-transform: translate(-50%, -50%);
+	}
+}
+
+.client-details {
+	.hair-profile {
+		padding: 20px 0;
+		.type, .width, .density {
+			.header {
+				color: $darkBrand;
+				font-size: 20px;
+				font-weight: 700;
+			}
+			.details {
+				display: block;
+				overflow: hidden;
+				.item {
+					margin:15px;
+					background: rgba(25, 88, 108, 0.8);
+					color: white;
+					overflow: hidden;
+					display: inline-block;
+					width: 170px;
+					height: 125px;
+					border-radius: 40%;
+					position: relative;
+					cursor: pointer;
+
+					.overlay, .name, .description {
+						pointer-events: none;
+					}
+					&:hover{
+						.overlay { opacity: 1; }
+						.name { opacity: 0; }
+					}
+
+					.name {
+						overflow: hidden;
+						font-size: 20px;
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+						-ms-transform: translate(-50%, -50%);
+					}
+					.overlay {
+						position: absolute;
+						top: 0;
+						bottom: 0;
+						left: 0;
+						right: 0;
+						height: 100%;
+						width: 100%;
+						opacity: 0;
+						transition: .5s ease;
+						background-color: rgba(0,0,0,0.5);
+
+						.description {
+							overflow: hidden;
+							font-size: 15px;
+							padding: 5px 0;
+							width: 170px;
+							line-height: 1;
+							position: absolute;
+							top: 50%;
+							left: 50%;
+							transform: translate(-50%, -50%);
+							-ms-transform: translate(-50%, -50%);
+						}
+					}
+				}
+			}
+		}
 	}
 }

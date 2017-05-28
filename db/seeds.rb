@@ -25,9 +25,56 @@ days = [ "Sunday",
 	"Friday",
 	"Saturday" ]
 
-Style.delete_all
-Service.delete_all
-User.delete_all
+hair_properties = [ {
+		type: "HairType",
+		name: "Straight",
+		description: "Straight Hair"
+	}, {
+		type: "HairType",
+		name: "Wavy",
+		description: "Wavy Hair"
+	}, {
+		type: "HairType",
+		name: "Curly",
+		description: "Curly Hair"
+	}, {
+		type: "HairType",
+		name: "Kinky",
+		description: "Kinky Hair"
+	}, {
+		type: "HairWidth",
+		name: "Coarse",
+		description: "These strands have the widest and largest circumferences and this makes them the strongest of all hair textures.",
+	}, {
+		type: "HairWidth",
+		name: "Medium",
+		description: "This is the middle of the road for thickness of hair strands; neither too small nor too big.",
+	}, {
+		type: "HairWidth",
+		name: "Fine",
+		description: "The circumference is extremely small and narrow, making it delicate and easy to damage.",
+	}, {
+		type: "HairDensity",
+		name: "Thin",
+		description: "Can almost see your scalp through your hair.",
+	}, {
+		type: "HairDensity",
+		name: "Average",
+		description: "Average Density",
+	}, {
+		type: "HairDensity",
+		name: "Thick",
+		description: "Your hair probably grows quickly and you feel resistance when combing.",
+} ]
+
+# If you must delete in production, do it manually
+if Rails.env.development?
+	Style.delete_all
+	Service.delete_all
+	User.delete_all
+	Day.delete_all
+	HairProperty.delete_all
+end
 
 styles.each do |style_name|
 	Style.create(name: style_name, url: "#{style_name.gsub(' ','-')}.png")
@@ -41,6 +88,10 @@ days.each do |day|
 	Day.create(name: day)
 end
 
+hair_properties.each do |prop|
+	HairProperty.create(prop)
+end
+
 if Rails.env.development?
 	20.times do
 		barber = Barber.create(
@@ -52,7 +103,7 @@ if Rails.env.development?
 			headline: Faker::Lorem.sentence,
 			bio: Faker::Lorem.paragraph,
 			location: Faker::GameOfThrones.city,
-			hourly_rate: rand(30..60)
+			rate: rand(10..100)
 		)
 		profile.save
 		barber.profile_id = profile.id

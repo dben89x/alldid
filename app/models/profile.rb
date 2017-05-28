@@ -4,13 +4,10 @@
 #
 #  id                :integer          not null, primary key
 #  user_id           :integer
-#  hair_type         :integer
-#  hair_width        :integer
-#  hair_density      :integer
 #  perfect_barber_id :integer
 #  current_style_id  :integer
 #  bio               :text
-#  hourly_rate       :integer
+#  rate              :integer          default("0")
 #  organization_id   :integer
 #  first_name        :string
 #  last_name         :string
@@ -21,6 +18,7 @@
 #  facebook          :string
 #  instagram         :string
 #  twitter           :string
+#  minutes           :integer          default("0")
 #
 
 class Profile < ActiveRecord::Base
@@ -38,11 +36,15 @@ class Profile < ActiveRecord::Base
 	end
 
 	def current_style_name
-		Style.find(self.current_style_id).name
+		if current_style
+			Style.find(self.current_style_id).name
+		else
+			nil
+		end
 	end
 
 	def current_style
-		Style.find(self.current_style_id)
+		Style.find_by_id(self.current_style_id)
 	end
 
 	def full_name

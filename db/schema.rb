@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170527071021) do
+ActiveRecord::Schema.define(version: 20170528191912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 20170527071021) do
     t.index ["barber_id"], name: "index_barber_styles_on_barber_id", using: :btree
   end
 
+  create_table "client_hair_properties", force: :cascade do |t|
+    t.integer "profile_id"
+    t.integer "hair_property_id"
+    t.index ["hair_property_id"], name: "index_client_hair_properties_on_hair_property_id", using: :btree
+    t.index ["profile_id"], name: "index_client_hair_properties_on_profile_id", using: :btree
+  end
+
   create_table "days", force: :cascade do |t|
     t.string "name"
   end
@@ -45,14 +52,18 @@ ActiveRecord::Schema.define(version: 20170527071021) do
   create_table "events", force: :cascade do |t|
     t.integer  "client_id"
     t.integer  "barber_id"
-    t.integer  "service_id"
     t.datetime "start_time"
     t.datetime "end_time"
     t.text     "notes"
     t.integer  "style_id"
     t.index ["barber_id"], name: "index_events_on_barber_id", using: :btree
     t.index ["client_id"], name: "index_events_on_client_id", using: :btree
-    t.index ["service_id"], name: "index_events_on_service_id", using: :btree
+  end
+
+  create_table "hair_properties", force: :cascade do |t|
+    t.string "type"
+    t.string "name"
+    t.text   "description"
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -79,9 +90,6 @@ ActiveRecord::Schema.define(version: 20170527071021) do
 
   create_table "profiles", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "hair_type"
-    t.integer "hair_width"
-    t.integer "hair_density"
     t.integer "perfect_barber_id"
     t.integer "current_style_id"
     t.text    "bio"

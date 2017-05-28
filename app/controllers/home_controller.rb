@@ -29,7 +29,7 @@ class HomeController < ApplicationController
 			@profile_id = current_user.profile
 			@style = current_user.current_style_id.present? ? current_user.style.name : Style.all.sample.name
 			@location = current_user.location.present? ? current_user.location : Faker::GameOfThrones.city
-			@price = [1,2,3,4].sample
+			# @price = [1,2,3,4].sample
 		else
 			redirect_to new_user_registration_path, alert: "Please create your account to access this page."
 		end
@@ -59,11 +59,11 @@ class HomeController < ApplicationController
 		current_style_name = current_user.profile.current_style_name
 		results = []
 		barbers.each do |b|
-			elements = b[:barberStyles].select {|bs| bs[:name] == current_style_name }
-			results << {barber: b, element: elements[0]} if elements.present?
+			matching_styles = b[:barberStyles].select {|bs| bs[:name] == current_style_name }
+			results << {barber: b, matching_style: matching_styles[0]} if matching_styles.present?
 		end
 
-		results.sort_by {|r| r[:element][:endorsements]}.reverse
+		results.sort_by {|r| r[:matching_style][:endorsements]}.reverse
 	end
 
 end

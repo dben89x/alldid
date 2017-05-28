@@ -30,7 +30,7 @@ export default class UserStyles extends React.Component {
 			});
 		} else if (userType === "Client") {
 			userStyles = styles.map( function(style) {
-				var selected = props.clientStyle.id === style.id
+				var selected = props.clientStyle ? (props.clientStyle.id === style.id) : false
 				return <ClientStyle style={style} key={style.id} selected={selected} profileId={profileId}/>
 			});
 		}

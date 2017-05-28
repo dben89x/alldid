@@ -3,8 +3,40 @@
 		%h4 Choose Your Style:
 		#user-styles
 			=react_component('UserStyles', props: {styles: @styles, clientStyle: @client_style, profileId: @profile.id, userType: @user_type}, prerender: false)
+		.client-details
+			.hair-profile
+				%h4 Create Your Hair Profile:
+				.type
+					.header
+						Hair Type
+					.details
+						-@hair_types.each do |hair_type|
+							.item
+								.name
+									=hair_type.name
+								.overlay
+									.description
+										=hair_type.description
+				.width
+					.header
+						Hair Width
+					.details
+						-@hair_widths.each do |hair_width|
+							.item
+								.name
+									=hair_width.name
+								.overlay
+									.description
+										=hair_width.description
 
-#preferred-price
-	.col-md-12
-		%h4 Choose Your Price:
-		=f.text_field :facebook, placeholder: "Facebook", class: 'profile-input profile-name-input'
+				.density
+					.header
+						Hair Density (amount of hair in a given area)
+					.details
+						-@hair_densities.each do |hair_density|
+							.item
+								.name
+									=hair_density.name
+								.overlay
+									.description
+										=hair_density.description

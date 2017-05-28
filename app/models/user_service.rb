@@ -5,6 +5,7 @@
 #  id         :integer          not null, primary key
 #  profile_id :integer
 #  service_id :integer
+#  minutes    :integer
 #
 
 class UserService < ActiveRecord::Base
