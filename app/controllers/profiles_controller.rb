@@ -29,6 +29,7 @@ class ProfilesController < ApplicationController
 
 		if current_user.is_a? Barber
 			@barber_styles = current_user.barber_styles
+			@barber_id = current_user.id
 
 		elsif current_user.is_a? Client
 			@client_style = @profile.current_style

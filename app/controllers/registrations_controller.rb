@@ -24,10 +24,14 @@ class RegistrationsController < Devise::RegistrationsController
 
 	def after_sign_up_path_for(resource)
 		if organization = find_organization(cookies)
-			flash[:success] = "You've successfully joined #{organization.name}!"
-			root_path
+			flash[:success] = "You've successfully joined #{organization.name}! Customize your profile for your clients."
+			profile_path
+		elsif resource.type == "Barber" or resource.type == "AdminBarber"
+			flash[:success] = "Successfully signed up! Customize your profile for your clients."
+			profile_path
 		elsif resource.type == "Client"
-			root_path
+			flash[:success] = "Successfully signed up! Customize your profile for optimal results."
+			profile_path
 		else
 			new_subscription_path
 		end

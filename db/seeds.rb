@@ -7,8 +7,7 @@ styles = [ "french crop",
 	"slick back",
 	"textured fringe" ]
 
-services = [ "Classic haircut",
-	"Buzz cut",
+services = [ "Buzz cut",
 	"Straight razor shave",
 	"Beard trim",
 	"Shampoo",
@@ -76,12 +75,10 @@ if Rails.env.development? or Rails.env.staging?
 	HairProperty.delete_all
 end
 
-if Rails.env.staging? or Rails.env.production?
-	Admin.create(
-		email: 'dan@alldid.com',
-		password: 'alldid'
-	)
-end
+Admin.create(
+	email: 'dan@alldid.com',
+	password: 'alldid'
+)
 
 styles.each do |style_name|
 	Style.create(name: style_name, url: "#{style_name.gsub(' ','-')}.png")

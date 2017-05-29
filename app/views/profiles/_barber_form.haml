@@ -1,3 +1,11 @@
+#classic-haircut-info
+	.col-md-6
+		= f.number_field :minutes, autofocus: false, placeholder: "How long does a haircut take?", class: 'profile-input profile-name-input'
+		="How many minutes does a haircut take?"
+	.col-md-6
+		= f.number_field :rate, autofocus: false, placeholder: "How much does a haircut cost? ($)", class: 'profile-input profile-name-input'
+		="How much does a haircut cost? ($)"
+
 #barber-set-schedule
 	.col-md-12{style: 'margin-top:20px;margin-bottom:20px'}
 		=link_to "Set your schedule", '/schedule', class: 'med-btn brand-btn light-brand-btn'
@@ -18,12 +26,15 @@
 	.col-md-12
 		=f.text_field :twitter, placeholder: "Twitter", class: 'profile-input profile-name-input'
 
+.actions
+	= f.submit "Update Profile", class: 'brand-btn light-brand-btn med-btn'
+
 .col-md-12.styles-container
 	%h4 Select All Your Qualified Styles:
 	#user-styles
 		=react_component 'UserStyles', props: {styles: @styles, barberStyles: @barber_styles, profileId: @profile.id, userType: @user_type, userId: current_user.id}, prerender: false
 
 .col-md-12
-	%h4 Your Services
+	%h4 Extra Services
 	#user-services
-		-# =react_component 'UserServices', props: {all_services: @all_services, user_services: @user_services, profile_id: @profile.id}, prerender: true
+		=react_component 'UserServices', props: {all_services: @all_services, user_services: @user_services, barberId: @barber_id}, prerender: false

@@ -54,7 +54,7 @@ export default class AppointmentModal extends React.Component {
 
 	handleServicesChange = (name, data) => {
 		this.setState({[name]: data});
-		this.recalculateEndTime()
+		// this.recalculateEndTime()
 	}
 
 	handleStyleChange = (name, data) => {

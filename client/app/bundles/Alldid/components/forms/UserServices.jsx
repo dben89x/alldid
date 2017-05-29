@@ -11,20 +11,22 @@ export default class UserServices extends React.Component {
 			user_services: this.props.user_services,
 			showResultsLink: null
 		}
-		this.handleServicesChange = this.handleServicesChange.bind(this);
 	}
 
-	handleServicesChange(data) {
-		const profile_id = this.props.profile_id
-		this.state.xhr ? this.state.xhr.abort() : null;
-		this.state.xhr = $.ajax({
-			url: `/profile/${profile_id}`,
-			method: 'PUT',
-			success: (newData) => {
-				this.setState({ user_services: newData }, function(){
-					this.setState({ showResultsLink: (this.state.xhr !== null || this.state.xhr.readyState === 4)})
-				});
-			}
+	handleServicesChange =(data)=> {
+		const { barberId } = this.props
+		this.setState({ user_services: data}, ()=>{
+			this.state.xhr ? this.state.xhr.abort() : null;
+			this.state.xhr = $.ajax({
+				url: `/barber_services`,
+				method: 'POST',
+				data: {
+					"user_id": barberId,
+					"services": this.state.user_services,
+				},
+				dataType: 'json',
+				success: (newData) => { console.log("Great success!") }
+			});
 		});
 	}
 

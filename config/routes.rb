@@ -1,31 +1,16 @@
 Rails.application.routes.draw do
 	root to: 'home#index'
+
+	devise_for :users, controllers: {registrations: 'registrations', sessions: 'sessions'}
+	devise_scope :user do
+		get 'signup_modal', to: 'devise/registrations#new'
+	end
+
 	get 'faq' => 'home#faq'
 	get 'about' => 'home#about'
 	get 'search' => 'home#search'
 	get 'admin' => 'home#admin'
 
-	resources :subscriptions, only: [:new, :create]
-	match 'pricing' => 'subscriptions#new', via: :get
-	devise_scope :user do
-		get 'signup_modal', to: 'devise/registrations#new'
-	end
-	get 'calendar' => 'barbers#calendar'
-
-	devise_for :users, controllers: {registrations: 'registrations', sessions: 'sessions'}
-	resources :profiles, only: [:show, :update]
-	resources :user_favorites, only: [:create, :destroy], path: 'favorites'
-	post 'delete_favorite' => 'user_favorites#delete_favorite'
-	post 'delete_barber_style' => 'barber_styles#delete_barber_style'
-	match 'favorites' => 'user_favorites#index', via: :get
-	resources :barbers, only: [:show]
-	match 'profile' => 'profiles#edit', via: :get
-
-	get 'schedule' => 'barbers#schedule'
-	post 'schedules' => 'barbers#create_schedule'
-	get 'appointments' => 'home#appointments'
-
-	resources :user_steps
 	resources :styles
 	resources :services
 	resources :hair_properties
@@ -34,10 +19,27 @@ Rails.application.routes.draw do
 	resources :memberships
 	resources :organizations
 	resources :barber_styles, only: [:create]
+	resources :profiles, only: [:show, :update]
+	resources :user_favorites, only: [:create, :destroy], path: 'favorites'
+	resources :subscriptions, only: [:new, :create]
+	resources :barbers, only: [:show]
+	resources :endorsements, only: [:create, :destroy]
 
 	get 'admin' => 'admin#dashboard'
+	get 'calendar' => 'barbers#calendar'
+	get 'schedule' => 'barbers#schedule'
+	get 'appointments' => 'home#appointments'
+
+	match 'pricing' => 'subscriptions#new', via: :get
+	match 'favorites' => 'user_favorites#index', via: :get
+	match 'profile' => 'profiles#edit', via: :get
 	match 'dashboard' => 'organizations#edit', via: :get
 
-	resources :endorsements, only: [:create, :destroy]
+	post 'schedules' => 'barbers#create_schedule'
+	post 'barber_services' => 'barber_services#create'
+	post 'delete_favorite' => 'user_favorites#delete_favorite'
+	post 'delete_barber_style' => 'barber_styles#delete_barber_style'
+	post 'delete_barber_service' => 'barber_services#delete_barber_service'
 	post 'delete_endorsement' => 'endorsements#delete_endorsement'
+	
 end

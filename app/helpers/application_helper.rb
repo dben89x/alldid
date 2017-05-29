@@ -51,6 +51,8 @@ module ApplicationHelper
 				bio: barber.bio,
 				location: barber.location,
 				price: find_standard_price_comparisons(barber.rate),
+				rate: barber.rate,
+				minutes: barber.minutes,
 				barberStyles: barber_styles,
 				services: barber.services.pluck(:name),
 				favorite: favorite,
