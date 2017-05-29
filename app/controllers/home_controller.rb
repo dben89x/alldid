@@ -15,10 +15,17 @@ class HomeController < ApplicationController
 	end
 
 	def search
+		@signedIn = current_user ? true : false
+
 		if current_user
+			@user_avatar = @signedIn ? current_user.default_avatar : '/assets/default-avatar.png'
 			@barbers = get_react_barber_objects(Barber.all)
 
-			@barbers = filterBarbers(@barbers)
+			if current_user
+				@barbers = filterBarbers(@barbers)
+			else
+				@barbers = @barbers.shuffle
+			end
 
 			@barbers.each do |barber|
 				barber[:barberStyles] = barber[:barberStyles].slice(0,3)
@@ -27,8 +34,8 @@ class HomeController < ApplicationController
 			@featured_barber = @barbers[0]
 			@barbers = @barbers - [@featured_barber]
 			@profile_id = current_user.profile
-			@style = current_user.current_style_id.present? ? current_user.style.name : Style.all.sample.name
-			@location = current_user.location.present? ? current_user.location : Faker::GameOfThrones.city
+			@style = current_user.current_style_id.present? ? current_user.style.name : "Choose your Style"
+			@location = current_user.location.present? ? current_user.location : "Choose your Location"
 			# @price = [1,2,3,4].sample
 		else
 			redirect_to new_user_registration_path, alert: "Please create your account to access this page."

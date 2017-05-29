@@ -68,7 +68,7 @@ hair_properties = [ {
 } ]
 
 # If you must delete in production, do it manually
-if Rails.env.development?
+if Rails.env.development? or Rails.env.staging?
 	Style.delete_all
 	Service.delete_all
 	User.delete_all
@@ -92,7 +92,7 @@ hair_properties.each do |prop|
 	HairProperty.create(prop)
 end
 
-if Rails.env.development?
+if Rails.env.development? or Rails.env.staging?
 	20.times do
 		barber = Barber.create(
 			email: Faker::Internet.email,

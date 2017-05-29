@@ -1,0 +1,35 @@
+@import 'variables';
+
+#admin{
+	h3 {
+		color: $lightBrand;
+		padding: 30px 10px;
+		border-bottom: 1px solid $lightBrand;
+	}
+	.sports, .styles {
+		margin: 20px;
+		padding: 20px;
+	}
+}
+
+#cms {
+	.input {
+		border: 1px solid;
+	}
+	.styles {
+		font-size: 17px;
+	}
+	.edit {
+		text-decoration: none;
+		color: $lightBrand;
+	}
+	.delete{
+		color: #B60000;
+	}
+	.edit:hover, .delete:hover {
+		text-decoration: none;
+	}
+	.style {
+		color: $lightBrand;
+	}
+}

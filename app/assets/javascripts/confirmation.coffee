@@ -17,29 +17,18 @@ $.rails.allowAction = (element) ->
 		.text('Delete')
 
 	# messages
-	if element.hasClass('delete-college')
+	if element.hasClass('delete-style')
 		notice = """
 							<p>
-								Are you sure you want to delete this college?
-							</p>
-							<p>
-								All associated sports will also be deleted.
+								Are you sure you want to delete this style?
 							</p>
 							"""
 		cancel_message = "No, stop!"
 
-	if element.hasClass('delete-sport')
+	if element.hasClass('delete-service')
 		notice = """
 							<p>
-								Are you sure you want to delete this sport?
-							</p>
-							"""
-		cancel_message = "No, stop!"
-
-	if element.hasClass('delete-college-sport')
-		notice = """
-							<p>
-								Are you sure you want to delete this college sport?
+								Are you sure you want to delete this service?
 							</p>
 							"""
 		cancel_message = "No, stop!"
@@ -59,6 +48,14 @@ $.rails.allowAction = (element) ->
 							</p>
 							<p>
 								If you have a group membership, this will cancel all members.
+							</p>
+							"""
+		cancel_message = "No, stop!"
+
+	if element.hasClass('delete-hair_property')
+		notice = """
+							<p>
+								Are you sure you want to delete this hair property?
 							</p>
 							"""
 		cancel_message = "No, stop!"

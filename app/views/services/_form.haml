@@ -1,0 +1,28 @@
+.col-md-12
+	%br
+	%br
+	= form_for(service) do |f|
+		- if service.errors.any?
+			#error_explanation
+				%h2
+					= pluralize(service.errors.count, "error")
+					prohibited this service from being saved:
+				%ul
+					- service.errors.full_messages.each do |message|
+						%li= message
+		.col-md-12
+			.service-field
+				="Name"
+				%br
+				= f.text_field :name, autofocus: true, class: 'input service-input'
+				%br
+				%br
+			.service-field
+				="Description"
+				%br
+				= f.text_field :description, autocomplete: "off", class: 'input service-input'
+				%br
+				%br
+		.actions
+			= f.submit class: 'brand-btn med-btn'
+	= link_to 'Back', services_path

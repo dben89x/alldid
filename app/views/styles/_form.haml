@@ -1,0 +1,34 @@
+.col-md-12
+	%br
+	%br
+	= form_for(style) do |f|
+		- if style.errors.any?
+			#error_explanation
+				%h2
+					= pluralize(style.errors.count, "error")
+					prohibited this style from being saved:
+				%ul
+					- style.errors.full_messages.each do |message|
+						%li= message
+		.col-md-12
+			.style-field
+				="Name"
+				%br
+				= f.text_field :name, autofocus: true, class: 'input style-input'
+				%br
+				%br
+			.style-field
+				="Description"
+				%br
+				= f.text_field :description, autocomplete: "off", class: 'input style-input'
+				%br
+				%br
+			.style-field{style: 'text-align: center'}
+				="Picture"
+				%br
+				= f.file_field :url, autocomplete: "off", style: 'text-align: center'
+				%br
+				%br
+		.actions
+			= f.submit class: 'brand-btn med-btn'
+	= link_to 'Back', styles_path

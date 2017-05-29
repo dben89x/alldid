@@ -67,9 +67,12 @@
 			height: 150px;
 			width: 150px;
 			left: calc(50% - 75px);
-			-webkit-animation-name: yellowPulse;
-			-webkit-animation-duration: 2s;
-			-webkit-animation-iteration-count: infinite;
+			img {
+				-webkit-animation-name: yellowPulse;
+				-webkit-animation-duration: 2s;
+				-webkit-animation-iteration-count: infinite;
+				width: 150px;
+			}
 		}
 		.barber-details-container {
 			left:18%;
@@ -218,9 +221,13 @@
 
 		.barber-image, .user-image {
 			position: absolute;
-			background-image: url('http://www.clubvelicotrasimeno.it/Portals/0/Users/061/29/829/Steve%20Murray.png');
+			width: 200px;
 			background-size: cover;
 			border-radius: 50%;
+			img {
+				border-radius: 50%;
+				width: 100px;
+			}
 		}
 	}
 	.barber-details-container, .user-details-container {

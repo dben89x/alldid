@@ -20,23 +20,25 @@ module ApplicationHelper
 	end
 
 	def get_react_barber_objects(collection)
-		# rates = User.includes(:profile).where.not(profiles: {hourly_rate: nil}).pluck(:hourly_rate)
-		# quadrant_values = calculate_price_comparisons(rates)
 		user = current_user
-
+		user_id = user ? user.id : nil
 		collection.collect do |barber|
 			barber_styles = barber.barber_styles.collect do |bs|
+			endorsed = user_id ? bs.endorsements.where(client_id: user_id).any? : false
 				{
 					id: bs.id,
 					name: bs.name,
-					clientId: user.id,
+					clientId: user_id,
 					endorsements: bs.endorsements.count,
-					endorsed: bs.endorsements.where(client_id: user.id).any?
+					endorsed: endorsed
 				}
 			end
 			barber_styles = barber_styles.sort_by {|s| s[:endorsements]}.reverse
-
 			favorite = user ? user.user_favorites.where(user_id: barber.id).present? : false
+
+			# Put this in barber hash once more data is collected
+			# rates = User.includes(:profile).where.not(profiles: {hourly_rate: nil}).pluck(:hourly_rate)
+			# quadrant_values = calculate_price_comparisons(rates)
 
 			# Put this in barber hash once more data is collected
 			# price: find_price_quadrant(quadrant_values, barber.hourly_rate),
@@ -44,6 +46,7 @@ module ApplicationHelper
 			{
 				id: barber.id,
 				name: barber.name,
+				avatar: barber.default_avatar,
 				headline: barber.headline,
 				bio: barber.bio,
 				location: barber.location,

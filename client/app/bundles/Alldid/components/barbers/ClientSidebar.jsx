@@ -7,7 +7,7 @@ export default class ClientSidebar extends React.Component {
 	}
 
 	render () {
-		const { style, userLocation } = this.props;
+		const { style, userLocation, avatar, signedIn } = this.props;
 		const styleString = style ? style.toUpperCase() : null
 		const locationString = userLocation ? userLocation.toUpperCase() : null
 
@@ -27,7 +27,7 @@ export default class ClientSidebar extends React.Component {
 		return (
 			<div id='client-sidebar-container' className='col-md-2'>
 				<div className='user-avatar'>
-					<img src='assets/test-avatar.png' className='user-avatar-img'/>
+					<img src={avatar} className='user-avatar-img'/>
 				</div>
 				<div className='current-style'>
 					<h4>Preferred Style:</h4>

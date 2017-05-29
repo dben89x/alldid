@@ -1,0 +1,13 @@
+#cms
+	.container
+		%h1 Styles
+		= link_to 'New Style', new_style_path
+		.styles
+			%h3 Styles:
+			- @styles.each do |style|
+				= link_to edit_style_path(style) do
+					.fa.fa-pencil.edit
+				%span.style=style.name
+				= link_to style, method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-style' do
+					%span.fa.fa-times.delete
+				%br

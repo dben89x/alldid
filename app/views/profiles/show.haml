@@ -2,7 +2,7 @@
 	.user
 		.user-avatar
 			.user-image
-				=@user.default_avatar
+				=image_tag @user.default_avatar, width: 200
 		.user-details-container
 			.user-details
 				.user-name
@@ -21,28 +21,16 @@
 						.header
 							Hair Type
 						.details
-							Straight
-							Wavy
-							Curly
-							Kinky
+							=@hair_type
 
 					.width
 						.header
 							Hair Width
 						.details
-							Coarse
-							These strands have the widest and largest circumferences and this makes them the strongest of all hair textures.
+							=@hair_width
 
-							Medium
-							This is the middle of the road for thickness of hair strands; neither too small nor too big.
-
-							Fine
-							The circumference is extremely small and narrow, making it delicate and easy to damage.
-							
 					.density
 						.header
-							Hair Density (amount of hair in a given area)
+							Hair Density
 						.details
-							Little hair on your head (can almost see you scalp through your hair)
-							Average
-							A lot of hair on your head (your hair probably grows quickly and you feel resistance when combing)
+							=@hair_density

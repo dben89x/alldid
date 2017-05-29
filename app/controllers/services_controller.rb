@@ -50,7 +50,7 @@ class ServicesController < ApplicationController
 
 	private
 	def set_service
-		@service = Service.find_by_slug(params[:id])
+		@service = Service.find(params[:id])
 	end
 
 	def service_params

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 	resources :user_steps
 	resources :styles
 	resources :services
+	resources :hair_properties
 	resources :schedules
 	resources :events
 	resources :memberships

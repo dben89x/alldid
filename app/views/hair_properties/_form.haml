@@ -1,0 +1,34 @@
+.col-md-12
+	%br
+	%br
+	= form_for(hair_property, url: hair_property_path(hair_property)) do |f|
+		- if hair_property.errors.any?
+			#error_explanation
+				%h2
+					= pluralize(hair_property.errors.count, "error")
+					prohibited this hair_property from being saved:
+				%ul
+					- hair_property.errors.full_messages.each do |message|
+						%li= message
+		.col-md-12
+			.hair_property-field
+				="Name"
+				%br
+				= f.text_field :name, autofocus: true, class: 'input hair_property-input'
+				%br
+				%br
+			.hair_property-field
+				="Description"
+				%br
+				= f.text_area :description, autocomplete: "off", class: 'input hair_property-input'
+				%br
+				%br
+			.hair_property-field
+				="Property Type"
+				%br
+				=f.select(:type, @types, {include_blank: "Select a type"}, {class: 'input hair_property-input'})
+				%br
+				%br
+		.actions
+			= f.submit class: 'brand-btn med-btn'
+	= link_to 'Back', hair_properties_path

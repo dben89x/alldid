@@ -72,7 +72,10 @@ export default class SearchContainer extends React.Component {
 		return (
 			<div className='barber'>
 				<div className='barber-avatar'>
-					<div className='barber-image'/>
+					<div className='barber-image'>
+						<img src={avatar}/>
+					</div>
+
 				</div>
 				<div className='barber-details-container'>
 					<div className='barber-details'>

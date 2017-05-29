@@ -1,0 +1,13 @@
+#cms
+	.container
+		%h1 Services
+		= link_to 'New Service', new_service_path
+		.services
+			%h3 Services:
+			- @services.each do |service|
+				= link_to edit_service_path(service) do
+					.fa.fa-pencil.edit
+				%span.service=service.name
+				= link_to service, method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-service' do
+					%span.fa.fa-times.delete
+				%br

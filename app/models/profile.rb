@@ -28,6 +28,7 @@ class Profile < ActiveRecord::Base
 	has_many :user_styles, inverse_of: :profile
 	has_many :user_services, inverse_of: :profile
 	has_many :user_favorites, inverse_of: :profile
+	has_many :client_hair_properties, inverse_of: :profile
 
 	delegate :email, to: :user
 

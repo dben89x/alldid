@@ -4,27 +4,37 @@
 			Admin Dashboard
 		%h3 Styles
 		.styles
-			=link_to new_style_path, class: 'large-btn brand-btn light-brand-btn cms-btn' do
+			=link_to new_style_path, class: 'med-btn brand-btn light-brand-btn cms-btn' do
 				%span.fa.fa-plus-circle
 				="New Style"
 			%br
 			%br
-			%br
 
-			=link_to styles_path, class: 'large-btn brand-btn light-brand-btn cms-btn' do
+			=link_to styles_path, class: 'med-btn brand-btn light-brand-btn cms-btn' do
 				%span.fa.fa-pencil
 				="Edit Existing Styles"
 
 
 		%h3 Services
 		.services
-			=link_to new_service_path, class: 'large-btn brand-btn light-brand-btn cms-btn' do
+			=link_to new_service_path, class: 'med-btn brand-btn light-brand-btn cms-btn' do
 				%span.fa.fa-plus-circle
 				="New Service"
 			%br
 			%br
-			%br
 
-			=link_to services_path, class: 'large-btn brand-btn light-brand-btn cms-btn' do
+			=link_to services_path, class: 'med-btn brand-btn light-brand-btn cms-btn' do
 				%span.fa.fa-pencil
 				="Edit Existing Services"
+
+		%h3 Hair Properties
+		.services
+			=link_to new_hair_property_path, class: 'med-btn brand-btn light-brand-btn cms-btn' do
+				%span.fa.fa-plus-circle
+				="New Hair Property"
+			%br
+			%br
+
+			=link_to hair_properties_path, class: 'med-btn brand-btn light-brand-btn cms-btn' do
+				%span.fa.fa-pencil
+				="Edit Existing Hair Properties"

@@ -11,7 +11,7 @@ class StylesController < ApplicationController
 	end
 
 	def index
-
+		@styles = Style.all
 	end
 
 	def create
@@ -50,7 +50,7 @@ class StylesController < ApplicationController
 
 	private
 	def set_style
-		@style = Style.find_by_slug(params[:id])
+		@style = Style.find(params[:id])
 	end
 
 	def style_params

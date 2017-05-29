@@ -91,6 +91,21 @@ input[type=file] {
 		-ms-transform: translate(-50%, -50%);
 	}
 }
+#user-show {
+	.client-details {
+		.hair-profile {
+			.type, .width, .density {
+				text-align: center;
+				.details {
+					color: $darkest;
+					padding: 15px;
+					font-size: 15px;
+					font-weight: 600;
+				}
+			}
+		}
+	}
+}
 
 .client-details {
 	.hair-profile {

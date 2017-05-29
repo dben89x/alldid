@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
 	before_action :set_profile, only: [:show, :edit, :update]
+	before_action :get_hair_properties, only: [:show, :edit]
 	load_and_authorize_resource
 	skip_before_action :verify_authenticity_token
 
@@ -7,6 +8,17 @@ class ProfilesController < ApplicationController
 		@user = User.find(params[:id])
 		@profile = @user.profile
 		@user_type = @user.type
+		if @user.is_a? Client
+			get_client_hair_properties
+
+			# @hair_type = @hair_type ? @hair_type.name : "This user has not chosen a hair type yet."
+			# @hair_width = @hair_width ? @hair_width.name : "This user has not chosen a hair width yet."
+			# @hair_density = @hair_density ? @hair_density.name : "This user has not chosen a hair density yet."
+
+			@hair_type ||= "#{@user.name} has not chosen a hair type yet."
+			@hair_width ||= "#{@user.name} has not chosen a hair width yet."
+			@hair_density ||= "#{@user.name} has not chosen a hair density yet."
+		end
 	end
 
 	def edit
@@ -20,9 +32,6 @@ class ProfilesController < ApplicationController
 
 		elsif current_user.is_a? Client
 			@client_style = @profile.current_style
-			@hair_types = HairType.all
-			@hair_widths = HairWidth.all
-			@hair_densities = HairDensity.all
 		end
 
 		@user_services = current_user.services.pluck(:name)
@@ -56,8 +65,21 @@ class ProfilesController < ApplicationController
 	end
 
 	private
+
 	def set_profile
 		@profile = current_user.profile
+	end
+
+	def get_hair_properties
+		@hair_types = HairType.all
+		@hair_widths = HairWidth.all
+		@hair_densities = HairDensity.all
+	end
+
+	def get_client_hair_properties
+		@hair_type = ClientHairProperty.find_by(profile: @profile, hair_property: @hair_types).try(:name)
+		@hair_width = ClientHairProperty.find_by(profile: @profile, hair_property: @hair_widths).try(:name)
+		@hair_density = ClientHairProperty.find_by(profile: @profile, hair_property: @hair_densities).try(:name)
 	end
 
 	def profile_params
