@@ -76,7 +76,7 @@ if Rails.env.development? or Rails.env.staging?
 	HairProperty.delete_all
 end
 
-if Rails.env.staging or Rails.env.production?
+if Rails.env.staging? or Rails.env.production?
 	Admin.create(
 		email: 'dan@alldid.com',
 		password: 'alldid'
