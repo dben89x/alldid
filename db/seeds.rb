@@ -76,6 +76,13 @@ if Rails.env.development? or Rails.env.staging?
 	HairProperty.delete_all
 end
 
+if Rails.env.staging or Rails.env.production?
+	Admin.create(
+		email: 'dan@alldid.com',
+		password: 'alldid'
+	)
+end
+
 styles.each do |style_name|
 	Style.create(name: style_name, url: "#{style_name.gsub(' ','-')}.png")
 end
