@@ -23,4 +23,19 @@
 #
 
 class Client < User
+	def hair_type
+		hair_properties("HairType")
+	end
+
+	def hair_width
+		hair_properties("HairWidth")
+	end
+
+	def hair_density
+		hair_properties("HairDensity")
+	end
+
+	def hair_properties(prop_type)
+		self.client_hair_properties.select {|chp| chp.hair_property.type == prop_type }.first.try(:hair_property)
+	end
 end

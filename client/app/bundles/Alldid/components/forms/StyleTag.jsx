@@ -69,7 +69,6 @@ export default class StyleTag extends React.Component {
 	}
 
 	render () {
-		console.log(this.props.links)
 		var clickableClass = (this.props.links === undefined) ? 'not-clickable' : null
 		return (
 			<div className='style-tag light-tag style-endorsement-tag'>

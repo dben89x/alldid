@@ -33,6 +33,10 @@ class ProfilesController < ApplicationController
 
 		elsif current_user.is_a? Client
 			@client_style = @profile.current_style
+
+			@current_type_id = current_user.hair_type.try(:id)
+			@current_width_id = current_user.hair_width.try(:id)
+			@current_density_id = current_user.hair_density.try(:id)
 		end
 
 		@user_services = current_user.services.pluck(:name)

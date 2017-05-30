@@ -22,7 +22,7 @@ export default class HairProperty extends React.Component {
 				"prop_type": hairPropType
 			},
 			success: (data) => {
-				$(`.${hairPropType}.selected.item.null`).removeClass('selected')
+				$(`.${hairPropType}.selected`).removeClass('selected')
 				$(target).addClass('selected')
 			}
 		});
@@ -30,6 +30,7 @@ export default class HairProperty extends React.Component {
 
 	render () {
 		const { name, description } = this.props.hairProperty
+
 		return (
 			<div className={`item ${this.state.selectedClass} ${this.props.hairPropType}`} onClick={this.handlePropertyChange}>
 				<div className="name">
