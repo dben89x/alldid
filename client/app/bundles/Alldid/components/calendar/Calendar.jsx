@@ -90,6 +90,7 @@ export default class Calendar extends React.Component {
 					startTime={this.state.fcStart}
 					endTime={this.state.fcEnd}
 					minutes={this.props.minutes}
+					rate={this.props.rate}
 					/>
 			</div>
 		);

@@ -6,7 +6,6 @@ class RegistrationsController < Devise::RegistrationsController
 
 	def create
 		super
-		puts resource.type
 		if resource.type == "Barber"
 			organization = find_organization(cookies)
 			if organization.present?

@@ -40,7 +40,9 @@ export default class AppointmentModal extends React.Component {
 				"notes": notes
 			} },
 			dataType: 'json',
-			success: (data) => {  }
+			success: (data) => {
+				
+			}
 		});
 	}
 
@@ -54,7 +56,7 @@ export default class AppointmentModal extends React.Component {
 
 	handleServicesChange = (name, data) => {
 		this.setState({[name]: data});
-		// this.recalculateEndTime()
+		this.recalculateEndTime()
 	}
 
 	handleStyleChange = (name, data) => {
@@ -62,7 +64,7 @@ export default class AppointmentModal extends React.Component {
 	}
 
 	recalculateEndTime =()=> {
-		var end = this.state.endTime.add(20, 'minutes')
+		var end = this.state.endTime.add(this.props.minutes, 'minutes')
 		this.setState({endTime: end})
 	}
 
@@ -94,6 +96,11 @@ export default class AppointmentModal extends React.Component {
 					<form onSubmit={this.handleSubmit} >
 
 						<div className='col-md-12'>
+
+							<div>
+								<div className='head'>Price:</div>
+								<div className='text rate'>{`$${this.props.rate}`}</div>
+							</div>
 
 							<div>
 								<div className='head'>Start Time:</div>

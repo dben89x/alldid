@@ -28,8 +28,24 @@ class Barber < User
 	has_many :barber_services, inverse_of: :barber
 	has_many :endorsements, through: :barber_styles
 	has_many :schedules
+	has_many :events, inverse_of: :barber
+
+	after_create :create_schedule
+	after_save :check_for_completeness
+
+	def check_for_completeness
+		complete = minutes.present? && rate.present? && first_name.present? && headline.present? && location.present?
+		if complete
+			self.profile_complete = true
+			self.save
+		end
+	end
 
 	def styles
 		Style.where(id: self.barber_styles.pluck(:style_id).uniq)
+	end
+
+	def create_schedule
+
 	end
 end

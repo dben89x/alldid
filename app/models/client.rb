@@ -23,6 +23,18 @@
 #
 
 class Client < User
+
+	has_many :events, inverse_of: :client
+	after_save :check_for_completeness
+
+	def check_for_completeness
+		complete = first_name.present? && headline.present? && location.present? && current_style_id.present?
+		if complete
+			self.profile_complete = true
+			self.save
+		end
+	end
+
 	def hair_type
 		hair_properties("HairType")
 	end

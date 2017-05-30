@@ -11,7 +11,7 @@ class BarbersController < ApplicationController
 		@barber = Barber.find(params[:barber])
 		@minutes = @barber.minutes
 		@rate = @barber.rate
-		@schedule = @barber.schedules.last.get_json
+		@schedule = @barber.schedules.last.try(:get_json)
 		@unavailable_days = get_unavailable_days(@schedule)
 		@client = current_user
 		# @services = @barber.services

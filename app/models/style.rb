@@ -9,4 +9,5 @@
 #
 
 class Style < ActiveRecord::Base
+	has_many :events, inverse_of: :style
 end

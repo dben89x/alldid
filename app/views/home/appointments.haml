@@ -1,0 +1,21 @@
+.container
+	.appointments-container
+		%h3
+			Your appointments:
+
+		-@events.each do |event|
+			.appointments.col-md-12{style:'text-align:left'}
+				.col-md-2
+					=link_to barber_path(event.barber) do
+						=image_tag event.barber.default_avatar, width: 35, class: 'avatar'
+						=event.barber.name
+				.col-md-2
+					=event.start_time.strftime('%a, %b %-d')
+				.col-md-2
+					="From: #{event.start_time.strftime('%I:%M %p')}"
+				.col-md-2
+					="To: #{event.end_time.strftime('%I:%M %p')}"
+				.col-md-2
+					=event.style.name.capitalize
+				.col-md-2
+					Services

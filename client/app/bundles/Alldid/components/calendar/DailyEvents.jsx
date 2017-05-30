@@ -25,7 +25,7 @@ export default class DailyEvents extends React.Component {
 	}
 
 	updateModalProps =(date)=> {
-		var minutes = this.props.barber.minutes
+		var minutes = this.props.minutes
 		var start = date.clone()
 		var end = date.clone().add(minutes, 'minutes')
 		this.setState({modalDate: date, modalStart: start, modalEnd: end}, () =>{
@@ -68,6 +68,7 @@ export default class DailyEvents extends React.Component {
 					client={this.props.client}
 					services={this.props.services}
 					styles={this.props.styles}
+					rate={this.props.rate}
 					/>
 			</div>
 		);

@@ -107,6 +107,7 @@ if Rails.env.development? or Rails.env.staging?
 			headline: Faker::Lorem.sentence,
 			bio: Faker::Lorem.paragraph,
 			location: Faker::GameOfThrones.city,
+			minutes: [20,30,40,50].sample
 			rate: rand(10..100)
 		)
 		profile.save
@@ -118,6 +119,17 @@ if Rails.env.development? or Rails.env.staging?
 		Service.all.sample(rand(3..4)).each do |service|
 			profile.user_services.new(service: service).save
 		end
+
+		client = Client.create(
+			email: Faker::Internet.email,
+			password: 'asdfasdf'
+		)
+		profile = client.profile = Profile.new(
+			first_name: Faker::GameOfThrones.character,
+			headline: Faker::Lorem.sentence,
+			bio: Faker::Lorem.paragraph,
+			location: Faker::GameOfThrones.city,
+		)
 	end
 
 	Barber.all.each do |b|
@@ -127,5 +139,16 @@ if Rails.env.development? or Rails.env.staging?
 				bs.endorsements.create(client_id: Client.all.sample)
 			end
 		end
+	end
+
+	30.times do
+		time = Time.at(rand * Time.now.to_i)
+		Event.create(
+			client: Client.all.sample,
+			barber: Barber.all.sample,
+			start_time: time,
+			end_time: (time+([20,30,40].sample * 60)),
+			style: Style.all.sample
+		)
 	end
 end

@@ -12,5 +12,7 @@
 #
 
 class Event < ActiveRecord::Base
-
+	belongs_to :client, inverse_of: :events
+	belongs_to :barber, inverse_of: :events
+	belongs_to :style, inverse_of: :events
 end
