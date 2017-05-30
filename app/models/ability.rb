@@ -13,6 +13,7 @@ class Ability
 			can [:edit, :update], Profile, user_id: user.id
 		elsif user.is_a? Client
 			can [:edit, :update], Profile, user_id: user.id
+			can :manage, ClientHairProperty, profile_id: user.profile.id
 		end
 
 		can :manage, Organization, user_id: user.id

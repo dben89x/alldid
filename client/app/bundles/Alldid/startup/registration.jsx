@@ -16,6 +16,8 @@ import UserStyles from '../components/forms/UserStyles';
 import StyleTag from '../components/forms/StyleTag';
 import UserServices from '../components/forms/UserServices';
 import ServiceTag from '../components/forms/ServiceTag';
+import HairProperties from '../components/forms/HairProperties';
+import HairProperty from '../components/forms/HairProperty';
 
 import Calendar from '../components/calendar/Calendar';
 import DailyEvents from '../components/calendar/DailyEvents';
@@ -44,5 +46,7 @@ ReactOnRails.register({
 	UserStyles,
 	BarberStyle,
 	Schedule,
-	GeneralDay
+	GeneralDay,
+	HairProperty,
+	HairProperties
 });

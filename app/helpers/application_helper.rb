@@ -56,6 +56,9 @@ module ApplicationHelper
 				barberStyles: barber_styles,
 				services: barber.services.pluck(:name),
 				favorite: favorite,
+				facebook: barber.facebook,
+				twitter: barber.twitter,
+				instagram: barber.instagram,
 				endorsements: barber.endorsements.count
 			}
 		end

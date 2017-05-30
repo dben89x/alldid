@@ -9,37 +9,6 @@
 		.client-details
 			.hair-profile
 				%h4 Create Your Hair Profile:
-				.type
-					.header
-						Hair Type
-					.details
-						-@hair_types.each do |hair_type|
-							.item
-								.name
-									=hair_type.name
-								.overlay
-									.description
-										=hair_type.description
-				.width
-					.header
-						Hair Width
-					.details
-						-@hair_widths.each do |hair_width|
-							.item
-								.name
-									=hair_width.name
-								.overlay
-									.description
-										=hair_width.description
-
-				.density
-					.header
-						Hair Density (amount of hair in a given area)
-					.details
-						-@hair_densities.each do |hair_density|
-							.item
-								.name
-									=hair_density.name
-								.overlay
-									.description
-										=hair_density.description
+				=react_component('HairProperties', props: {properties: @hair_types, hairPropType: "HairType", header: "Hair Type"}, prerender: false, html_options: {class: 'type'})
+				=react_component('HairProperties', props: {properties: @hair_widths, hairPropType: "HairWidth", header: "Hair Width"}, prerender: false, html_options: {class: 'width'})
+				=react_component('HairProperties', props: {properties: @hair_densities, hairPropType: "HairDensity", header: "Hair Density (amount of hair in a given area)"}, prerender: false , html_options: {class: 'density'})

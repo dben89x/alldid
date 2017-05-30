@@ -69,14 +69,8 @@ input[type=file] {
 	background-color: rgba(0,0,0,0.5);
 }
 
-.image-container.selected .overlay {
-	opacity: 1;
-}
-.image-container.selected:hover .overlay {
-}
-.image-container:hover .overlay {
-	opacity: 1;
-}
+.image-container.selected .overlay { opacity: 1; }
+.image-container:hover .overlay { opacity: 1; }
 #user-styles {
 	.overlay, .text, .style-img {
 		pointer-events: none;
@@ -137,6 +131,11 @@ input[type=file] {
 					&:hover{
 						.overlay { opacity: 1; }
 						.name { opacity: 0; }
+					}
+					&.selected {
+						.overlay { opacity: 1; }
+						.name { opacity: 1; }
+						.description { opacity: 0; }
 					}
 
 					.name {

@@ -35,11 +35,13 @@ Rails.application.routes.draw do
 	match 'profile' => 'profiles#edit', via: :get
 	match 'dashboard' => 'organizations#edit', via: :get
 
+	put 'change_hair_properties' => 'hair_properties#change'
+
 	post 'schedules' => 'barbers#create_schedule'
 	post 'barber_services' => 'barber_services#create'
 	post 'delete_favorite' => 'user_favorites#delete_favorite'
 	post 'delete_barber_style' => 'barber_styles#delete_barber_style'
 	post 'delete_barber_service' => 'barber_services#delete_barber_service'
 	post 'delete_endorsement' => 'endorsements#delete_endorsement'
-	
+
 end

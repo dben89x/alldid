@@ -13,8 +13,10 @@ export default class SearchContainer extends React.Component {
 		}
 	}
 
-	handleSocialClick = (event) => {
+	handleSocialClick = (event, linkName) => {
 		event.preventDefault();
+		var link = this.props.barber[linkName]
+		window.open(link, '_blank')
 	}
 
 	handleFavorite = (event) => {
@@ -75,8 +77,8 @@ export default class SearchContainer extends React.Component {
 					<div className='barber-image'>
 						<img src={avatar}/>
 					</div>
-
 				</div>
+
 				<div className='barber-details-container'>
 					<div className='barber-details'>
 						<div className='barber-name'>
@@ -99,18 +101,15 @@ export default class SearchContainer extends React.Component {
 						<div className='styles'>
 							{barberStyles}
 						</div>
-
 						{ additionalAttributes }
-
 					</div>
-
 				</div>
 
 				<span className={`barber-favorite fa ${this.state.favoriteClass}`} onClick={this.handleFavorite}/>
 				<div className={'social-icons'}>
-					<span className='fa fa-facebook-square' onClick={this.handleSocialClick} value={'/'}/>
-					<span className='fa fa-twitter-square' onClick={this.handleSocialClick} value={'/'}/>
-					<span className='fa fa-instagram' onClick={this.handleSocialClick} value={'/'}/>
+					<span className='fa fa-facebook-square' onClick={(e)=> {this.handleSocialClick(e, 'facebook')}} value={'/'}/>
+					<span className='fa fa-twitter-square' onClick={(e)=> {this.handleSocialClick(e, 'twitter')}} value={'/'}/>
+					<span className='fa fa-instagram' onClick={(e)=> {this.handleSocialClick(e, 'instagram')}} value={'/'}/>
 				</div>
 			</div>
 		);

@@ -1,6 +1,6 @@
 class HairPropertiesController < ApplicationController
 	before_action :set_hair_property, only: [:show, :edit, :update, :destroy]
-	load_and_authorize_resource
+	skip_before_action :verify_authenticity_token
 
 	def new
 		@hair_property = HairProperty.new
@@ -8,7 +8,6 @@ class HairPropertiesController < ApplicationController
 	end
 
 	def edit
-
 	end
 
 	def index
@@ -41,6 +40,17 @@ class HairPropertiesController < ApplicationController
 				format.json { render json: @hair_property.errors, status: :unprocessable_entity }
 			end
 		end
+	end
+
+	def change
+		profile = current_user.profile
+		hair_properties = HairProperty.where(type: params[:prop_type])
+
+		# Destroy all client hair properties that belong to this user
+		ClientHairProperty.where(profile: profile, hair_property_id: hair_properties).delete_all
+		ClientHairProperty.create(profile: profile, hair_property_id: params[:hair_property_id])
+		
+		render json: { status: 200}
 	end
 
 	def destroy
