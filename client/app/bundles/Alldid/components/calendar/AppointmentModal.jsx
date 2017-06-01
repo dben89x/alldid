@@ -11,7 +11,7 @@ export default class AppointmentModal extends React.Component {
 			startTime: this.props.start,
 			endTime: this.props.end,
 			services: [],
-			style: '',
+			styleId: '',
 			notes: '',
 			date: 0,
 			xhr: null,
@@ -22,11 +22,13 @@ export default class AppointmentModal extends React.Component {
 		this.setState({ date: nextProps.date, startTime: nextProps.start, endTime: nextProps.end, services: [] })
 	}
 
-	handleSubmit = (event) => {
+	handleSubmit = (event, modal) => {
 		event.preventDefault()
 
 		const { client, barber } = this.props
-		const { styleId, startTime, endTime, notes } = this.state
+		const { styleId, startTime, endTime, notes, services } = this.state
+
+		const eventServices = services.map((service)=>service.label)
 
 		this.state.xhr = $.ajax({
 			url: `/events`,
@@ -35,13 +37,15 @@ export default class AppointmentModal extends React.Component {
 				"client_id": client.id,
 				"barber_id": barber.id,
 				"style_id": styleId,
-				"start_time": startTime,
-				"end_time": endTime,
-				"notes": notes
+				"start_time": startTime.toDate(),
+				"end_time": endTime.toDate(),
+				"notes": notes,
+				"services": String(eventServices)
 			} },
 			dataType: 'json',
 			success: (data) => {
-				
+				this.props.updateEvents(data)
+				// modal.close
 			}
 		});
 	}
@@ -56,11 +60,11 @@ export default class AppointmentModal extends React.Component {
 
 	handleServicesChange = (name, data) => {
 		this.setState({[name]: data});
-		this.recalculateEndTime()
+		// this.recalculateEndTime()
 	}
 
 	handleStyleChange = (name, data) => {
-		this.setState({[name]: data});
+		this.setState({[name]: data.value}, ()=>{console.log(this.state.styleId)});
 	}
 
 	recalculateEndTime =()=> {
@@ -117,8 +121,8 @@ export default class AppointmentModal extends React.Component {
 								<br/>
 								<Select name="Style"
 									options={styles}
-									value={this.state.style}
-									onChange={(e) => this.handleStyleChange("style", e)} />
+									value={this.state.styleId}
+									onChange={(e) => this.handleStyleChange("styleId", e)} />
 							</label>
 
 							<label>
@@ -140,7 +144,7 @@ export default class AppointmentModal extends React.Component {
 							<br/>
 							<br/>
 
-							<input type="submit" value="Book Appointment" className="brand-btn light-brand-btn med-btn"/>
+							<input type="submit" value="Book Appointment" onClick={ (event)=>{this.handleSubmit(event, this)} } className="brand-btn light-brand-btn med-btn"/>
 						</div>
 
 					</form>

@@ -1,6 +1,6 @@
 .container
 	.appointments-container
-		%h3
+		%h1
 			Your appointments:
 
 		-@events.each do |event|
@@ -10,12 +10,17 @@
 						=image_tag event.barber.default_avatar, width: 35, class: 'avatar'
 						=event.barber.name
 				.col-md-2
-					=event.start_time.strftime('%a, %b %-d')
+					=event.try(:start_time).try(:strftime, '%a, %b %-d')
 				.col-md-2
-					="From: #{event.start_time.strftime('%I:%M %p')}"
+					="From: #{event.try(:start_time).try(:strftime, '%I:%M %p')}"
 				.col-md-2
-					="To: #{event.end_time.strftime('%I:%M %p')}"
+					="To: #{event.try(:end_time).try(:strftime, '%I:%M %p')}"
 				.col-md-2
-					=event.style.name.capitalize
+					="Style: #{event.style.try(:name).try(:capitalize)}"
 				.col-md-2
-					Services
+					Services:
+					%br
+					-services = event.try(:services).try(:split, ',')
+					-services.try(:each) do |service|
+						=service
+						%br

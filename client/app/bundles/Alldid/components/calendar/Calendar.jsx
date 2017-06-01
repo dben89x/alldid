@@ -13,6 +13,7 @@ export default class Calendar extends React.Component {
 			fcStart: `9:00:00`,
 			fcEnd: '17:00:00',
 			selectedDay: new Date(),
+			events: []
 		}
 	}
 
@@ -91,6 +92,7 @@ export default class Calendar extends React.Component {
 					endTime={this.state.fcEnd}
 					minutes={this.props.minutes}
 					rate={this.props.rate}
+					events={this.state.events}
 					/>
 			</div>
 		);

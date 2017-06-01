@@ -7,7 +7,7 @@
 		white-space: nowrap;
 		background: rgba(94, 21, 19, 0.8);
 		color: white;
-		padding: 20px 0;
+		padding: 20px 40px;
 		margin: 10px 0;
 		border-radius: 6px;
 		a {
@@ -18,9 +18,7 @@
 				margin: 0 5px 0 0;
 			}
 		}
-		.col-md-2 {
-			padding: 0 40px;
-		}
+		.col-md-2 {margin: 10px 0;}
 	}
 }
 

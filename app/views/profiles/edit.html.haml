@@ -1,7 +1,7 @@
 #cms
 	.container
 		.col-md-12{style: 'margin-bottom:20px'}
-			-path = current_user.is_a?(Client) ? '/profile' : '/barbers'
+			-path = current_user.is_a?(Client) ? '/profiles' : '/barbers'
 			=link_to "View Public Profile", "#{path}/#{current_user.id}", class: 'med-btn brand-btn dark-brand-btn'
 		.form.cms-form.light-form
 			=render 'form'

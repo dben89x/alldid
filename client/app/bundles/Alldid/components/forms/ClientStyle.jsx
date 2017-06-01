@@ -22,7 +22,7 @@ export default class ClientStyle extends React.Component {
 				"current_style_id": this.props.style.id
 			}},
 			success: (data) => {
-				$('.selected').removeClass('selected')
+				$('.image-container.selected').removeClass('selected')
 				$(target).addClass('selected')
 			}
 		});

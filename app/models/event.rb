@@ -15,4 +15,9 @@ class Event < ActiveRecord::Base
 	belongs_to :client, inverse_of: :events
 	belongs_to :barber, inverse_of: :events
 	belongs_to :style, inverse_of: :events
+	after_save :create_date
+
+	def create_date
+		self.update_column(:date, self.start_time.to_date)
+	end
 end
