@@ -2,16 +2,17 @@
 	.user
 		.user-avatar
 			.user-image
-				=image_tag @user.default_avatar, width: 200
+				-if @user
+					=image_tag @user.try(:default_avatar), width: 200
 		.user-details-container
 			.user-details
 				.user-name
-					=@user.name
+					=@user.try(:name)
 				.user-location
 					%span.fa.fa-map-marker
-					=@user.location
+					=@user.try(:location)
 				.user-headline
-					=@user.headline
+					=@user.try(:headline)
 
 		-if @user_type == "Client"
 			.client-details
@@ -21,7 +22,7 @@
 						.header
 							Hair Style
 						.details
-							=@user.profile.current_style.name.capitalize
+							=@user.profile.try(:current_style).try(:name).try(:capitalize)
 					.type
 						.header
 							Hair Type

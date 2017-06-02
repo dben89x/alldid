@@ -1,13 +1,12 @@
 class ProfilesController < ApplicationController
-	before_action :set_profile, only: [:show, :edit, :update]
+	before_action :set_profile, only: [:edit, :update]
 	before_action :get_hair_properties, only: [:show, :edit]
-	load_and_authorize_resource
 	skip_before_action :verify_authenticity_token
 
 	def show
-		@user = User.find(params[:id])
-		@profile = @user.profile
-		@user_type = @user.type
+		@profile = Profile.find(params[:id])
+		@user = @profile.user
+		@user_type = @user.try(:type)
 		if @user.is_a? Client
 			get_client_hair_properties
 
