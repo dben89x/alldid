@@ -35,3 +35,5 @@
 
 	= (render 'barber_form', f: f) if current_user.is_a? Barber
 	= (render 'client_form', f: f) if current_user.is_a? Client
+	= (render 'admin_form', f: f) if current_user.is_a? Admin
+	= (render 'barber_admin_form', f: f) if current_user.is_a? BarberAdmin
