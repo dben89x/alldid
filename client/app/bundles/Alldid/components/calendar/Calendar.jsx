@@ -22,9 +22,7 @@ export default class Calendar extends React.Component {
 		var start = this.props.schedule[day].start
 		var end = this.props.schedule[day].end
 
-		this.setState({fcDate: date, fcStart: start, fcEnd: end}, () => {
-			this.setState({selectedDay: date})
-		})
+		this.setState({fcDate: date, fcStart: start, fcEnd: end, selectedDay: date})
 	}
 
 	render () {

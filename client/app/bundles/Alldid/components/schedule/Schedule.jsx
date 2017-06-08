@@ -33,10 +33,10 @@ export default class Schedule extends React.Component {
 		var thisState = this.state
 
 		$('.updateScheduleSpan').removeClass('fa-check').addClass('fa-spin fa-spinner')
-		this.state.xhr = $.ajax({
+		$.ajax({
 			url: `/schedules`,
 			method: 'post',
-			data: { thisState },
+			data: { "schedule": thisState },
 			dataType: 'json',
 			success: () => { $('.updateScheduleSpan').removeClass('fa-spin fa-spinner').addClass('fa-check') }
 		});

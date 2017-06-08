@@ -45,6 +45,6 @@ class Barber < User
 	end
 
 	def create_schedule
-
+		self.schedules.create
 	end
 end

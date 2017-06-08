@@ -14,7 +14,6 @@ class BarbersController < ApplicationController
 		@schedule = @barber.schedules.last.try(:get_json)
 		@unavailable_days = get_unavailable_days(@schedule)
 		@client = current_user
-		# @services = @barber.services
 		@services = Service.all
 		@styles = @barber.styles
 	end

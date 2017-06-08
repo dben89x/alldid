@@ -43,14 +43,18 @@ class ProfilesController < ApplicationController
 
 	def update
 		respond_to do |format|
-			if params[:profile][:services].present? or params[:profile][:styles].present?
-				@profile.user_styles.delete_all
+			if params[:profile][:services].present?
 				@profile.user_services.delete_all
 
 				params[:profile][:services].split(',').each do |service|
 					service = Service.find_by(name: service)
 					@profile.user_services.create(profile: @profile, service: service)
 				end
+			end
+
+			if params[:profile][:styles].present?
+				@profile.user_styles.delete_all
+
 				params[:profile][:styles].split(',').each do |style|
 					style = Style.find_by(name: style)
 					@profile.user_styles.create(profile: @profile, style: style)
@@ -88,9 +92,9 @@ class ProfilesController < ApplicationController
 
 	def profile_params
 		params.require(:profile).permit(
-		:hair_type, :hair_width, :hair_density, :bio, :hourly_rate, :first_name,
-		:last_name, :avatar, :headline, :location, :zip, :avatar_cache, :facebook,
-		:instagram, :twitter, :current_style_id
+		:hair_type, :hair_width, :hair_density, :bio, :first_name, :last_name,
+		:avatar, :headline, :location, :zip, :avatar_cache, :facebook, :instagram,
+		:twitter, :current_style_id, :rate, :minutes
 		)
 	end
 end

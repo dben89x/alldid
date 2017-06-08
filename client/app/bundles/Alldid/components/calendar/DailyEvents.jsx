@@ -18,45 +18,47 @@ export default class DailyEvents extends React.Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
+		this.renderCalendar(this.props, this.state.events)
 		$('#calendar').fullCalendar('gotoDate', this.props.date);
 		// if (prevState !== this.state) {}
 	}
 
-	componentDidMount() {
-		// this.renderCalendar()
+	componentWillMount() {
+		// console.log('mounted')
+		// console.log(JSON.stringify(this.props))
+		// this.renderCalendar(this.props, this.state.events)
+		// $('#calendar').fullCalendar('render')
 	}
 
-	componentWillMount() {
+	componentDidMount() {
+		// this.renderCalendar(this.props, this.state.events)
+		// console.log($('#calendar'))
+	}
+
+	componentWillReceiveProps(nextProps) {
+		console.log('received new props')
+		console.log($('#calendar').fullCalendar())
 		this.setState({loading: true})
 		this.state.xhr = $.ajax({
-			url: `/events?date=${this.props.date}&barberId=${this.props.barber.id}`,
+			url: `/events?date=${nextProps.date}&barberId=${nextProps.barber.id}`,
 			method: 'GET',
 			dataType: 'json',
 			success: (data) => {
 				var newEvents = data.map((d)=>{
 					return { title: "Appointment", start: d.start_time, end: d.end_time}
 				})
-				console.log(JSON.stringify(newEvents))
-				this.setState({events: this.state.events.concat(newEvents)}, ()=>{
-					this.renderCalendar()
-					this.setState({loading: false})
-				})
+				this.renderCalendar(nextProps, newEvents)
 			}
 		});
 	}
 
 	updateEvents =(json)=> {
 		this.renderNewEvent(json)
-		this.addEventToState(json)
 		this.setState({modalShow: false})
 	}
 
 	renderNewEvent =(json)=> {
 		$('#calendar').fullCalendar( 'renderEvent', this.eventJson(json) )
-	}
-
-	addEventToState =(json)=> {
-		this.setState({events: this.state.events.concat( this.eventJson(json) ) })
 	}
 
 	eventJson =(json)=> {
@@ -76,24 +78,32 @@ export default class DailyEvents extends React.Component {
 		})
 	}
 
-	renderCalendar = () => {
+	renderCalendar = (nextProps, events) => {
 		const windowHeight = window.innerHeight
+		const startTime = `${parseInt(nextProps.startTime/100)}:${nextProps.startTime%100}:00`
+		const endTime = `${parseInt(nextProps.endTime/100)}:${nextProps.endTime%100}:00`
+
+		console.log('in calendar render')
+		console.log(JSON.stringify(events))
+
+		$('#calendar').fullCalendar('destroy')
 		$('#calendar').fullCalendar({
 			timezone: "local",
-			events: this.state.events,
+			events: events,
 			defaultView: 'agendaDay',
-			defaultDate: this.props.date,
+			defaultDate: nextProps.date,
 			slotDuration: '00:15:00',
 			eventColor: 'rgba(94, 21, 19, 0.7)',
 			dayClick: (date, jsEvent, view) => {this.updateModalProps(date)},
 			header: false,
 			columnFormat: 'dddd, MMM D',
 			height: windowHeight,
-			minTime: this.props.startTime,
-			maxTime: this.props.endTime,
+			minTime: startTime,
+			maxTime: endTime,
 			allDayDefault: false,
 			allDaySlot: false
 		});
+		$('#calendar').fullCalendar('render')
 	}
 
 	render () {

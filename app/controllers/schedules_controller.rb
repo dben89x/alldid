@@ -1,6 +1,5 @@
 class SchedulesController < ApplicationController
 	before_action :set_schedule, only: [:show, :edit, :update, :destroy]
-	load_and_authorize_resource
 	skip_before_action :verify_authenticity_token
 
 	def new
@@ -21,7 +20,7 @@ class SchedulesController < ApplicationController
 		respond_to do |format|
 			if @schedule.save
 				format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
-				format.json { render :show, status: :created, location: @schedule }
+				format.json { render json: @schedule }
 			else
 				format.html { render :new }
 				format.json { render json: @schedule.errors, status: :unprocessable_entity }
@@ -33,7 +32,7 @@ class SchedulesController < ApplicationController
 		respond_to do |format|
 			if @schedule.update(schedule_params)
 				format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
-				format.json { render :show, status: :ok, location: @schedule }
+				format.json { render json: @schedule }
 			else
 				format.html { render :edit }
 				format.json { render json: @schedule.errors, status: :unprocessable_entity }
