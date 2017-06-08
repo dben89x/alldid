@@ -18,6 +18,7 @@ import UserServices from '../components/forms/UserServices';
 import ServiceTag from '../components/forms/ServiceTag';
 import HairProperties from '../components/forms/HairProperties';
 import HairProperty from '../components/forms/HairProperty';
+import OrganizationInput from '../components/forms/OrganizationInput';
 
 import Calendar from '../components/calendar/Calendar';
 import DailyEvents from '../components/calendar/DailyEvents';
@@ -36,17 +37,21 @@ ReactOnRails.register({
 	Barbers,
 	BarberContainer,
 	BarberShowAttributes,
+
 	ClientStyle,
 	StyleTag,
 	UserServices,
 	ServiceTag,
+	UserStyles,
+	BarberStyle,
+	HairProperty,
+	HairProperties,
+	OrganizationInput,
+
 	Calendar,
 	DailyEvents,
 	AppointmentModal,
-	UserStyles,
-	BarberStyle,
+
 	Schedule,
 	GeneralDay,
-	HairProperty,
-	HairProperties
 });

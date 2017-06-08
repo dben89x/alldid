@@ -329,12 +329,17 @@
 		.barber-avatar, .user-avatar{
 			width: 100%;
 			position:static;
-			height: 240px;
+			height: 280px;
+			padding-top: 40px;
+
 			.barber-image, .user-image{
-				top:20px;
+				top: 20px;
 				left: calc(50% - 100px);
 				height: 200px;
 				width: 200px;
+				display: inline-block;
+				position: relative;
+
 				img {
 					width: 200px;
 				}

@@ -3,7 +3,7 @@ class BarbersController < ApplicationController
 	skip_before_filter :verify_authenticity_token, only: :create_schedule
 
 	def show
-		@barbers = get_react_barber_objects([Barber.find(params[:id])])
+		@barbers = get_react_barber_objects([User.find(params[:id])])
 		@profile_id = current_user.profile.id
 	end
 

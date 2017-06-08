@@ -31,7 +31,7 @@
 							=link_to '/admin' do
 								.link
 									Dashboard
-					-if current_user.barber_admin?
+					-if current_user.admin_barber?
 						%li
 							=link_to '/dashboard' do
 								.link

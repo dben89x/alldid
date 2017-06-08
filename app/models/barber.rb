@@ -36,8 +36,7 @@ class Barber < User
 	def check_for_completeness
 		complete = minutes.present? && rate.present? && first_name.present? && headline.present? && location.present?
 		if complete
-			self.profile_complete = true
-			self.save
+			self.update_column(:profile_complete, true)
 		end
 	end
 

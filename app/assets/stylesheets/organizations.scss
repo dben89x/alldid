@@ -68,3 +68,18 @@
 		}
 	}
 }
+.org-input-wrapper {
+	position:relative;
+	.fa {
+		position: absolute;
+		right: 20px;
+		top: 75%;
+
+		&.fa-spinner {
+			color: #D5B60A;
+		}
+		&.fa-check {
+			color: #008001;
+		}
+	}
+}

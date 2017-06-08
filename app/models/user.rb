@@ -77,7 +77,7 @@ class User < ApplicationRecord
 		end
 	end
 
-	def barber_admin?
+	def admin_barber?
 		if self.membership.present?
 			self.organization.user == self
 		else

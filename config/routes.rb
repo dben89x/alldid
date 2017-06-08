@@ -2,9 +2,6 @@ Rails.application.routes.draw do
 	root to: 'home#index'
 
 	devise_for :users, controllers: {registrations: 'registrations', sessions: 'sessions'}
-	devise_scope :user do
-		get 'signup_modal', to: 'devise/registrations#new'
-	end
 
 	get 'faq' => 'home#faq'
 	get 'about' => 'home#about'
