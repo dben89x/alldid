@@ -7,7 +7,7 @@ export default class Schedule extends React.Component {
 		super(props)
 
 		var schedule
-		if (this.props.schedule !== null) {
+		if (this.props.schedule) {
 			schedule = JSON.parse(this.props.schedule.json)
 		} else {
 			schedule = {
@@ -20,7 +20,7 @@ export default class Schedule extends React.Component {
 				"Saturday": {"start": 0, "end": 0, "available": true}
 			}
 		}
-		console.log(JSON.stringify(schedule))
+		schedule = typeof(schedule) === 'string' ? JSON.parse(schedule) : schedule
 		this.state = schedule
 	}
 
@@ -39,7 +39,7 @@ export default class Schedule extends React.Component {
 			url: `/schedules/${schedule.id}`,
 			method: 'put',
 			data: { "schedule": {
-				"json": thisState
+				"json": JSON.stringify(thisState)
 			} },
 			dataType: 'json',
 			success: () => { $('.updateScheduleSpan').removeClass('fa-spin fa-spinner').addClass('fa-check') }

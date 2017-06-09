@@ -6,10 +6,11 @@ import moment from 'moment';
 export default class GeneralDay extends React.Component {
 	constructor(props){
 		super(props)
+		var available = (this.props.available === 'true' || this.props.available === true) ? true : false
 		this.state = {
 			startTime: this.props.startTime,
 			endTime: this.props.endTime,
-			available: this.props.available
+			available: available
 		}
 	}
 
@@ -53,7 +54,6 @@ export default class GeneralDay extends React.Component {
 					<input
 						type='checkbox'
 						checked={this.state.available}
-						defaultChecked={this.state.available}
 						onChange={this.handleAvailableChange}
 						/>
 				</label>
