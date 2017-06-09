@@ -20,6 +20,7 @@
 #  profile_id             :integer
 #  stripe_id              :string
 #  subscription_id        :integer
+#  profile_complete       :boolean          default("false")
 #
 
 require 'test_helper'

@@ -9,25 +9,13 @@
 #  day_id     :integer
 #  start_time :integer
 #  end_time   :integer
-#  json       :text             default("{\n\t\t\"Sunday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Monday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Tuesday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Wednesday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Thursday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Friday\": {\"start\": 900, \"end\": 1700, \"available\": true},\n\t\t\"Saturday\": {\"start\": 900, \"end\": 1700, \"available\": true}\n\t\t}")
+#  json       :text             default("{\"Sunday\": {\"start\": 900, \"end\": 1700, \"available\": true}, \"Monday\": {\"start\": 900, \"end\": 1700, \"available\": true}, \"Tuesday\": {\"start\": 900, \"end\": 1700, \"available\": true}, \"Wednesday\": {\"start\": 900, \"end\": 1700, \"available\": true}, \"Thursday\": {\"start\": 900, \"end\": 1700, \"available\": true}, \"Friday\": {\"start\": 900, \"end\": 1700, \"available\": true}, \"Saturday\": {\"start\": 900, \"end\": 1700, \"available\": true}}")
 #
-
-# JSON format:
-# {
-# 	"Sunday": {"start": 0, "end": 0, "available": true},
-# 	"Monday": {"start": 0, "end": 0, "available": true},
-# 	"Tuesday": {"start": 0, "end": 0, "available": true},
-# 	"Wednesday": {"start": 0, "end": 0, "available": true},
-# 	"Thursday": {"start": 0, "end": 0, "available": true},
-# 	"Friday": {"start": 0, "end": 0, "available": true},
-# 	"Saturday": {"start": 0, "end": 0, "available": true}
-# }
-
 
 class Schedule < ActiveRecord::Base
 	belongs_to :barber
 
-	before_save :parse_json
+	after_save :parse_json
 	serialize :json
 
 	def parse_json

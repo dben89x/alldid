@@ -20,6 +20,7 @@ export default class Calendar extends React.Component {
 			selectedDay: new Date(),
 			events: []
 		}
+		console.log(JSON.stringify(this.state))
 	}
 
 	updateDailyEvents =(date)=> {
@@ -37,7 +38,6 @@ export default class Calendar extends React.Component {
 		const navbarHeight = 58
 		const footerHeight = 80
 
-		// const calHeaderHeight = 98
 		const calWeekdaysHeight = 49
 
 		if (windowWidth >= 800) {

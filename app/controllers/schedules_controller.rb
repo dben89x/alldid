@@ -31,8 +31,7 @@ class SchedulesController < ApplicationController
 	def update
 		respond_to do |format|
 
-			puts params[:schedule][:json].to_json.inspect
-			if @schedule.update(json: params[:schedule][:json].to_json)
+			if @schedule.update(json: params[:schedule][:json])
 				format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
 				format.json { render json: @schedule }
 			else

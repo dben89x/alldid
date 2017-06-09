@@ -19,31 +19,59 @@ export default class DailyEvents extends React.Component {
 
 	componentDidMount() {
 		var _this = this
-		$.ajax({
-			url: `/events?date=${this.props.date}&barberId=${this.props.barber.id}`,
-			method: 'GET',
-			dataType: 'json',
-			success: (data) => {
-				var newEvents = data.map((d)=>{
-					return { title: "Appointment", start: d.start_time, end: d.end_time}
-				})
-				_this.renderCalendar(_this.props, newEvents)
-			}
-		});
+
+		var day = moment(this.props.date).format('dddd')
+		if (this.props.schedule[day].available) {
+			$.ajax({
+				url: `/events?date=${this.props.date}&barberId=${this.props.barber.id}`,
+				method: 'GET',
+				dataType: 'json',
+				success: (data) => {
+					var newEvents = data.map((d)=>{
+						return { title: "Appointment", start: d.start_time, end: d.end_time}
+					})
+					_this.renderCalendar(_this.props, newEvents)
+				}
+			});
+		} else {
+			var start = this.props.schedule[day].start
+			var end = this.props.schedule[day].end
+			var date = this.props.date
+			var events = [{
+				title: `Unavailable on ${day}`,
+				start: new Date(`${date.toDateString()} ${start/100}:${start%100}`),
+				end: new Date(`${date.toDateString()} ${end/100}:${end%100}`)
+			}]
+			this.renderCalendar(this.props, events)
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		$.ajax({
-			url: `/events?date=${nextProps.date}&barberId=${nextProps.barber.id}`,
-			method: 'GET',
-			dataType: 'json',
-			success: (data) => {
-				var newEvents = data.map((d)=>{
-					return { title: "Appointment", start: d.start_time, end: d.end_time}
-				})
-				this.renderCalendar(nextProps, newEvents)
-			}
-		});
+		var day = moment(nextProps.date).format('dddd')
+		if (nextProps.schedule[day].available) {
+			$.ajax({
+				url: `/events?date=${nextProps.date}&barberId=${nextProps.barber.id}`,
+				method: 'GET',
+				dataType: 'json',
+				success: (data) => {
+					var newEvents = data.map((d)=>{
+						return { title: "Appointment", start: d.start_time, end: d.end_time}
+					})
+					this.renderCalendar(nextProps, newEvents)
+				}
+			});
+		} else {
+			var start = nextProps.schedule[day].start
+			var end = nextProps.schedule[day].end
+			var date = nextProps.date
+			console.log(date)
+			var events = [{
+				title: `Unavailable on ${day}`,
+				start: new Date(`date ${start/100}:${start%100}`),
+				end: new Date(`date ${end/100}:${end%100}`)
+			}]
+			this.renderCalendar(nextProps, events)
+		}
 	}
 
 	updateEvents =(json)=> {
@@ -64,19 +92,22 @@ export default class DailyEvents extends React.Component {
 	}
 
 	updateModalProps =(date)=> {
-		var minutes = this.props.minutes
-		var start = date.clone()
-		var end = date.clone().add(minutes, 'minutes')
-		this.setState({modalDate: date, modalStart: start, modalEnd: end}, () =>{
-			this.setState({modalShow: true})
-		})
+		var day = moment(this.props.date).format('dddd')
+		if (this.props.schedule[day].available) {
+			var minutes = this.props.minutes
+			var start = date.clone()
+			var end = date.clone().add(minutes, 'minutes')
+			this.setState({modalDate: date, modalStart: start, modalEnd: end}, () =>{
+				this.setState({modalShow: true})
+			})
+		}
 	}
 
 	renderCalendar = (props, events) => {
 		const windowHeight = window.innerHeight
 		const startTime = `${parseInt(props.startTime/100)}:${props.startTime%100}:00`
 		const endTime = `${parseInt(props.endTime/100)}:${props.endTime%100}:00`
-
+		console.log(events)
 		$('#calendar').fullCalendar('destroy')
 		$('#calendar').fullCalendar({
 			timezone: "local",

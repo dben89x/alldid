@@ -20,6 +20,7 @@
 #  profile_id             :integer
 #  stripe_id              :string
 #  subscription_id        :integer
+#  profile_complete       :boolean          default("false")
 #
 
 class Barber < User
@@ -31,12 +32,11 @@ class Barber < User
 	has_many :events, inverse_of: :barber
 
 	after_create :create_schedule
-	after_save :check_for_completeness
 
 	def check_for_completeness
 		complete = minutes.present? && rate.present? && first_name.present? && headline.present? && location.present?
 		if complete
-			self.update_column(:profile_complete, true)
+			# self.update_column(:profile_complete, true)
 		end
 	end
 

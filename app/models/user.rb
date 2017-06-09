@@ -20,6 +20,7 @@
 #  profile_id             :integer
 #  stripe_id              :string
 #  subscription_id        :integer
+#  profile_complete       :boolean          default("false")
 #
 
 require 'carrierwave/orm/activerecord'
@@ -37,6 +38,7 @@ class User < ApplicationRecord
 
 	validates_presence_of :type, :email, :password
 	after_create :create_profile
+	after_save :check_for_completeness
 
 	delegate :first_name, :last_name, :name, :avatar, :headline, :bio, :location,
 	:rate, :user_styles, :user_services, :user_favorites, :current_style_id,
@@ -91,6 +93,10 @@ class User < ApplicationRecord
 
 	def active?
 		stripe_subscription.present? ? stripe_subscription.active? : false
+	end
+
+	def check_for_completeness
+
 	end
 
 end

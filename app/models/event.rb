@@ -9,6 +9,8 @@
 #  end_time   :datetime
 #  notes      :text
 #  style_id   :integer
+#  services   :string
+#  date       :date
 #
 
 class Event < ActiveRecord::Base
