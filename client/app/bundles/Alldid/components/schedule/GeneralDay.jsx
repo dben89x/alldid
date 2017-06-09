@@ -1,5 +1,4 @@
 import React from 'react';
-import fc from 'fullcalendar';
 import _ from 'underscore';
 import Select from 'react-select';
 import moment from 'moment';
@@ -12,7 +11,6 @@ export default class GeneralDay extends React.Component {
 			endTime: this.props.endTime,
 			available: this.props.available
 		}
-		console.log(this.state.available)
 	}
 
 	handleAvailableChange =(event)=> {
@@ -49,15 +47,17 @@ export default class GeneralDay extends React.Component {
 
 		return (
 			<div className='day'>
+				{String(this.state.available)}
 				<label className='name'>
 					{day.name}
 					<input
 						type='checkbox'
 						checked={this.state.available}
+						defaultChecked={this.state.available}
 						onChange={this.handleAvailableChange}
 						/>
 				</label>
-				{this.state.available}
+
 
 				<label>
 					<span className='day-select-label'>From</span>

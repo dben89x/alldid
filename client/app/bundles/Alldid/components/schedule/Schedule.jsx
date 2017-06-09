@@ -20,6 +20,7 @@ export default class Schedule extends React.Component {
 				"Saturday": {"start": 0, "end": 0, "available": true}
 			}
 		}
+		console.log(JSON.stringify(schedule))
 		this.state = schedule
 	}
 
@@ -48,14 +49,13 @@ export default class Schedule extends React.Component {
 	render () {
 		const { barberId, days } = this.props
 		const sortedDays = _.sortBy(days, (day)=> day.id)
-		const thisState = this.state
 		const dayComponents = sortedDays.map( (day) =>
 			<GeneralDay key={day.id}
 				startTime={this.state[day.name].start}
 				endTime={this.state[day.name].end}
 				available={this.state[day.name].available}
 				day={day}
-				handleDayChange={(day, startOrEnd, time, available) => this.handleDayChange(day, startOrEnd, time, available) }
+				handleDayChange={(day, startTime, endTime, available) => this.handleDayChange(day, startTime, endTime, available) }
 			/>
 		)
 
