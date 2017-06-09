@@ -10,8 +10,9 @@ export default class GeneralDay extends React.Component {
 		this.state = {
 			startTime: this.props.startTime,
 			endTime: this.props.endTime,
-			available: true
+			available: this.props.available
 		}
+		console.log(this.state.available)
 	}
 
 	handleAvailableChange =(event)=> {
@@ -56,6 +57,7 @@ export default class GeneralDay extends React.Component {
 						onChange={this.handleAvailableChange}
 						/>
 				</label>
+				{this.state.available}
 
 				<label>
 					<span className='day-select-label'>From</span>

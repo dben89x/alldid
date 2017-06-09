@@ -31,7 +31,7 @@ class Schedule < ActiveRecord::Base
 	serialize :json
 
 	def parse_json
-		self.json = JSON.parse(self.json).to_json
+		self.update_column('json', JSON.parse(self.json).to_json)
 	end
 
 	def get_json

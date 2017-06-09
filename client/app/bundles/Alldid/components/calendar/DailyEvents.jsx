@@ -18,25 +18,19 @@ export default class DailyEvents extends React.Component {
 	}
 
 	componentDidMount() {
-		var newEvents = []
 		var _this = this
 		$.ajax({
 			url: `/events?date=${this.props.date}&barberId=${this.props.barber.id}`,
 			method: 'GET',
 			dataType: 'json',
 			success: (data) => {
-				newEvents = data.map((d)=>{
+				var newEvents = data.map((d)=>{
 					return { title: "Appointment", start: d.start_time, end: d.end_time}
 				})
 				_this.renderCalendar(_this.props, newEvents)
 			}
 		});
 	}
-
-	// componentDidMount() {
-	// 	// this.renderCalendar(this.props, this.state.events)
-	// 	// console.log($('#calendar'))
-	// }
 
 	componentWillReceiveProps(nextProps) {
 		$.ajax({
@@ -84,7 +78,6 @@ export default class DailyEvents extends React.Component {
 		const endTime = `${parseInt(props.endTime/100)}:${props.endTime%100}:00`
 
 		$('#calendar').fullCalendar('destroy')
-		console.log('destroyed it')
 		$('#calendar').fullCalendar({
 			timezone: "local",
 			events: events,

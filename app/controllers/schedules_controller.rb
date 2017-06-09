@@ -30,7 +30,9 @@ class SchedulesController < ApplicationController
 
 	def update
 		respond_to do |format|
-			if @schedule.update(schedule_params)
+
+			puts params[:schedule][:json].to_json.inspect
+			if @schedule.update(json: params[:schedule][:json].to_json)
 				format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
 				format.json { render json: @schedule }
 			else
@@ -54,6 +56,6 @@ class SchedulesController < ApplicationController
 	end
 
 	def schedule_params
-		params.require(:schedule).permit(:client_id, :barber_id, :service_id, :start_time, :end_time, :notes)
+		params.require(:schedule).permit(:barber_id, :date, :start_time, :end_time, :json)
 	end
 end

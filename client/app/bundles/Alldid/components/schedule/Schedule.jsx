@@ -30,13 +30,16 @@ export default class Schedule extends React.Component {
 	submitSchedule =(event)=> {
 		event.preventDefault()
 
+		const {schedule} = this.props
 		var thisState = this.state
 
 		$('.updateScheduleSpan').removeClass('fa-check').addClass('fa-spin fa-spinner')
 		$.ajax({
-			url: `/schedules`,
-			method: 'post',
-			data: { "schedule": thisState },
+			url: `/schedules/${schedule.id}`,
+			method: 'put',
+			data: { "schedule": {
+				"json": thisState
+			} },
 			dataType: 'json',
 			success: () => { $('.updateScheduleSpan').removeClass('fa-spin fa-spinner').addClass('fa-check') }
 		});
@@ -50,6 +53,7 @@ export default class Schedule extends React.Component {
 			<GeneralDay key={day.id}
 				startTime={this.state[day.name].start}
 				endTime={this.state[day.name].end}
+				available={this.state[day.name].available}
 				day={day}
 				handleDayChange={(day, startOrEnd, time, available) => this.handleDayChange(day, startOrEnd, time, available) }
 			/>

@@ -17,7 +17,7 @@
 					.col-md-2
 						="To: #{event.end_time.strftime('%I:%M %p')}"
 					.col-md-2
-						=event.style.name.capitalize
+						=event.style.try(:name).try(:capitalize)
 					.col-md-2
 						Services
 
