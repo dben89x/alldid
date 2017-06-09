@@ -8,10 +8,15 @@ import $ from 'jquery';
 export default class Calendar extends React.Component {
 	constructor(props) {
 		super(props)
+		const thisDate = new Date()
+		var day = moment(thisDate).format('dddd')
+		var start = this.props.schedule[day].start
+		var end = this.props.schedule[day].end
+
 		this.state = {
-			fcDate: new Date(),
-			fcStart: `9:00:00`,
-			fcEnd: '17:00:00',
+			fcDate: thisDate,
+			fcStart: start,
+			fcEnd: end,
 			selectedDay: new Date(),
 			events: []
 		}
