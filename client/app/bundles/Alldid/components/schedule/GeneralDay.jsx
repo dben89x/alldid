@@ -6,11 +6,10 @@ import moment from 'moment';
 export default class GeneralDay extends React.Component {
 	constructor(props){
 		super(props)
-		var available = (this.props.available === 'true' || this.props.available === true) ? true : false
 		this.state = {
 			startTime: this.props.startTime,
 			endTime: this.props.endTime,
-			available: available
+			available: this.props.available
 		}
 	}
 
@@ -48,7 +47,6 @@ export default class GeneralDay extends React.Component {
 
 		return (
 			<div className='day'>
-				{String(this.state.available)}
 				<label className='name'>
 					{day.name}
 					<input

@@ -30,8 +30,7 @@ class Client < User
 	def check_for_completeness
 		complete = first_name.present? && headline.present? && location.present? && current_style_id.present?
 		if complete
-			self.profile_complete = true
-			self.save
+			self.update_column('profile_complete', true)
 		end
 	end
 
