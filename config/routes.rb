@@ -31,7 +31,9 @@ Rails.application.routes.draw do
 	match 'favorites' => 'user_favorites#index', via: :get
 	match 'profile' => 'profiles#edit', via: :get
 	match 'dashboard' => 'organizations#edit', via: :get
-
+	match 'stripe/hooks' => 'stripe_hooks#receive_webhooks', via: :post
+	match 'hooks' => 'hooks#dispatch_event', via: :post
+	
 	put 'change_hair_properties' => 'hair_properties#change'
 
 	post 'schedules' => 'barbers#create_schedule'

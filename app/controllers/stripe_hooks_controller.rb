@@ -1,7 +1,7 @@
 require 'stripe'
 class StripeHooksController < ApplicationController
-	# protect_from_forgery :except => :receive_webhooks
-	skip_before_filter  :verify_authenticity_token
+	protect_from_forgery except: :receive_webhooks
+	# skip_before_filter  :verify_authenticity_token
 	skip_before_action :authenticate_user!, raise: false
 
 	ACCEPTED_EVENTS = %w[ customer_created
@@ -20,8 +20,10 @@ class StripeHooksController < ApplicationController
 												invoice_payment_failed ]
 
 	def receive_webhooks
-		@event = Stripe::Event.retrieve(params[:id])
-		event_type = @event.type.gsub('.','_')
+		# @event = Stripe::Event.retrieve(params[:id])
+
+		@event = JSON.parse(request.body.read)
+		event_type = @event['type'].gsub('.','_')
 		if ACCEPTED_EVENTS.include? event_type
 			send event_type
 		else
@@ -149,16 +151,17 @@ class StripeHooksController < ApplicationController
 	# CUSTOMER SUBSCRIPTION
 	##############################
 	def customer_subscription_created
-		set_user(@event)
 		head :ok
 	end
 
 	def customer_subscription_updated
+		set_subscription(@event)
+		new_status = @event['data']['object']['status']
+		@subscription.subscription_status= new_status
 		head :ok
 	end
 
 	def customer_subscription_deleted
-		set_user(@event)
 		head :ok
 	end
 
@@ -193,12 +196,10 @@ class StripeHooksController < ApplicationController
 	end
 
 	def invoice_payment_succeeded
-		set_user(@event)
 		head :ok
 	end
 
 	def invoice_payment_failed
-		set_user(@event)
 		head :ok
 	end
 
@@ -274,8 +275,9 @@ class StripeHooksController < ApplicationController
 	# END OF EVENTS
 	##############################
 
-	def set_user(event)
-		@user = User.find_by(payment_customer_id: event.data.object.customer)
+	def set_subscription(event)
+		subscription_id = event['data']['object']['id']
+		@subscription = Subscription.find_by(stripe_reference: subscription_id)
 	end
 
 end

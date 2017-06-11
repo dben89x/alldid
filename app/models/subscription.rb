@@ -25,8 +25,7 @@ class Subscription < ActiveRecord::Base
 
 	def subscription_status=(new_status)
 		new_status = new_status.to_sym
-		self.subscription_status_id = SUBSCRIPTION_STATUSES.index(new_status)
-		self.save
+		self.update_column('subscription_status_id', SUBSCRIPTION_STATUSES.index(new_status))
 	end
 
 	def active?
