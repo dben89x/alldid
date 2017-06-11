@@ -24,9 +24,9 @@
 }
 .flash-messages{
 	text-align: center;
-	// position: relative;
-	// margin-top: $body_padding;
-	// margin-bottom: -$body_padding !important;
+	position: relative;
+	margin-top: $body_padding;
+	margin-bottom: -$body_padding !important;
 }
 @media (max-width: 767px) {
 	ul.nav {

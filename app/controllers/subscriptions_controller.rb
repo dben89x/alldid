@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-	before_filter :set_plans, only: :new
+	before_filter :set_plans, only: [:new, :create]
 
 	def new
 		if current_user and current_user.active?
@@ -20,10 +20,9 @@ class SubscriptionsController < ApplicationController
 			current_user.membership = Membership.create(organization: organization) if organization.present?
 
 			if stripe_subscription.status === "active"
-				flash[:success] = "Successfully signed up"
+				flash[:success] = "Successfully signed up. Manage your barbershop here."
 				respond_to do |format|
-					puts request.format
-					format.js { render js: "window.location = '#{root_path}';" }
+					format.js { render js: "window.location = '/dashboard';" }
 				end
 			else
 				flash[:error] = "Something went wrong."

@@ -9,12 +9,16 @@ class RegistrationsController < Devise::RegistrationsController
 		if resource.type == "Barber"
 			organization = find_organization(cookies)
 			if organization.present?
+				puts "Not Things"
 				resource.membership = Membership.create(organization: organization)
 			else
-				resource.type = "AdminBarber"
+				puts "Things"
+				resource.barbershop_owner = true
+				puts resource.inspect
 			end
 		end
 		resource.save
+		puts resource.inspect
 	end
 
 	def find_organization(cookies)
@@ -26,9 +30,6 @@ class RegistrationsController < Devise::RegistrationsController
 			flash[:success] = "You've successfully joined #{organization.name}! Customize your profile for your clients."
 			"/profile"
 		elsif resource.type == "Barber"
-			flash[:success] = "Successfully signed up! Customize your profile for your clients."
-			"/profile"
-		elsif resource.type == "AdminBarber"
 			flash[:success] = "Please enter your payment details to create your barber shop."
 			"/pricing"
 		elsif resource.type == "Client"

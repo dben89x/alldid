@@ -17,6 +17,8 @@
 		= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
 		= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 		=render 'layouts/navbar'
+		
+		=flash_messages
 		#application-container{class: (current_page?(root_path)) ? '' : 'body-padding'}
 			= yield
 		=render 'layouts/footer'

@@ -37,6 +37,7 @@ class User < ApplicationRecord
 	belongs_to :subscription
 
 	validates_presence_of :type, :email, :password
+
 	after_create :create_profile
 	after_save :check_for_completeness
 
@@ -79,7 +80,7 @@ class User < ApplicationRecord
 		end
 	end
 
-	def admin_barber?
+	def org_owner?
 		if self.membership.present?
 			self.organization.user == self
 		else
