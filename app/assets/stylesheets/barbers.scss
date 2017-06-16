@@ -46,6 +46,9 @@
 		color: $darkBrand;
 		text-align: center;
 	}
+	@media (max-width: 500px) {
+		overflow-y: scroll;
+	}
 }
 #featured-barber {
 	height:30%;
@@ -56,7 +59,7 @@
 		position: relative;
 	}
 	.barber {
-		margin: 20px 5px;
+		margin: 20px 5px 0 5px;
 		border-radius: 6px;
 		background: white;
 		height: 100%;
@@ -66,7 +69,7 @@
 		z-index: 5;
 
 		@media (max-width: 500px){
-			margin: 10px 0;
+			margin: 10px 0 0 0;
 			height: auto;
 			.barber-avatar {
 				width: 100%;
@@ -140,6 +143,11 @@
 	height: 65%;
 	overflow-y: scroll;
 	background: $body_color;
+
+	@media (max-width: 500px) {
+		height:100%;
+		overflow-y: visible;
+	}
 	.barber {
 		box-shadow: 0 0 9px rgba(0, 0, 0, 0.2);
 		margin: 20px;
