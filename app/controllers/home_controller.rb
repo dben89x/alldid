@@ -33,7 +33,7 @@ class HomeController < ApplicationController
 
 			@featured_barber = @barbers[0]
 			@barbers = @barbers - [@featured_barber]
-			@profile_id = current_user.profile
+			@profile_id = current_user.profile.id
 			@style = current_user.current_style_id.present? ? current_user.style.name : "Choose your Style"
 			@location = current_user.location.present? ? current_user.location : "Choose your Location"
 			# @price = [1,2,3,4].sample

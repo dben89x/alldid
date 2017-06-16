@@ -11,6 +11,7 @@ export default class SearchContainer extends React.Component {
 			favoriteClass: `${this.props.barber.favorite ? 'fa-star faved' : 'fa-star-o'}`,
 			xhr: null,
 		}
+		console.log(this.props.profileId)
 	}
 
 	handleSocialClick = (event, linkName) => {
