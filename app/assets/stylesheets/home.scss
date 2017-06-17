@@ -28,6 +28,10 @@
 
 		}
 		.text {
+			h1 {
+				.head { font-size: 30px  }
+				.subhead { font-size: 40px  }
+			}
 			h2 {
 				font-size: 20px;
 				line-height: 1.5;
@@ -39,11 +43,13 @@
 			& {
 				display: block;
 				.text, .buttons{ width: 100%; }
-				h1 { font-size: 30px }
-				h1 { font-size: 30px }
 			}
 		}
 		@media (max-width: 767px) {
+			.text h1 {
+				.head { font-size: 25px  }
+				.subhead { font-size: 30px  }
+			}
 			.text h2 { font-size: 17px; }
 		}
 		@media (max-width: 660px) {
@@ -69,16 +75,30 @@
 				padding: 40px 20px;
 			}
 		}
-		@media (max-width: 400px) {
+		@media (max-width: 450px) {
 			padding: 40px 10vw;
-			.text h1 { font-size: 25px; }
+			.text h1 {
+				.head { font-size: 20px  }
+				.subhead { font-size: 30px  }
+			}
+			.text h2 { font-size: 16px; }
 			.buttons { height: 60px; }
 		}
 		@media (max-width: 370px) {
-			.content {
-				padding: 40px 10px;
-				.large-btn { font-size: 18px }
+			.content { padding: 40px 10px; }
+			.text h1 {
+				.head { font-size: 20px  }
+				.subhead { font-size: 25px  }
 			}
+			.text h2 { font-size: 15px; }
+			.large-btn { font-size: 18px }
+		}
+		@media (max-width: 350px) {
+			.text h1 {
+				.head { font-size: 18px  }
+				.subhead { font-size: 25px  }
+			}
+			.text h2 { font-size: 13px; }
 		}
 	}
 	#how-it-works{
