@@ -1,6 +1,3 @@
-.actions
-	= f.submit "Update Profile", class: 'brand-btn light-brand-btn med-btn'
-
 #client-style
 	.col-md-12.styles-container
 		%h4 Choose Your Style:
@@ -12,3 +9,6 @@
 				=react_component('HairProperties', props: {properties: @hair_types, hairPropType: "HairType", currentId: @current_type_id, header: "Hair Type"}, prerender: false, html_options: {class: 'type'})
 				=react_component('HairProperties', props: {properties: @hair_widths, hairPropType: "HairWidth", currentId: @current_width_id, header: "Hair Width"}, prerender: false, html_options: {class: 'width'})
 				=react_component('HairProperties', props: {properties: @hair_densities, hairPropType: "HairDensity", currentId: @current_density_id, header: "Hair Density (amount of hair in a given area)"}, prerender: false , html_options: {class: 'density'})
+
+.actions
+	= f.submit "Update Profile", class: 'brand-btn light-brand-btn med-btn'

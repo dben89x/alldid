@@ -26,9 +26,6 @@
 	.col-md-12
 		=f.text_field :twitter, placeholder: "Twitter", class: 'profile-input profile-name-input'
 
-.actions
-	= f.submit "Update Profile", class: 'brand-btn light-brand-btn med-btn'
-
 .col-md-12.styles-container
 	%h4 Select All Your Qualified Styles:
 	#user-styles
@@ -38,3 +35,6 @@
 	%h4 Extra Services
 	#user-services
 		=react_component 'UserServices', props: {all_services: @all_services, user_services: @user_services, barberId: @barber_id}, prerender: false
+
+.actions
+	= f.submit "Update Profile", class: 'brand-btn light-brand-btn med-btn'
