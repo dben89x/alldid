@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+`foreman start -f Procfile.dev` to start development server.
 
-Things you may want to cover:
+### Data transfer
+To transfer database from staging to prod (or vice versa)...
 
-* Ruby version
+Case 1 - If transferring to prod from staging
+Case 2 - If transferring to staging from prod
 
-* System dependencies
+Case 1:
+`heroku pg:backups:capture -r staging`
+`heroku pg:backups:download -r staging`
 
-* Configuration
+Case 2:
+`heroku pg:backups:capture -r prod`
+`heroku pg:backups:download -r prod`
 
-* Database creation
+Upload .dump file to AWS. Make the file public. Copy URL for the dump file.
 
-* Database initialization
+Case 1:
+`heroku pg:backups:restore 'YOUR_URL' -r prod`
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Case 2:
+`heroku pg:backups:restore 'YOUR_URL' -r staging`

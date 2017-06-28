@@ -8,14 +8,19 @@ class BarbersController < ApplicationController
 	end
 
 	def calendar
-		@barber = Barber.find(params[:barber])
-		@minutes = @barber.minutes
-		@rate = @barber.rate
-		@schedule = @barber.schedules.last.try(:get_json)
-		@unavailable_days = get_unavailable_days(@schedule)
-		@client = current_user
-		@services = Service.all
-		@styles = @barber.styles
+		unless current_user.is_a? Barber
+			@barber = Barber.find(params[:barber])
+			@minutes = @barber.minutes
+			@rate = @barber.rate
+			@schedule = @barber.schedules.last.try(:get_json)
+			@unavailable_days = get_unavailable_days(@schedule)
+			@client = current_user
+			@services = Service.all
+			@styles = @barber.styles
+		else
+			flash[:warning] = "You must be a client to use this feature."
+			redirect_to root_path
+		end
 	end
 
 	def schedule
