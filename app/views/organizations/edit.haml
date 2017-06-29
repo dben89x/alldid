@@ -9,7 +9,7 @@
 				.header="Your invite link:"
 				%button#organization-link-button.brand-btn{'data-clipboard-target' => 'organization-link-text'}
 					Copy link
-				%span#organization-link-text= "#{request.host}.com/?invite=#{@organization.code}"
+				%span#organization-link-text= "#{request.host}/?invite=#{@organization.code}"
 				%br
 				%br
 				.grey-text="Copy this link and give it to people you'd like to invite to your barber shop."
