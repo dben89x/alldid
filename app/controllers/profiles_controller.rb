@@ -25,6 +25,7 @@ class ProfilesController < ApplicationController
 		@styles = Style.all
 		@user_type = current_user.type
 		@all_services = Service.all.pluck(:name)
+		@locations = Location.all
 
 		if current_user.is_a? Barber
 			@barber_styles = current_user.barber_styles
@@ -42,6 +43,7 @@ class ProfilesController < ApplicationController
 	end
 
 	def update
+		@locations = Location.all
 		respond_to do |format|
 			if params[:profile][:services].present?
 				@profile.user_services.delete_all
