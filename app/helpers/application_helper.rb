@@ -37,6 +37,7 @@ module ApplicationHelper
 			favorite = user ? user.user_favorites.where(user_id: barber.id).present? : false
 
 			barbershop = barber.membership ? barber.organization.try(:name) : nil
+			location = barber.location ? barber.location.try(:name) : nil
 
 			# Put this in barber hash once more data is collected
 			# rates = User.includes(:profile).where.not(profiles: {hourly_rate: nil}).pluck(:hourly_rate)
@@ -50,7 +51,7 @@ module ApplicationHelper
 				avatar: barber.default_avatar,
 				headline: barber.headline,
 				bio: barber.bio,
-				location: barber.location,
+				location: location,
 				price: find_standard_price_comparisons(barber.rate),
 				barbershop: barbershop,
 				rate: barber.rate,

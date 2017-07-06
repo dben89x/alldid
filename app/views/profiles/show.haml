@@ -10,7 +10,9 @@
 					=@user.try(:name)
 				.user-location
 					%span.fa.fa-map-marker
-					=@user.try(:location)
+					=@user.try(:location).try(:name)
+				.user-ethnicity
+					=@user.try(:ethnicity).try(:name)
 
 		-if @user_type == "Client"
 			.client-details

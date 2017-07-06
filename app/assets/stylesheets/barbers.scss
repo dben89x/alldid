@@ -305,7 +305,7 @@
 				font-size: 18px;
 				color: $lightBrand;
 			}
-			.barber-headline, .user-headline {
+			.barber-headline, .user-ethnicity {
 				font-weight: 600;
 				font-size: 15px;
 				color: darken($white, 25%);
@@ -319,7 +319,7 @@
 					.barber-name, .barber-location, .barber-price, .barber-headline {
 						width: 100%;
 					}
-					.user-name, .user-location, .user-price, .user-headline {
+					.user-name, .user-location, .user-price, .user-ethnicity {
 						width: 100%;
 					}
 					.services-and-styles {
@@ -407,7 +407,7 @@
 				.barber-name, .barber-location, .barber-price, .barber-headline {
 					width: 100%;
 				}
-				.user-name, .user-location, .user-price, .user-headline {
+				.user-name, .user-location, .user-price, .user-ethnicity {
 					width: 100%;
 				}
 			}

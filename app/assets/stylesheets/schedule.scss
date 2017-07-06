@@ -3,23 +3,23 @@
 .appointments-container {
 	h3 { margin-bottom: 30px; }
 	display: inline;
-	.appointments {
-		white-space: nowrap;
-		background: rgba(94, 21, 19, 0.8);
+}
+.appointments-list {
+	white-space: nowrap;
+	background: rgba(94, 21, 19, 0.8);
+	color: white;
+	padding: 20px 40px;
+	margin: 10px 0;
+	border-radius: 6px;
+	a {
 		color: white;
-		padding: 20px 40px;
-		margin: 10px 0;
-		border-radius: 6px;
-		a {
-			color: white;
-			text-decoration: none;
-			img {
-				border-radius: 50%;
-				margin: 0 5px 0 0;
-			}
+		text-decoration: none;
+		img {
+			border-radius: 50%;
+			margin: 0 5px 0 0;
 		}
-		.col-md-2 {margin: 10px 0;}
 	}
+	.col-md-2 {margin: 10px 0;}
 }
 
 .schedule-container {

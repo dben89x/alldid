@@ -3,6 +3,7 @@
 		.col-md-12{style: 'margin-bottom:20px'}
 			-path = current_user.is_a?(Client) ? '/profiles' : '/barbers'
 			-id = current_user.is_a?(Client) ? @profile.id : current_user.id
-			=link_to "View Public Profile", "#{path}/#{id}", class: 'med-btn brand-btn dark-brand-btn'
+			-unless current_user.is_a? Admin
+				=link_to "View Public Profile", "#{path}/#{id}", class: 'med-btn brand-btn dark-brand-btn'
 		.form.cms-form.light-form
 			=render 'form'

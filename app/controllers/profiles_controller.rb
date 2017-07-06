@@ -98,7 +98,7 @@ class ProfilesController < ApplicationController
 		params.require(:profile).permit(
 		:hair_type, :hair_width, :hair_density, :bio, :first_name, :last_name,
 		:avatar, :headline, :location, :zip, :avatar_cache, :facebook, :instagram,
-		:twitter, :current_style_id, :rate, :minutes
+		:twitter, :current_style_id, :rate, :minutes, :location_id, :ethnicity_id
 		)
 	end
 end

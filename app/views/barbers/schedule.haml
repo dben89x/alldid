@@ -5,7 +5,7 @@
 				Your appointments:
 
 			-@events.each do |event|
-				.appointments.col-md-12{style:'text-align:left'}
+				.appointments-list.col-md-12{style:'text-align:left'}
 					.col-md-2
 						=link_to profile_path(event.client) do
 							=image_tag event.client.default_avatar, width: 35, class: 'avatar'

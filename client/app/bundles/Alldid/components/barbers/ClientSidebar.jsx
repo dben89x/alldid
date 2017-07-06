@@ -9,7 +9,7 @@ export default class ClientSidebar extends React.Component {
 	render () {
 		const { style, userLocation, avatar, signedIn } = this.props;
 		const styleString = style ? style.toUpperCase() : null
-		const locationString = userLocation ? userLocation.toUpperCase() : null
+		// const locationString = userLocation ? userLocation.toUpperCase() : null
 
 		// Pricing
 		// var priceString = ``

@@ -21,6 +21,7 @@
 }
 .profile-name-input {
 	border: none;
+	background: transparent;
 	border-bottom: 1px solid lighten($lightBrand,10%);
 	font-size: 20px;
 	width: 100%;
@@ -35,7 +36,7 @@
 		outline: 1px solid $lightBrand;
 	}
 }
-.location .dropdown {
+#location .dropdown, #ethnicity .dropdown {
 	text-align-last: center;
 	border: 1px solid;
 	margin: 15px 0;

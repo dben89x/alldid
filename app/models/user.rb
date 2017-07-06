@@ -43,7 +43,7 @@ class User < ApplicationRecord
 
 	delegate :first_name, :last_name, :name, :avatar, :headline, :bio, :location,
 	:rate, :user_styles, :user_services, :user_favorites, :current_style_id,
-	:minutes, :client_hair_properties, :facebook, :instagram, :twitter,
+	:minutes, :client_hair_properties, :facebook, :instagram, :twitter, :ethnicity,
 	to: :profile
 
 	def create_profile

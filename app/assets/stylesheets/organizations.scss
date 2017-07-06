@@ -67,6 +67,16 @@
 			transition: 0.3s;
 		}
 	}
+	.view-schedule {
+		text-align: center;
+		display: inline-block;
+		border: 2px solid #737373;
+		padding: 2px 10px;
+		border-radius: 6px;
+		color: #737373;
+		cursor: pointer;
+		margin: 10px;
+	}
 }
 .org-input-wrapper {
 	position:relative;
