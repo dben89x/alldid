@@ -23,29 +23,34 @@
 					-count = 1
 					-@organization.memberships.each do |membership|
 						-unless membership.user == current_user
-							= membership.user.email if membership.user
-							=link_to membership_path(membership), method: :delete, data: { confirm: "Are you sure?" }, class: 'delete-membership' do
-								.fa.fa-times
-							%br
-							.view-schedule{"data-toggle": "collapse", "data-target": "#member-schedule-#{count}"}
-								="View Schedule"
-								%span.fa.fa-chevron-down
-							.collapse{id: "member-schedule-#{count}"}
-								-membership.user.events.each do |event|
-									.appointments-list.col-md-12{style:'text-align:left'}
-										.col-md-2
-											=link_to profile_path(event.client) do
-												=image_tag event.client.default_avatar, width: 35, class: 'avatar'
-												=event.client.name
-										.col-md-2
-											=event.start_time.strftime('%a, %b %-d')
-										.col-md-2
-											="From: #{event.start_time.strftime('%I:%M %p')}"
-										.col-md-2
-											="To: #{event.end_time.strftime('%I:%M %p')}"
-										.col-md-2
-											=event.style.try(:name).try(:capitalize)
-										.col-md-2
-											Services
+							.org-member
+								= membership.user.email if membership.user
+								=link_to membership_path(membership), method: :delete, data: { confirm: "Are you sure?" }, class: 'delete-membership' do
+									.fa.fa-times
+								%br
+								.view-schedule{"data-toggle": "collapse", "data-target": "#member-schedule-#{count}"}
+									="View Schedule"
+									%span.fa.fa-chevron-down
+								%br
+								.collapse{id: "member-schedule-#{count}"}
+									-if membership.user.events.any?
+										-membership.user.events.each do |event|
+											.appointments-list.col-md-12{style:'text-align:left'}
+												.col-md-2
+													=link_to profile_path(event.client) do
+														=image_tag event.client.default_avatar, width: 35, class: 'avatar'
+														=event.client.name
+												.col-md-2
+													=event.start_time.strftime('%a, %b %-d')
+												.col-md-2
+													="From: #{event.start_time.strftime('%I:%M %p')}"
+												.col-md-2
+													="To: #{event.end_time.strftime('%I:%M %p')}"
+												.col-md-2
+													=event.style.try(:name).try(:capitalize)
+												.col-md-2
+													Services
+									-else
+										.grey-text="#{membership.user.name} has no appointments."
 
-							-count += 1
+								-count += 1
