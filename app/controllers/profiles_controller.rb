@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-	before_action :set_profile, only: [:edit, :update]
+	before_action :set_variables, only: [:edit, :update]
 	before_action :get_hair_properties, only: [:show, :edit]
 	skip_before_action :verify_authenticity_token
 
@@ -76,8 +76,10 @@ class ProfilesController < ApplicationController
 
 	private
 
-	def set_profile
+	def set_variables
 		@profile = current_user.profile
+		@locations = Location.all
+		@ethnicities = Ethnicity.all
 	end
 
 	def get_hair_properties
