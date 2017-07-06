@@ -11,8 +11,6 @@
 				.user-location
 					%span.fa.fa-map-marker
 					=@user.try(:location)
-				.user-headline
-					=@user.try(:headline)
 
 		-if @user_type == "Client"
 			.client-details

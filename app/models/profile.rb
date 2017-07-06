@@ -29,6 +29,8 @@ class Profile < ActiveRecord::Base
 	has_many :user_services, inverse_of: :profile
 	has_many :user_favorites, inverse_of: :profile
 	has_many :client_hair_properties, inverse_of: :profile
+	belongs_to :location
+	belongs_to :ethnicity
 
 	validates_length_of :headline, minimum: 5, maximum: 120, allow_blank: true
 

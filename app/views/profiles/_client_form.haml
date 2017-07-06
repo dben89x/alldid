@@ -1,3 +1,7 @@
+#ethnicity
+	.col-md-12
+		=f.select :ethnicity_id, options_for_select(@ethnicities.map{ |ethnicity| [ethnicity.name, ethnicity.id]}), {}, html_options = {class: 'profile-input profile-name-input'}
+
 #client-style
 	.col-md-12.styles-container
 		%h4 Choose Your Style:

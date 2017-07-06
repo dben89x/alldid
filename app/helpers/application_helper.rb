@@ -42,7 +42,6 @@ module ApplicationHelper
 
 			# Put this in barber hash once more data is collected
 			# price: find_price_quadrant(quadrant_values, barber.hourly_rate),
-
 			{
 				id: barber.id,
 				name: barber.name,
@@ -51,6 +50,7 @@ module ApplicationHelper
 				bio: barber.bio,
 				location: barber.location,
 				price: find_standard_price_comparisons(barber.rate),
+				barbershop: barber.organization.try(:name),
 				rate: barber.rate,
 				minutes: barber.minutes,
 				barberStyles: barber_styles,

@@ -28,7 +28,7 @@
 
 	#location
 		.col-md-12
-			=f.text_field :location, placeholder: "Location", class: 'profile-input profile-name-input'
+			=f.select :location_id, options_for_select(@locations.map{ |location| [location.name, location.id]}), {}, html_options = {class: 'profile-input profile-name-input'}
 
 	= (render 'barber_form', f: f) if current_user.is_a? Barber
 	= (render 'client_form', f: f) if current_user.is_a? Client

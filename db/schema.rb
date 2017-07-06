@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611185643) do
+ActiveRecord::Schema.define(version: 20170706175149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,10 @@ ActiveRecord::Schema.define(version: 20170611185643) do
     t.index ["client_id"], name: "index_endorsements_on_client_id", using: :btree
   end
 
+  create_table "ethnicities", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "events", force: :cascade do |t|
     t.integer  "client_id"
     t.integer  "barber_id"
@@ -66,6 +70,10 @@ ActiveRecord::Schema.define(version: 20170611185643) do
     t.string "type"
     t.string "name"
     t.text   "description"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -107,6 +115,8 @@ ActiveRecord::Schema.define(version: 20170611185643) do
     t.string  "instagram"
     t.string  "twitter"
     t.integer "minutes",           default: 0
+    t.integer "location_id"
+    t.integer "ethnicity_id"
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 

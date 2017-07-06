@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 	resources :styles
 	resources :services
 	resources :hair_properties
+	resources :locations
+	resources :ethnicities
 	resources :schedules
 	resources :events
 	resources :memberships
@@ -33,7 +35,7 @@ Rails.application.routes.draw do
 	match 'dashboard' => 'organizations#edit', via: :get
 	match 'stripe/hooks' => 'stripe_hooks#receive_webhooks', via: :post
 	match 'hooks' => 'hooks#dispatch_event', via: :post
-	
+
 	put 'change_hair_properties' => 'hair_properties#change'
 
 	post 'schedules' => 'barbers#create_schedule'

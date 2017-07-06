@@ -59,7 +59,7 @@ export default class SearchContainer extends React.Component {
 	}
 
 	render () {
-		const { id, name, headline, location, services, avatar, endorsements, price } = this.props.barber
+		const { id, name, headline, location, services, avatar, endorsements, price, barbershop } = this.props.barber
 
 		var priceString = ``
 		_.times( price, () => priceString = `${priceString}<span class='fa fa-usd'/>` )
@@ -91,7 +91,7 @@ export default class SearchContainer extends React.Component {
 							<span dangerouslySetInnerHTML={ priceHtml }/>
 						</div>
 						<div className='barber-headline'>
-							{headline}
+							{barbershop}
 						</div>
 						{ bookLink }
 					</div>
