@@ -35,6 +35,11 @@
 		outline: 1px solid $lightBrand;
 	}
 }
+.location .dropdown {
+	text-align-last: center;
+	border: 1px solid;
+	margin: 15px 0;
+}
 .bio-input {
 	border: 1px solid lighten($lightBrand,10%);
 	border-radius: 2px;

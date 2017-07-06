@@ -36,6 +36,8 @@ module ApplicationHelper
 			barber_styles = barber_styles.sort_by {|s| s[:endorsements]}.reverse
 			favorite = user ? user.user_favorites.where(user_id: barber.id).present? : false
 
+			barbershop = barber.membership ? barber.organization.try(:name) : nil
+
 			# Put this in barber hash once more data is collected
 			# rates = User.includes(:profile).where.not(profiles: {hourly_rate: nil}).pluck(:hourly_rate)
 			# quadrant_values = calculate_price_comparisons(rates)
@@ -50,7 +52,7 @@ module ApplicationHelper
 				bio: barber.bio,
 				location: barber.location,
 				price: find_standard_price_comparisons(barber.rate),
-				barbershop: barber.organization.try(:name),
+				barbershop: barbershop,
 				rate: barber.rate,
 				minutes: barber.minutes,
 				barberStyles: barber_styles,
