@@ -24,6 +24,15 @@ export default class ClientSidebar extends React.Component {
 		// 	</a>
 		// </div>
 
+		// Location
+		// <div className='location'>
+		// 	<h4>Your Location:</h4>
+		// 	<span>{ locationString }</span>
+		// 	<a href='/profile'>
+		// 		<span className='fa fa-pencil'/>
+		// 	</a>
+		// </div>
+
 		return (
 			<div id='client-sidebar-container' className='col-md-2'>
 				<div className='user-avatar'>
@@ -32,14 +41,6 @@ export default class ClientSidebar extends React.Component {
 				<div className='current-style'>
 					<h4>Preferred Style:</h4>
 					<span>{ styleString }</span>
-					<a href='/profile'>
-						<span className='fa fa-pencil'/>
-					</a>
-				</div>
-
-				<div className='location'>
-					<h4>Your Location:</h4>
-					<span>{ locationString }</span>
 					<a href='/profile'>
 						<span className='fa fa-pencil'/>
 					</a>
