@@ -1,6 +1,5 @@
 class EthnicitiesController < ApplicationController
 	before_action :set_ethnicity, only: [:show, :edit, :update, :destroy]
-	load_and_authorize_resource
 
 	def new
 		@ethnicity = Ethnicity.new
