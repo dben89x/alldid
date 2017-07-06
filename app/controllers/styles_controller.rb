@@ -54,7 +54,7 @@ class StylesController < ApplicationController
 	end
 
 	def style_params
-		params.require(:style).permit(:name,:description,:url)
+		params.require(:style).permit(:name, :description, :url, :url_cache)
 	end
 
 end

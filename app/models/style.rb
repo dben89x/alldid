@@ -9,5 +9,8 @@
 #
 
 class Style < ActiveRecord::Base
+	mount_uploader :url, StyleUploader
+	
 	has_many :events, inverse_of: :style
+
 end
