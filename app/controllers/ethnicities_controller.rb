@@ -17,7 +17,7 @@ class EthnicitiesController < ApplicationController
 
 		respond_to do |format|
 			if @ethnicity.save
-				format.html { redirect_to @ethnicity, notice: 'Ethnicity was successfully created.' }
+				format.html { redirect_to ethnicities_path, notice: 'Ethnicity was successfully created.' }
 				format.json { render :show, status: :created, location: @ethnicity }
 			else
 				format.html { render :new }
@@ -29,7 +29,7 @@ class EthnicitiesController < ApplicationController
 	def update
 		respond_to do |format|
 			if @ethnicity.update(ethnicity_params)
-				format.html { redirect_to @ethnicity, notice: 'Ethnicity was successfully updated.' }
+				format.html { redirect_to ethnicities_path, notice: 'Ethnicity was successfully updated.' }
 				format.json { render :show, status: :ok, location: @ethnicity }
 			else
 				format.html { render :edit }
