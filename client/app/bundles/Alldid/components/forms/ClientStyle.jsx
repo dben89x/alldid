@@ -30,9 +30,12 @@ export default class ClientStyle extends React.Component {
 
 	render () {
 		const {style} = this.props
+		console.log('foo')
+		console.log(style.url)
+		console.log(style.url.url)
 		return (
 			<div className={`image-container ${this.state.selectedClass}`} onClick={this.handleStyleChange}>
-				<img src={`/assets/styles/${style.url}`} width={170} className='style-img'/>
+				<img src={style.url.url} width={170} className='style-img'/>
 				<div className='overlay'>
 					<div className='text'>{style.name.charAt(0).toUpperCase() + style.name.slice(1)}</div>
 				</div>
