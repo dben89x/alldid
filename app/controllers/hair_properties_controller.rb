@@ -1,6 +1,7 @@
 class HairPropertiesController < ApplicationController
 	before_action :set_hair_property, only: [:show, :edit, :update, :destroy]
 	skip_before_action :verify_authenticity_token
+	authorize_resource
 
 	def new
 		@hair_property = HairProperty.new
@@ -49,7 +50,7 @@ class HairPropertiesController < ApplicationController
 		# Destroy all client hair properties that belong to this user
 		ClientHairProperty.where(profile: profile, hair_property_id: hair_properties).delete_all
 		ClientHairProperty.create(profile: profile, hair_property_id: params[:hair_property_id])
-		
+
 		render json: { status: 200}
 	end
 

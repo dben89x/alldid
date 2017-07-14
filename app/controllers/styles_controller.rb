@@ -1,13 +1,12 @@
 class StylesController < ApplicationController
 	before_action :set_style, only: [:show, :edit, :update, :destroy]
-	load_and_authorize_resource
+	authorize_resource
 
 	def new
 		@style = Style.new
 	end
 
 	def edit
-
 	end
 
 	def index
