@@ -12,7 +12,7 @@ export default class SearchContainer extends React.Component {
 
 		return (
 			<div id="barber-container" className='col-md-10'>
-				<FeaturedBarber featured={ featured }/>
+				<FeaturedBarber featured={ featured } profileId={ profileId } links={true}/>
 				<Barbers barbers={ barbers } profileId={ profileId } links={true}/>
 			</div>
 		);

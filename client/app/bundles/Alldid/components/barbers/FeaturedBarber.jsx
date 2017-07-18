@@ -7,9 +7,11 @@ export default class FeaturedBarber extends React.Component {
 	}
 
 	render () {
+		const { featured, profileId } = this.props;
+
 		return (
 			<div id='featured-barber'>
-				<BarberLink barber={this.props.featured} key={barber.id} profileId={profileId} links={links}/>
+				<BarberLink barber={featured} profileId={profileId} links={true}/>
 			</div>
 		);
 	}
