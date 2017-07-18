@@ -9,7 +9,7 @@ export default class FeaturedBarber extends React.Component {
 	render () {
 		return (
 			<div id='featured-barber'>
-				<BarberLink barber={this.props.featured} title="Your Perfect Barber"/>
+				<BarberLink barber={this.props.featured} key={barber.id} profileId={profileId} links={links}/>
 			</div>
 		);
 	}
