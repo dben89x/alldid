@@ -1,7 +1,7 @@
 class HairPropertiesController < ApplicationController
 	before_action :set_hair_property, only: [:show, :edit, :update, :destroy]
 	skip_before_action :verify_authenticity_token
-	authorize_resource, except: :change
+	authorize_resource except: [:change]
 
 	def new
 		@hair_property = HairProperty.new
