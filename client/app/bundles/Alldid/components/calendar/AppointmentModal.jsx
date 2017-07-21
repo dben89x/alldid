@@ -126,7 +126,7 @@ export default class AppointmentModal extends React.Component {
 							</label>
 
 							<label>
-								Services:
+								Extra Services:
 								<br/>
 								<Select name="Extra Services"
 									multi={true}
