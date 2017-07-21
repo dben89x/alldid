@@ -7,7 +7,7 @@
 			- @services.each do |service|
 				= link_to edit_service_path(service) do
 					.fa.fa-pencil.edit
-				%span.service=service.name
-				= link_to service, method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-service' do
-					%span.fa.fa-times.delete
+					%span.service=service.name
+				-# = link_to service, method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-service' do
+				-# 	%span.fa.fa-times.delete
 				%br

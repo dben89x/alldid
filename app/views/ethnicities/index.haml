@@ -7,7 +7,7 @@
 			- @ethnicities.each do |ethnicity|
 				= link_to edit_ethnicity_path(ethnicity) do
 					.fa.fa-pencil.edit
-				%span.ethnicity=ethnicity.name
-				= link_to ethnicity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-ethnicity' do
-					%span.fa.fa-times.delete
+					%span.ethnicity=ethnicity.name
+				-# = link_to ethnicity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-ethnicity' do
+				-# 	%span.fa.fa-times.delete
 				%br

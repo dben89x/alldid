@@ -7,7 +7,7 @@
 			- @styles.each do |style|
 				= link_to edit_style_path(style) do
 					.fa.fa-pencil.edit
-				%span.style=style.name
-				= link_to style, method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-style' do
-					%span.fa.fa-times.delete
+					%span.style=style.name
+				-# = link_to style, method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-style' do
+				-# 	%span.fa.fa-times.delete
 				%br

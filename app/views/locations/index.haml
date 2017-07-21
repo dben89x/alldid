@@ -7,7 +7,7 @@
 			- @locations.each do |location|
 				= link_to edit_location_path(location) do
 					.fa.fa-pencil.edit
-				%span.location=location.name
-				= link_to location, method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-location' do
-					%span.fa.fa-times.delete
+					%span.location=location.name
+				-# = link_to location, method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-location' do
+				-# 	%span.fa.fa-times.delete
 				%br

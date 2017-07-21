@@ -7,23 +7,23 @@
 			- @hair_types.each do |hair_type|
 				= link_to edit_hair_property_path(hair_type) do
 					.fa.fa-pencil.edit
-				%span.hair_type=hair_type.name
-				= link_to hair_property_path(hair_type), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-hair_property' do
-					%span.fa.fa-times.delete
+					%span.hair_type=hair_type.name
+				-# = link_to hair_property_path(hair_type), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-hair_property' do
+				-# 	%span.fa.fa-times.delete
 				%br
 			%h3 Hair Widths:
 			- @hair_widths.each do |hair_width|
 				= link_to edit_hair_property_path(hair_width) do
 					.fa.fa-pencil.edit
-				%span.hair_width=hair_width.name
-				= link_to hair_property_path(hair_width), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-hair_property' do
-					%span.fa.fa-times.delete
+					%span.hair_width=hair_width.name
+				-# = link_to hair_property_path(hair_width), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-hair_property' do
+				-# 	%span.fa.fa-times.delete
 				%br
 			%h3 Hair Densities:
 			- @hair_densities.each do |hair_density|
 				= link_to edit_hair_property_path(hair_density) do
 					.fa.fa-pencil.edit
-				%span.hair_density=hair_density.name
-				= link_to hair_property_path(hair_density), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-hair_property' do
-					%span.fa.fa-times.delete
+					%span.hair_density=hair_density.name
+				-# = link_to hair_property_path(hair_density), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-hair_property' do
+				-# 	%span.fa.fa-times.delete
 				%br
