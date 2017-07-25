@@ -28,7 +28,8 @@
 
 	#location
 		.col-md-12
-			=f.select :location_id, options_for_select(@locations.map{ |location| [location.name, location.id]}, selected: [current_user.location.name, current_user.location.id]), {prompt: "Choose your location",}, html_options = {class: 'profile-input profile-name-input dropdown'}
+			-selected = current_user.location ? [current_user.location.name, current_user.location.id] : nil
+			=f.select :location_id, options_for_select(@locations.map{ |location| [location.name, location.id]}, selected: selected), {prompt: "Choose your location",}, html_options = {class: 'profile-input profile-name-input dropdown'}
 
 	= (render 'barber_form', f: f) if current_user.is_a? Barber
 	= (render 'client_form', f: f) if current_user.is_a? Client
