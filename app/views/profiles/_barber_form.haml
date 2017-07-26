@@ -1,9 +1,10 @@
 #classic-haircut-info
 	.col-md-6
-		= f.number_field :minutes, autofocus: false, placeholder: "How long does a haircut take?", class: 'profile-input profile-name-input'
+		= f.select :minutes, [ ["15 minutes", 15], ["30 minutes", 30], ["45 minutes", 45], ["60 minutes", 60] ], {placeholder: "How long does a haircut take?"}, class: 'profile-input profile-name-input dropdown minutes'
+		%br
 		="How many minutes does a haircut take?"
 	.col-md-6
-		= f.number_field :rate, autofocus: false, placeholder: "How much does a haircut cost? ($)", class: 'profile-input profile-name-input'
+		= f.number_field :rate, autofocus: false, placeholder: "", class: 'profile-input profile-name-input'
 		="How much does a haircut cost? ($)"
 
 #barber-set-schedule

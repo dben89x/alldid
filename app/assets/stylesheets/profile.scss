@@ -36,6 +36,11 @@
 		outline: 1px solid $lightBrand;
 	}
 }
+select.minutes {
+	border: 1px solid #237a95;
+	margin-top: 25px;
+	text-align-last: center;
+}
 #location .dropdown, #ethnicity .dropdown {
 	text-align-last: center;
 	border: 1px solid;
