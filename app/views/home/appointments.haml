@@ -2,9 +2,8 @@
 	.appointments-container
 		%h1
 			Your appointments:
-
 		-@events.each do |event|
-			.appointments.col-md-12{style:'text-align:left'}
+			.appointments-list.col-md-12{style:'text-align:left'}
 				.col-md-2
 					=link_to barber_path(event.barber) do
 						=image_tag event.barber.default_avatar, width: 35, class: 'avatar'
