@@ -1,11 +1,11 @@
 #cms
 	.container
 		%h1 Ethnicities
-		= link_to 'New Ethnicity', new_ethnicity_path
+		= link_to 'New Ethnicity', new_ethnicity_path, class: 'edit'
 		.ethnicities
 			%h3 Ethnicities:
 			- @ethnicities.each do |ethnicity|
-				= link_to edit_ethnicity_path(ethnicity) do
+				= link_to edit_ethnicity_path(ethnicity), class: 'edit' do
 					.fa.fa-pencil.edit
 					%span.ethnicity=ethnicity.name
 				-# = link_to ethnicity, method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-ethnicity' do

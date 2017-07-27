@@ -18,7 +18,8 @@ class EthnicitiesController < ApplicationController
 
 		respond_to do |format|
 			if @ethnicity.save
-				format.html { redirect_to ethnicities_path, notice: 'Ethnicity was successfully created.' }
+				flash[:success] = 'Ethnicity was successfully created.'
+				format.html { redirect_to ethnicities_path }
 				format.json { render :show, status: :created, location: @ethnicity }
 			else
 				format.html { render :new }
@@ -30,7 +31,8 @@ class EthnicitiesController < ApplicationController
 	def update
 		respond_to do |format|
 			if @ethnicity.update(ethnicity_params)
-				format.html { redirect_to ethnicities_path, notice: 'Ethnicity was successfully updated.' }
+				flash[:success] = 'Ethnicity was successfully updated.'
+				format.html { redirect_to ethnicities_path }
 				format.json { render :show, status: :ok, location: @ethnicity }
 			else
 				format.html { render :edit }
@@ -40,9 +42,10 @@ class EthnicitiesController < ApplicationController
 	end
 
 	def destroy
-		@ethnicity.destroy
+			@ethnicity.destroy
 		respond_to do |format|
-			format.html { redirect_to ethnicities_path, notice: 'Ethnicity was successfully destroyed.' }
+			flash[:success] = 'Ethnicity was successfully destroyed.'
+			format.html { redirect_to ethnicities_path }
 			format.json { head :no_content }
 		end
 	end

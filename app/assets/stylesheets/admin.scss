@@ -19,14 +19,14 @@
 	.styles {
 		font-size: 17px;
 	}
-	.edit {
+	a.edit {
 		text-decoration: none;
 		color: $lightBrand;
 	}
 	.delete{
 		color: #B60000;
 	}
-	.edit:hover, .delete:hover {
+	a.edit:hover, a.delete:hover {
 		text-decoration: none;
 	}
 	.style {

@@ -1,11 +1,11 @@
 #cms
 	.container
 		%h1 Hair Properties
-		= link_to 'New Hair Property', new_hair_property_path
+		= link_to 'New Hair Property', new_hair_property_path, class: 'edit'
 		.hair_properties
 			%h3 Hair Types:
 			- @hair_types.each do |hair_type|
-				= link_to edit_hair_property_path(hair_type) do
+				= link_to edit_hair_property_path(hair_type), class: 'edit' do
 					.fa.fa-pencil.edit
 					%span.hair_type=hair_type.name
 				-# = link_to hair_property_path(hair_type), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-hair_property' do
@@ -13,7 +13,7 @@
 				%br
 			%h3 Hair Widths:
 			- @hair_widths.each do |hair_width|
-				= link_to edit_hair_property_path(hair_width) do
+				= link_to edit_hair_property_path(hair_width), class: 'edit' do
 					.fa.fa-pencil.edit
 					%span.hair_width=hair_width.name
 				-# = link_to hair_property_path(hair_width), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-hair_property' do
@@ -21,7 +21,7 @@
 				%br
 			%h3 Hair Densities:
 			- @hair_densities.each do |hair_density|
-				= link_to edit_hair_property_path(hair_density) do
+				= link_to edit_hair_property_path(hair_density), class: 'edit' do
 					.fa.fa-pencil.edit
 					%span.hair_density=hair_density.name
 				-# = link_to hair_property_path(hair_density), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-hair_property' do

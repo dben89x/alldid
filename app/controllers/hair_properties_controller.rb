@@ -22,7 +22,8 @@ class HairPropertiesController < ApplicationController
 
 		respond_to do |format|
 			if @hair_property.save
-				format.html { redirect_to @hair_property, notice: 'Hair Property was successfully created.' }
+				flash[:success] = 'Hair Property was successfully created.'
+				format.html { redirect_to @hair_property }
 				format.json { render :show, status: :created, location: @hair_property }
 			else
 				format.html { render :new }
@@ -34,7 +35,8 @@ class HairPropertiesController < ApplicationController
 	def update
 		respond_to do |format|
 			if @hair_property.update(hair_property_params)
-				format.html { redirect_to @hair_property, notice: 'Hair Property was successfully updated.' }
+				flash[:success] = 'Hair Property was successfully updated.'
+				format.html { redirect_to @hair_property }
 				format.json { render :show, status: :ok, location: @hair_property }
 			else
 				format.html { render :edit }
@@ -55,9 +57,10 @@ class HairPropertiesController < ApplicationController
 	end
 
 	def destroy
-		@hair_property.destroy
+			@hair_property.destroy
 		respond_to do |format|
-			format.html { redirect_to hair_properties_path, notice: 'Hair Property was successfully destroyed.' }
+			flash[:success] = 'Hair Property was successfully destroyed.'
+			format.html { redirect_to hair_properties_path }
 			format.json { head :no_content }
 		end
 	end
