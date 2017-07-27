@@ -18,7 +18,7 @@
 				.col-md-2
 					="Style: #{event.style.try(:name).try(:capitalize)}"
 				.col-md-2
-					Services:
+					Extra Services:
 					%br
 					-services = event.try(:services).try(:split, ',')
 					-services.try(:each) do |service|

@@ -10,8 +10,8 @@ export default class Calendar extends React.Component {
 		super(props)
 		const thisDate = new Date()
 		var day = moment(thisDate).format('dddd')
-		var start = this.props.schedule[day].start
-		var end = this.props.schedule[day].end
+		var start = this.props.schedule[day]['start']
+		var end = this.props.schedule[day]['end']
 
 		this.state = {
 			fcDate: thisDate,
@@ -25,8 +25,8 @@ export default class Calendar extends React.Component {
 
 	updateDailyEvents =(date)=> {
 		var day = moment(date).format('dddd')
-		var start = this.props.schedule[day].start
-		var end = this.props.schedule[day].end
+		var start = this.props.schedule[day]['start']
+		var end = this.props.schedule[day]['end']
 
 		this.setState({fcDate: date, fcStart: start, fcEnd: end, selectedDay: date})
 	}

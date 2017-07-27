@@ -34,8 +34,8 @@ export default class DailyEvents extends React.Component {
 				}
 			});
 		} else {
-			var start = this.props.schedule[day].start
-			var end = this.props.schedule[day].end
+			var start = this.props.schedule[day]['start']
+			var end = this.props.schedule[day]['end']
 			var date = this.props.date
 			var events = [{
 				title: `Unavailable on ${day}`,
@@ -61,8 +61,8 @@ export default class DailyEvents extends React.Component {
 				}
 			});
 		} else {
-			var start = nextProps.schedule[day].start
-			var end = nextProps.schedule[day].end
+			var start = nextProps.schedule[day]['start']
+			var end = nextProps.schedule[day]['end']
 			var date = nextProps.date
 			console.log(date)
 			var events = [{
@@ -111,8 +111,6 @@ export default class DailyEvents extends React.Component {
 		const windowHeight = window.innerHeight
 		const startTime = `${parseInt(props.startTime/100)}:${props.startTime%100}:00`
 		const endTime = `${parseInt(props.endTime/100)}:${props.endTime%100}:00`
-		console.log(moment.utc(events[0]['start']).local())
-		console.log(moment.utc(events[0]['start']).local().format('HH:mm:ss'))
 		$('#calendar').fullCalendar('destroy')
 		$('#calendar').fullCalendar({
 			timezone: "local",
