@@ -12,9 +12,9 @@
 				.col-md-2
 					=event.try(:start_time).try(:strftime, '%a, %b %-d')
 				.col-md-2
-					="From: #{event.try(:start_time).try(:strftime, '%I:%M %p')}"
+					="From: #{event.try(:start_time).try(:localtime).try(:strftime, '%I:%M %p')}"
 				.col-md-2
-					="To: #{event.try(:end_time).try(:strftime, '%I:%M %p')}"
+					="To: #{event.try(:end_time).try(:localtime).try(:strftime, '%I:%M %p')}"
 				.col-md-2
 					="Style: #{event.style.try(:name).try(:capitalize)}"
 				.col-md-2

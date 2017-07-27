@@ -28,7 +28,7 @@ export default class DailyEvents extends React.Component {
 				dataType: 'json',
 				success: (data) => {
 					var newEvents = data.map((d)=>{
-						return { title: "Appointment", start: d.start_time, end: d.end_time}
+						return { title: "Appointment", start: moment.utc(d.start_time).local().format('HH:mm:ss'), end: moment.utc(d.end_time).local().format('HH:mm:ss') }
 					})
 					_this.renderCalendar(_this.props, newEvents)
 				}
@@ -55,7 +55,7 @@ export default class DailyEvents extends React.Component {
 				dataType: 'json',
 				success: (data) => {
 					var newEvents = data.map((d)=>{
-						return { title: "Appointment", start: d.start_time, end: d.end_time}
+						return { title: "Appointment", start: moment.utc(d.start_time).local().format('HH:mm:ss'), end: moment.utc(d.end_time).local().format('HH:mm:ss') }
 					})
 					this.renderCalendar(nextProps, newEvents)
 				}
@@ -77,6 +77,10 @@ export default class DailyEvents extends React.Component {
 	updateEvents =(json)=> {
 		this.renderNewEvent(json)
 		this.setState({modalShow: false})
+	}
+
+	utcToLocalString =(time)=> {
+		return moment.utc(time).local().format('HH:mm:ss')
 	}
 
 	renderNewEvent =(json)=> {
@@ -107,7 +111,8 @@ export default class DailyEvents extends React.Component {
 		const windowHeight = window.innerHeight
 		const startTime = `${parseInt(props.startTime/100)}:${props.startTime%100}:00`
 		const endTime = `${parseInt(props.endTime/100)}:${props.endTime%100}:00`
-		console.log(events)
+		console.log(moment.utc(events[0]['start']).local())
+		console.log(moment.utc(events[0]['start']).local().format('HH:mm:ss'))
 		$('#calendar').fullCalendar('destroy')
 		$('#calendar').fullCalendar({
 			timezone: "local",
