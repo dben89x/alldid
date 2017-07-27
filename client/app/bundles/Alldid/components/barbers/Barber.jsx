@@ -58,18 +58,27 @@ export default class SearchContainer extends React.Component {
 		$(target).toggleClass('faved')
 	}
 
+	socialLink =(linkName)=> {
+		if (String(this.props.barber[linkName]).includes(`${linkName}.com`)) {
+			var className = linkName === 'instagram' ? `fa-${linkName}` : `fa-${linkName}-square`
+			return <span className={`fa ${className}`} onClick={ (e)=> {this.handleSocialClick(e, linkName)} }/>
+		}
+	}
+
 	render () {
 		const { id, name, headline, location, services, avatar, endorsements, price, barbershop } = this.props.barber
-
+		const { barber, links } = this.props
 		var priceString = ``
 		_.times( price, () => priceString = `${priceString}<span class='fa fa-usd'/>` )
 		const priceHtml = {__html: priceString}
 
-		const barberStyles = this.props.barber.barberStyles.map( (barberStyle) => <StyleTag barberStyle={barberStyle} key={barberStyle.id} endorsements={barberStyle.endorsements} links={this.props.links}/>)
-		const additionalAttributes = this.props.links === undefined ? null : <BarberShowAttributes barber={this.props.barber}/>
+		const barberStyles = barber.barberStyles.map( (barberStyle) => <StyleTag barberStyle={barberStyle} key={barberStyle.id} endorsements={barberStyle.endorsements} links={links}/>)
+		const additionalAttributes = links === undefined ? null : <BarberShowAttributes barber={this.props.barber}/>
 	// var avatarStyle = { backgroundImage: `url(${avatar})` };
 
-		const bookLink = this.props.links === undefined ? null : <div className='barber-book'><a href={`/calendar?barber=${id}`} className="brand-btn small-btn light-brand-btn">Book Appointment</a></div>
+		const bookLink = links === undefined ? null : <div className='barber-book'><a href={`/calendar?barber=${id}`} className="brand-btn small-btn light-brand-btn">Book Appointment</a></div>
+	//
+		const socialLinks = ['facebook', 'twitter', 'instagram'].map( (linkName)=> this.socialLink(linkName))
 
 		return (
 			<div className='barber'>
@@ -107,9 +116,7 @@ export default class SearchContainer extends React.Component {
 
 				<span className={`barber-favorite fa ${this.state.favoriteClass}`} onClick={this.handleFavorite}/>
 				<div className={'social-icons'}>
-					<span className='fa fa-facebook-square' onClick={(e)=> {this.handleSocialClick(e, 'facebook')}} value={'/'}/>
-					<span className='fa fa-twitter-square' onClick={(e)=> {this.handleSocialClick(e, 'twitter')}} value={'/'}/>
-					<span className='fa fa-instagram' onClick={(e)=> {this.handleSocialClick(e, 'instagram')}} value={'/'}/>
+					{socialLinks}
 				</div>
 			</div>
 		);

@@ -64,7 +64,7 @@ class ProfilesController < ApplicationController
 			end
 
 			if @profile.update(profile_params)
-				format.html { redirect_to root_path, notice: 'Profile was successfully updated.' }
+				format.html { redirect_to '/profile', success: 'Profile was successfully updated.' }
 				format.json { render json: @profile, status: :ok }
 
 			else
