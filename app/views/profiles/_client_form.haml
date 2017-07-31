@@ -1,6 +1,7 @@
 #ethnicity
 	.col-md-12
-		=f.select :ethnicity_id, options_for_select(@ethnicities.map{ |ethnicity| [ethnicity.name, ethnicity.id]}), {prompt: "Choose your ethnicity"}, html_options = {class: 'profile-input profile-name-input dropdown'}
+		-selected = current_user.ethnicity ? [current_user.ethnicity.name, current_user.ethnicity.id] : nil
+		=f.select :ethnicity_id, options_for_select(@ethnicities.map{ |ethnicity| [ethnicity.name, ethnicity.id]}, selected: selected), {prompt: "Choose your ethnicity"}, html_options = {class: 'profile-input profile-name-input dropdown'}
 
 #client-style
 	.col-md-12.styles-container
