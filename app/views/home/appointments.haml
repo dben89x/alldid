@@ -23,5 +23,4 @@
 					%br
 					-services = event.try(:services).try(:split, ',')
 					-services.try(:each) do |service|
-						=service
-						%br
+						%li=service

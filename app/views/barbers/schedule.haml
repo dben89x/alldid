@@ -19,8 +19,12 @@
 						To:
 						=local_time(event.try(:end_time), '%l:%M %p')
 					.col-md-2
-						=event.style.try(:name).try(:capitalize)
+						="Style: #{event.style.try(:name).try(:capitalize)}"
 					.col-md-2
-						Services
+						Extra Services:
+						%br
+						-services = event.try(:services).try(:split, ',')
+						-services.try(:each) do |service|
+							%li=service
 
 		=react_component 'Schedule', props: {barberId: current_user.id, days: @days, schedule: @schedule}, html_options: {class: 'schedule-container'}, prerender: false
