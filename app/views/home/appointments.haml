@@ -9,11 +9,13 @@
 						=image_tag event.barber.default_avatar, width: 35, class: 'avatar'
 						=event.barber.name
 				.col-md-2
-					=event.try(:start_time).try(:strftime, '%a, %b %-d')
+					=local_time(event.try(:start_time), '%a, %b %e')
 				.col-md-2
-					="From: #{event.try(:start_time).try(:localtime).try(:strftime, '%I:%M %p')}"
+					From:
+					=local_time(event.try(:start_time), '%l:%M %p')
 				.col-md-2
-					="To: #{event.try(:end_time).try(:localtime).try(:strftime, '%I:%M %p')}"
+					To:
+					=local_time(event.try(:end_time), '%l:%M %p')
 				.col-md-2
 					="Style: #{event.style.try(:name).try(:capitalize)}"
 				.col-md-2

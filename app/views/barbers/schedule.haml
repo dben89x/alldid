@@ -11,11 +11,13 @@
 							=image_tag event.client.default_avatar, width: 35, class: 'avatar'
 							=event.client.name
 					.col-md-2
-						=event.start_time.strftime('%a, %b %-d')
+						=local_time(event.try(:start_time), '%a, %b %e')
 					.col-md-2
-						="From: #{event.start_time.strftime('%I:%M %p')}"
+						From:
+						=local_time(event.try(:start_time), '%l:%M %p')
 					.col-md-2
-						="To: #{event.end_time.strftime('%I:%M %p')}"
+						To:
+						=local_time(event.try(:end_time), '%l:%M %p')
 					.col-md-2
 						=event.style.try(:name).try(:capitalize)
 					.col-md-2

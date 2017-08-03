@@ -16,5 +16,6 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require zeroclipboard
+//= require local_time
 //= require_tree ../../../client
 //= require_tree .

@@ -260,6 +260,8 @@ GEM
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+    local_time (1.0.3)
+      coffee-rails
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -407,6 +409,7 @@ DEPENDENCIES
   jquery-turbolinks
   json
   listen (~> 3.0.5)
+  local_time
   pg (~> 0.20.0)
   puma (~> 3.0)
   rails (~> 5.0.1)

@@ -46,6 +46,7 @@ gem 'react_on_rails', '~> 6.8.1'
 gem 'coffee-rails', '~> 4.2.0'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
+gem 'local_time'
 
 group :development, :test do
 	gem 'byebug', platform: :mri
