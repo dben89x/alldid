@@ -2,10 +2,19 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
 	before_action :configure_permitted_parameters, if: :devise_controller?
 	before_filter :check_for_invite
+	before_filter :display_staging_alert
 
 	def check_for_invite
 		if params[:invite].present?
 			cookies[:invite] = params[:invite]
+		end
+	end
+
+	def display_staging_alert
+		if Rails.env.staging?
+			unless current_user
+				flash[:success] = "This is the staging site for <a href='https://alldid.com' target='blank'>alldid.com</a>. Log in <a href='/users/sign_in'>here</a> as <b>client@test.com</b> for full site features. Password is <b>password</b>.".html_safe
+			end
 		end
 	end
 
