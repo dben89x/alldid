@@ -5,15 +5,17 @@ module ApplicationHelper
 	end
 
 	def flash_messages(opts = {})
-		flash.each do |msg_type, message|
-			unless msg_type == 'error' || msg_type == 'notice'
-				concat(content_tag(:div, message, class: "flash-messages alert #{bootstrap_class_for(msg_type)} alert-dismissible", role: 'alert') do
-					concat(content_tag(:button, class: 'close', data: { dismiss: 'alert' }) do
-						concat content_tag(:span, '&times;'.html_safe, 'aria-hidden' => true)
-						concat content_tag(:span, 'Close', class: 'sr-only')
+		unless request.path === '/'
+			flash.each do |msg_type, message|
+				unless msg_type == 'error' || msg_type == 'notice'
+					concat(content_tag(:div, message, class: "flash-messages alert #{bootstrap_class_for(msg_type)} alert-dismissible", role: 'alert') do
+						concat(content_tag(:button, class: 'close', data: { dismiss: 'alert' }) do
+							concat content_tag(:span, '&times;'.html_safe, 'aria-hidden' => true)
+							concat content_tag(:span, 'Close', class: 'sr-only')
+						end)
+						concat message
 					end)
-					concat message
-				end)
+				end
 			end
 		end
 		nil
