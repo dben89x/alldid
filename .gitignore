@@ -19,6 +19,7 @@
 npm-debug.log*
 node_modules
 db/user_creation.rb
+db/style_and_endorsement_creation.rb
 
 # Generated js bundles
 /app/assets/webpack/*
