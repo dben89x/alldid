@@ -108,7 +108,6 @@ export default class SearchContainer extends React.Component {
 						<div className='barber-name'>
 							{name}
 						</div>
-						<span dangerouslySetInnerHTML={ {__html: phone} }/>
 						<div className='barber-location'>
 							<span className='fa fa-map-marker'/>{location}
 						</div>
@@ -118,6 +117,7 @@ export default class SearchContainer extends React.Component {
 						<div className='barber-headline'>
 							{barbershop}
 						</div>
+						<span dangerouslySetInnerHTML={ {__html: phone} }/>
 						{ bookLink }
 					</div>
 
