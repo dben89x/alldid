@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def display_staging_alert
-		if Rails.env.development?
+		if Rails.env.staging?
 			unless current_user
 				unless request.path == '/'
 					flash[:success] = "This is the staging site for <a href='https://alldid.com' target='blank'>alldid.com</a>. Log in <a href='/users/sign_in'>here</a> as <b>client@test.com</b> for full site features. Password is <b>password</b>.".html_safe
