@@ -21,6 +21,7 @@
 #  stripe_id              :string
 #  subscription_id        :integer
 #  profile_complete       :boolean          default("false")
+#  barbershop_owner       :boolean          default("false")
 #
 
 class Admin < User

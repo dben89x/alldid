@@ -130,7 +130,7 @@
 					font-size: 13px;
 				}
 			}
-			.barber-name, .barber-location, .barber-price, .barber-headline {
+			.barber-name, .barber-location, .barber-price, .barber-headline, .barber-phone {
 				text-align: left;
 				@media(max-width: 767px) { padding-left: 12vw }
 				@media(max-width: 550px) { text-align: center }
@@ -300,7 +300,7 @@
 				font-size: 20px;
 				color: $darkBrand;
 			}
-			.barber-location, .user-location {
+			.barber-location, .user-location, .barber-phone {
 				font-weight: 600;
 				font-size: 18px;
 				color: $lightBrand;
@@ -316,7 +316,7 @@
 					position: initial;
 					text-align: center;
 
-					.barber-name, .barber-location, .barber-price, .barber-headline {
+					.barber-name, .barber-location, .barber-price, .barber-headline, .barber-phone {
 						width: 100%;
 					}
 					.user-name, .user-location, .user-price, .user-ethnicity {
@@ -404,8 +404,11 @@
 				position: initial;
 				text-align: center;
 
-				.barber-name, .barber-location, .barber-price, .barber-headline {
+				.barber-name, .barber-location, .barber-price, .barber-headline, .barber-phone {
 					width: 100%;
+				}
+				.barber-phone {
+					text-decoration: none;
 				}
 				.user-name, .user-location, .user-price, .user-ethnicity {
 					width: 100%;

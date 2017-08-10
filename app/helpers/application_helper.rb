@@ -40,7 +40,7 @@ module ApplicationHelper
 
 			barbershop = barber.membership ? barber.organization.try(:name) : nil
 			location = barber.location ? barber.location.try(:name) : nil
-
+			phone = barber.organization ? barber.try(:phone) : nil
 			# Put this in barber hash once more data is collected
 			# rates = User.includes(:profile).where.not(profiles: {hourly_rate: nil}).pluck(:hourly_rate)
 			# quadrant_values = calculate_price_comparisons(rates)
@@ -55,6 +55,7 @@ module ApplicationHelper
 				bio: barber.bio,
 				location: location,
 				price: find_standard_price_comparisons(barber.rate),
+				phone: phone,
 				barbershop: barbershop,
 				rate: barber.rate,
 				minutes: barber.minutes,

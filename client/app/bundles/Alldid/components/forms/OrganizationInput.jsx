@@ -5,22 +5,28 @@ export default class OrganizationInput extends React.Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-			inputValue: this.props.organization.name,
+			nameValue: this.props.organization.name,
+			phoneValue: this.props.organization.phone,
 			xhr: false,
 			faClass: null,
-			orgName: this.props.orgName
+			orgName: this.props.orgName,
+			orgPhone: this.props.orgPhone
 		}
 	}
 
-	handleInput =(event)=> {
-		this.setState({inputValue: event.target.value, orgName: event.target.value}, ()=>{
-			if (!(this.state.orgName)) {
-				this.setState({orgName: `your barbershop`})
-			}
+	handleInput =(event, input)=> {
+		this.setState({[input]: event.target.value, orgName: event.target.value}, ()=>{
+			this.setState({orgName: this.state.nameValue}, ()=>{
+				if (!(this.state.orgName)) {
+					this.setState({orgName: `your barbershop`})
+				}
+			})
 			this.handleFaChange()
+			console.log(input)
+			console.log(this.state[input])
 
 			const { organization } = this.props
-			const { inputValue } = this.state
+			const { nameValue, phoneValue } = this.state
 
 			if(this.state.xhr !== false) {clearTimeout(this.state.xhr)}
 
@@ -29,7 +35,8 @@ export default class OrganizationInput extends React.Component{
 					url: `/organizations/${organization.id}`,
 					method: 'PUT',
 					data: { "organization": {
-						"name": inputValue
+						"name": nameValue,
+						"phone": phoneValue
 					}},
 					dataType: 'json',
 					success: (data) => {
@@ -54,9 +61,13 @@ export default class OrganizationInput extends React.Component{
 
 		return (
 			<div className="org-input-wrapper col-md-6 col-md-offset-3">
-				<h1 className='header'>Edit {this.state.orgName}</h1>
-				<input value={this.state.inputValue} className="organization-input" placeholder={`Barbershop Name`} onChange={this.handleInput}/>
-				<span className={`fa ${this.state.faClass}`}/>
+				<h1 className='header'>
+					Edit {this.state.orgName}
+					<span className={`fa ${this.state.faClass}`}/>
+				</h1>
+
+				<input value={this.state.nameValue} className="organization-input" placeholder={`Barbershop Name`} onChange={(e)=> {this.handleInput(e, "nameValue")}}/>
+				<input value={this.state.phoneValue} className="organization-input" placeholder={`Phone Number`} onChange={(e)=> {this.handleInput(e, "phoneValue")}}/>
 			</div>
 		);
 	}

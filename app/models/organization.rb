@@ -13,6 +13,7 @@
 #  updated_at       :datetime
 #  code             :string
 #  subscription_id  :integer
+#  phone            :string
 #
 
 class Organization < ActiveRecord::Base

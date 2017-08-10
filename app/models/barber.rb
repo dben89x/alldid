@@ -21,6 +21,7 @@
 #  stripe_id              :string
 #  subscription_id        :integer
 #  profile_complete       :boolean          default("false")
+#  barbershop_owner       :boolean          default("false")
 #
 
 class Barber < User
@@ -42,6 +43,10 @@ class Barber < User
 
 	def styles
 		Style.where(id: self.barber_styles.pluck(:style_id).uniq)
+	end
+
+	def phone
+		self.try(:organization).phone
 	end
 
 	def create_schedule

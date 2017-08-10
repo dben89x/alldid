@@ -1,8 +1,9 @@
 #cms
 	#organization.container
-		-organization_name = @organization.name.present? ? @organization.name : "your barber shop"
+		-organization_name = @organization.name.present? ? @organization.name : "your barbershop"
+		-organization_phone = @organization.phone.present? ? @organization.phone : "your phone number"
 		.section-container
-			=react_component "OrganizationInput", props: {organization: @organization, orgName: organization_name}, prerender: false
+			=react_component "OrganizationInput", props: {organization: @organization, orgName: organization_name, orgPhone: organization_phone}, prerender: false
 
 		.section-container
 			.links-container

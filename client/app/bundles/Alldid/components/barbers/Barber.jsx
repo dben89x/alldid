@@ -76,7 +76,22 @@ export default class SearchContainer extends React.Component {
 		const additionalAttributes = links === undefined ? null : <BarberShowAttributes barber={this.props.barber}/>
 	// var avatarStyle = { backgroundImage: `url(${avatar})` };
 
-		const bookLink = links === undefined ? null : <div className='barber-book'><a href={`/calendar?barber=${id}`} className="brand-btn small-btn light-brand-btn">Book Appointment</a></div>
+	// Temporarily removed book link 8/10/17
+	// const bookLink = links === undefined ? null : <div className='barber-book'><a href={`/calendar?barber=${id}`} className="brand-btn small-btn light-brand-btn">Book Appointment</a></div>
+		const bookLink = false
+		var phone = ''
+		if (this.props.phone){
+			if (this.props.barber.phone) {
+				var tel = `tel:${this.props.barber.phone}`
+				phone = `
+				<a class='barber-phone' href=${tel}>
+					<span class='fa fa-phone'></span>
+					${this.props.barber.phone}
+					</a>
+					`
+			}
+		}
+
 	//
 		const socialLinks = ['facebook', 'twitter', 'instagram'].map( (linkName)=> this.socialLink(linkName))
 
@@ -93,6 +108,7 @@ export default class SearchContainer extends React.Component {
 						<div className='barber-name'>
 							{name}
 						</div>
+						<span dangerouslySetInnerHTML={ {__html: phone} }/>
 						<div className='barber-location'>
 							<span className='fa fa-map-marker'/>{location}
 						</div>
