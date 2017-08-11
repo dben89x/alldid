@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
 	before_action :set_variables, only: [:edit, :update]
 	before_action :get_hair_properties, only: [:show, :edit]
 	skip_before_action :verify_authenticity_token
+	before_filter :ensure_active, only: [:edit]
 
 	def show
 		@profile = Profile.find(params[:id])
@@ -28,6 +29,7 @@ class ProfilesController < ApplicationController
 		@locations = Location.all
 
 		if current_user.is_a? Barber
+
 			@barber_styles = current_user.barber_styles
 			@barber_id = current_user.id
 
@@ -93,6 +95,14 @@ class ProfilesController < ApplicationController
 		@hair_type = ClientHairProperty.find_by(profile: @profile, hair_property: @hair_types).try(:name)
 		@hair_width = ClientHairProperty.find_by(profile: @profile, hair_property: @hair_widths).try(:name)
 		@hair_density = ClientHairProperty.find_by(profile: @profile, hair_property: @hair_densities).try(:name)
+	end
+
+	def ensure_active
+		if current_user.is_a? Barber
+			unless current_user.active?
+				flash.now[:alert] = "Your profile won't be visible until you <a href='/pricing'>create your barbershop.</a>".html_safe
+			end
+		end
 	end
 
 	def profile_params

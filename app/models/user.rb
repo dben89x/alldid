@@ -98,7 +98,15 @@ class User < ApplicationRecord
 	end
 
 	def check_for_completeness
+	end
 
+	def verify_presence(*args)
+		complete = true
+		args.each do |arg|
+			complete = self.send(arg).present?
+			break unless complete
+		end
+		complete
 	end
 
 end

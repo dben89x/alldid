@@ -35,10 +35,12 @@ class Barber < User
 	after_create :create_schedule
 
 	def check_for_completeness
-		complete = minutes.present? && rate.present? && first_name.present? && headline.present? && location.present?
-		if complete
-			# self.update_column(:profile_complete, true)
-		end
+		complete |= verify_presence(:avatar, :first_name, :location, :rate, :minutes, :styles, :services)
+		complete &= self.rate.nonzero?
+
+		self.update_column(:profile_complete, true) if complete
+		
+		complete
 	end
 
 	def styles
