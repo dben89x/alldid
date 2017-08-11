@@ -36,6 +36,11 @@ class Client < User
 		[:avatar, :first_name, :location, :current_style_id, :hair_type, :hair_width, :hair_density]
 	end
 
+	def missing_fields
+		# required_fields.collect do |required_field|
+		# 	required_field.
+	end
+
 	def hair_type
 		hair_properties("HairType")
 	end

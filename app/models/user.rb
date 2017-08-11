@@ -29,7 +29,7 @@ class User < ApplicationRecord
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable,
-				 :recoverable, :rememberable, :trackable, :validatable
+	:recoverable, :rememberable, :trackable, :validatable
 
 	has_one :profile
 
@@ -107,6 +107,15 @@ class User < ApplicationRecord
 	end
 
 	def required_fields
+	end
+
+	def missing_fields
+		fields = required_fields.map do |required_field|
+			if self.send(required_field).present?
+				required_field
+			end
+		end
+		fields.compact
 	end
 
 	def verify_presence(required_fields)
