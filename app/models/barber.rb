@@ -35,20 +35,23 @@ class Barber < User
 	after_create :create_schedule
 
 	def check_for_completeness
-		complete |= verify_presence(:avatar, :first_name, :location, :rate, :minutes, :styles, :services)
-		complete &= self.rate.nonzero?
-
-		self.update_column(:profile_complete, true) if complete
-		
-		complete
+		self.rate.nonzero? ? super : false
 	end
 
 	def styles
 		Style.where(id: self.barber_styles.pluck(:style_id).uniq)
 	end
 
+	def active?
+		stripe_subscription.present? ? stripe_subscription.active? : false
+	end
+
 	def phone
 		self.try(:organization).phone
+	end
+
+	def required_fields
+		[:avatar, :first_name, :location, :rate, :minutes, :styles, :services]
 	end
 
 	def create_schedule

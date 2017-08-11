@@ -25,15 +25,15 @@
 #
 
 class Client < User
-
 	has_many :events, inverse_of: :client
 	after_save :check_for_completeness
 
-	def check_for_completeness
-		complete = first_name.present? && headline.present? && location.present? && current_style_id.present?
-		if complete
-			self.update_column('profile_complete', true)
-		end
+	def active?
+		true
+	end
+
+	def required_fields
+		[:avatar, :first_name, :location, :current_style_id, :hair_type, :hair_width, :hair_density]
 	end
 
 	def hair_type
@@ -46,6 +46,10 @@ class Client < User
 
 	def hair_density
 		hair_properties("HairDensity")
+	end
+
+	def current_style
+		Style.find_by_id(self.current_style_id)
 	end
 
 	def hair_properties(prop_type)

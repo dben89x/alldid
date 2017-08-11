@@ -94,16 +94,25 @@ class User < ApplicationRecord
 	end
 
 	def active?
-		stripe_subscription.present? ? stripe_subscription.active? : false
+	end
+
+	def public?
+		active? and check_for_completeness
 	end
 
 	def check_for_completeness
+		complete |= verify_presence(required_fields)
+		self.update_column(:profile_complete, true) if complete
+		complete
 	end
 
-	def verify_presence(*args)
+	def required_fields
+	end
+
+	def verify_presence(required_fields)
 		complete = true
-		args.each do |arg|
-			complete = self.send(arg).present?
+		required_fields.each do |required_field|
+			complete = self.send(required_field).present?
 			break unless complete
 		end
 		complete
