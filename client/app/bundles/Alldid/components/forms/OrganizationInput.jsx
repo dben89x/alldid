@@ -22,8 +22,6 @@ export default class OrganizationInput extends React.Component{
 				}
 			})
 			this.handleFaChange()
-			console.log(input)
-			console.log(this.state[input])
 
 			const { organization } = this.props
 			const { nameValue, phoneValue } = this.state
