@@ -50,8 +50,12 @@ class Barber < User
 		self.try(:organization).phone
 	end
 
+	def missing_fields
+		super
+	end
+
 	def required_fields
-		[:avatar, :first_name, :location, :rate, :minutes, :styles, :services]
+		[:avatar, :first_name, :location, :rate, :styles, :services]
 	end
 
 	def create_schedule

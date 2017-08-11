@@ -40,7 +40,6 @@ class User < ApplicationRecord
 	validates_presence_of :type, :email, :password
 
 	after_create :create_profile
-	after_save :check_for_completeness
 
 	delegate :first_name, :last_name, :name, :avatar, :headline, :bio, :location,
 	:rate, :user_styles, :user_services, :user_favorites, :current_style_id,
@@ -111,9 +110,7 @@ class User < ApplicationRecord
 
 	def missing_fields
 		fields = required_fields.map do |required_field|
-			if self.send(required_field).present?
-				required_field
-			end
+			required_field unless self.send(required_field).present?
 		end
 		fields.compact
 	end

@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
 	before_action :get_hair_properties, only: [:show, :edit]
 	skip_before_action :verify_authenticity_token
 	before_filter :ensure_active, only: [:edit]
+	before_filter :ensure_complete, only: [:edit]
 
 	def show
 		@profile = Profile.find(params[:id])
@@ -97,11 +98,25 @@ class ProfilesController < ApplicationController
 		@hair_density = ClientHairProperty.find_by(profile: @profile, hair_property: @hair_densities).try(:name)
 	end
 
+
 	def ensure_active
 		if current_user.is_a? Barber
 			unless current_user.active?
 				flash.now[:alert] = "Your profile won't be visible until you <a href='/pricing'>create your barbershop.</a>".html_safe
 			end
+		end
+	end
+
+	def ensure_complete
+		unless current_user.public?
+			if current_user.is_a? Barber
+				alert_message = "Please complete your profile to make it publicly visible."
+			elsif current_user.is_a? Client
+				alert_message = "Please complete your profile."
+			end
+			missing_fields = ''
+			current_user.missing_fields.each {|field| missing_fields += "<br><b>#{field.to_s.gsub('_',' ').gsub(' id','').capitalize}</b>"}
+			flash.now[:alert] = "#{alert_message}<br/>Missing fields: #{missing_fields}".html_safe
 		end
 	end
 

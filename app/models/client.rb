@@ -37,8 +37,7 @@ class Client < User
 	end
 
 	def missing_fields
-		# required_fields.collect do |required_field|
-		# 	required_field.
+		super
 	end
 
 	def hair_type
