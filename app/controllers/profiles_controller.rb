@@ -12,9 +12,6 @@ class ProfilesController < ApplicationController
 		if @user.is_a? Client
 			get_client_hair_properties
 
-			# @hair_type = @hair_type ? @hair_type.name : "This user has not chosen a hair type yet."
-			# @hair_width = @hair_width ? @hair_width.name : "This user has not chosen a hair width yet."
-			# @hair_density = @hair_density ? @hair_density.name : "This user has not chosen a hair density yet."
 
 			@hair_type ||= "#{@user.name} has not chosen a hair type yet."
 			@hair_width ||= "#{@user.name} has not chosen a hair width yet."

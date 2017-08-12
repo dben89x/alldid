@@ -96,7 +96,8 @@ class User < ApplicationRecord
 	end
 
 	def public?
-		active? and check_for_completeness
+		check_for_completeness
+		# active? and check_for_completeness
 	end
 
 	def check_for_completeness
