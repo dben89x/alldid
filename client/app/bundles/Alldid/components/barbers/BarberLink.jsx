@@ -7,7 +7,6 @@ export default class BarberLink extends React.Component {
 	}
 
 	render () {
-		console.log(this.props.barber)
 		return (
 			<a className='barber-link' href={`/barbers/${this.props.barber.id}`}>
 				<Barber barber={this.props.barber} key={this.props.barber.id} profileId={this.props.profileId} phone={false}/>

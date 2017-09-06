@@ -34,7 +34,6 @@ class HomeController < ApplicationController
 				barber[:barberStyles] = barber[:barberStyles].slice(0,3)
 			end
 
-			puts "#Barbers: #{ @barbers}"
 			@featured_barber = @barbers[0]
 			@barbers = @barbers - [@featured_barber]
 			@profile_id = current_user.profile.id

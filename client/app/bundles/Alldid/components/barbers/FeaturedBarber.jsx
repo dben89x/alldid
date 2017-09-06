@@ -7,7 +7,6 @@ export default class FeaturedBarber extends React.Component {
 	}
 
 	render () {
-		console.log(this.props)
 		const { featured, profileId } = this.props;
 
 		return (
