@@ -77,8 +77,8 @@ export default class SearchContainer extends React.Component {
 	// var avatarStyle = { backgroundImage: `url(${avatar})` };
 
 	// Temporarily removed book link 8/10/17
-	// const bookLink = links === undefined ? null : <div className='barber-book'><a href={`/calendar?barber=${id}`} className="brand-btn small-btn light-brand-btn">Book Appointment</a></div>
-		const bookLink = false
+		const bookLink = links === undefined ? null : <div className='barber-book'><a href={`/calendar?barber=${id}`} className="brand-btn small-btn light-brand-btn">Book Appointment</a></div>
+		// const bookLink = false
 		var phone = ''
 		if (this.props.phone){
 			if (this.props.barber.phone) {

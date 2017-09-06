@@ -18,7 +18,7 @@ class BarbersController < ApplicationController
 			@services = Service.all
 			@styles = @barber.styles
 		else
-			flash[:alert] = "You must be a client to use this feature."
+			flash[:alert] = "You must be a client to use the calendar."
 			redirect_to new_user_session_path
 		end
 	end

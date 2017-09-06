@@ -19,7 +19,10 @@ class HomeController < ApplicationController
 
 		if current_user
 			@user_avatar = @signedIn ? current_user.default_avatar : '/assets/default-avatar.png'
-			@barbers = get_react_barber_objects(Barber.all.select{|b| b.public?})
+
+			# Temporarily removing public check
+			# @barbers = get_react_barber_objects(Barber.all.select{|b| b.public?})
+			@barbers = get_react_barber_objects(Barber.all)
 
 			if current_user
 				@barbers = filterBarbers(@barbers)
@@ -31,6 +34,7 @@ class HomeController < ApplicationController
 				barber[:barberStyles] = barber[:barberStyles].slice(0,3)
 			end
 
+			puts "#Barbers: #{ @barbers}"
 			@featured_barber = @barbers[0]
 			@barbers = @barbers - [@featured_barber]
 			@profile_id = current_user.profile.id
