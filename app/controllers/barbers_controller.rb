@@ -8,7 +8,7 @@ class BarbersController < ApplicationController
 	end
 
 	def calendar
-		unless current_user.is_a? Barber
+		unless current_user.is_a? Barber or !current_user
 			@barber = Barber.find(params[:barber])
 			@minutes = @barber.minutes
 			@rate = @barber.rate
@@ -18,8 +18,8 @@ class BarbersController < ApplicationController
 			@services = Service.all
 			@styles = @barber.styles
 		else
-			flash[:warning] = "You must be a client to use this feature."
-			redirect_to root_path
+			flash[:alert] = "You must be a client to use this feature."
+			redirect_to new_user_session_path
 		end
 	end
 

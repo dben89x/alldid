@@ -5,7 +5,6 @@ class Ability
 		user ||= User.new
 
 		can :manage, Profile, user_id: user.id
-		can :read, :all
 
 		if user.is_a? Admin
 			can :manage, :all
@@ -14,6 +13,7 @@ class Ability
 		elsif user.is_a? Client
 			can [:edit, :update], Profile, user_id: user.id
 			can :manage, ClientHairProperty, profile_id: user.profile.id
+			can :read, :all
 		end
 
 		can :manage, Organization, user_id: user.id
