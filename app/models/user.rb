@@ -21,6 +21,7 @@
 #  stripe_id              :string
 #  subscription_id        :integer
 #  profile_complete       :boolean          default("false")
+#  barbershop_owner       :boolean          default("false")
 #
 
 require 'carrierwave/orm/activerecord'
@@ -28,7 +29,7 @@ class User < ApplicationRecord
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable,
-				 :recoverable, :rememberable, :trackable, :validatable
+	:recoverable, :rememberable, :trackable, :validatable
 
 	has_one :profile
 
@@ -39,7 +40,6 @@ class User < ApplicationRecord
 	validates_presence_of :type, :email, :password
 
 	after_create :create_profile
-	after_save :check_for_completeness
 
 	delegate :first_name, :last_name, :name, :avatar, :headline, :bio, :location,
 	:rate, :user_styles, :user_services, :user_favorites, :current_style_id,
@@ -93,11 +93,36 @@ class User < ApplicationRecord
 	end
 
 	def active?
-		stripe_subscription.present? ? stripe_subscription.active? : false
+	end
+
+	def public?
+		check_for_completeness
+		# active? and check_for_completeness
 	end
 
 	def check_for_completeness
+		complete |= verify_presence(required_fields)
+		self.update_column(:profile_complete, true) if complete
+		complete
+	end
 
+	def required_fields
+	end
+
+	def missing_fields
+		fields = required_fields.map do |required_field|
+			required_field unless self.send(required_field).present?
+		end
+		fields.compact
+	end
+
+	def verify_presence(required_fields)
+		complete = true
+		required_fields.each do |required_field|
+			complete = self.send(required_field).present?
+			break unless complete
+		end
+		complete
 	end
 
 end

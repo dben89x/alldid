@@ -19,7 +19,7 @@ class HomeController < ApplicationController
 
 		if current_user
 			@user_avatar = @signedIn ? current_user.default_avatar : '/assets/default-avatar.png'
-			@barbers = get_react_barber_objects(Barber.all)
+			@barbers = get_react_barber_objects(Barber.all.select{|b| b.public?})
 
 			if current_user
 				@barbers = filterBarbers(@barbers)
@@ -63,6 +63,7 @@ class HomeController < ApplicationController
 	end
 
 	def get_top_barbers_by_style(barbers)
+		puts "Barbers: #{barbers}"
 		current_style_name = current_user.profile.current_style_name
 		results = []
 		barbers.each do |b|

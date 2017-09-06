@@ -6,7 +6,7 @@
 #  stripe_reference       :string
 #  subscription_status_id :integer
 #  customer_reference     :string
-#  user_id_id             :integer
+#  user_id                :integer
 #  plan                   :string
 #
 

@@ -21,6 +21,7 @@
 #  stripe_id              :string
 #  subscription_id        :integer
 #  profile_complete       :boolean          default("false")
+#  barbershop_owner       :boolean          default("false")
 #
 
 class Barber < User
@@ -34,14 +35,27 @@ class Barber < User
 	after_create :create_schedule
 
 	def check_for_completeness
-		complete = minutes.present? && rate.present? && first_name.present? && headline.present? && location.present?
-		if complete
-			# self.update_column(:profile_complete, true)
-		end
+		self.rate.nonzero? ? super : false
 	end
 
 	def styles
 		Style.where(id: self.barber_styles.pluck(:style_id).uniq)
+	end
+
+	def active?
+		stripe_subscription.present? ? stripe_subscription.active? : false
+	end
+
+	def phone
+		self.try(:organization).phone
+	end
+
+	def missing_fields
+		super
+	end
+
+	def required_fields
+		[:avatar, :first_name, :location, :rate, :styles, :services]
 	end
 
 	def create_schedule

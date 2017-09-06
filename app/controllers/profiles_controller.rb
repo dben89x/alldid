@@ -2,6 +2,8 @@ class ProfilesController < ApplicationController
 	before_action :set_variables, only: [:edit, :update]
 	before_action :get_hair_properties, only: [:show, :edit]
 	skip_before_action :verify_authenticity_token
+	before_filter :ensure_active, only: [:edit]
+	before_filter :ensure_complete, only: [:edit]
 
 	def show
 		@profile = Profile.find(params[:id])
@@ -10,9 +12,6 @@ class ProfilesController < ApplicationController
 		if @user.is_a? Client
 			get_client_hair_properties
 
-			# @hair_type = @hair_type ? @hair_type.name : "This user has not chosen a hair type yet."
-			# @hair_width = @hair_width ? @hair_width.name : "This user has not chosen a hair width yet."
-			# @hair_density = @hair_density ? @hair_density.name : "This user has not chosen a hair density yet."
 
 			@hair_type ||= "#{@user.name} has not chosen a hair type yet."
 			@hair_width ||= "#{@user.name} has not chosen a hair width yet."
@@ -28,6 +27,7 @@ class ProfilesController < ApplicationController
 		@locations = Location.all
 
 		if current_user.is_a? Barber
+
 			@barber_styles = current_user.barber_styles
 			@barber_id = current_user.id
 
@@ -93,6 +93,28 @@ class ProfilesController < ApplicationController
 		@hair_type = ClientHairProperty.find_by(profile: @profile, hair_property: @hair_types).try(:name)
 		@hair_width = ClientHairProperty.find_by(profile: @profile, hair_property: @hair_widths).try(:name)
 		@hair_density = ClientHairProperty.find_by(profile: @profile, hair_property: @hair_densities).try(:name)
+	end
+
+
+	def ensure_active
+		if current_user.is_a? Barber
+			unless current_user.active?
+				flash.now[:alert] = "Your profile won't be visible until you <a href='/pricing'>create your barbershop.</a>".html_safe
+			end
+		end
+	end
+
+	def ensure_complete
+		unless current_user.public?
+			if current_user.is_a? Barber
+				alert_message = "Please complete your profile to make it publicly visible."
+			elsif current_user.is_a? Client
+				alert_message = "Please complete your profile."
+			end
+			missing_fields = ''
+			current_user.missing_fields.each {|field| missing_fields += "<br><b>#{field.to_s.gsub('_',' ').gsub(' id','').capitalize}</b>"}
+			flash.now[:alert] = "#{alert_message}<br/>Missing fields: #{missing_fields}".html_safe
+		end
 	end
 
 	def profile_params

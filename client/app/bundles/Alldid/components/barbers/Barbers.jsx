@@ -9,11 +9,12 @@ export default class SearchContainer extends React.Component {
 
 	render () {
 		const { barbers, links, profileId } = this.props;
+		// console.log(JSON.stringify(barbers))
 		var newbarbers;
 		if (links) {
 			newbarbers = barbers.map( (barber) => <BarberLink barber={barber} key={barber.id} profileId={profileId} links={links}/>)
 		} else {
-			newbarbers = barbers.map( (barber) => <Barber barber={barber} key={barber.id} profileId={profileId} links={links}/>)
+			newbarbers = barbers.map( (barber) => <Barber barber={barber} key={barber.id} profileId={profileId} links={links} phone={true}/>)
 		}
 
 		return (

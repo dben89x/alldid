@@ -19,6 +19,8 @@
 #  instagram         :string
 #  twitter           :string
 #  minutes           :integer          default("0")
+#  location_id       :integer
+#  ethnicity_id      :integer
 #
 
 class Profile < ActiveRecord::Base
