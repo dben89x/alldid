@@ -15,7 +15,7 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require jquery.turbolinks
-//= require zeroclipboard
+//= require clipboard
 //= require local_time
 //= require_tree ../../../client
 //= require_tree .

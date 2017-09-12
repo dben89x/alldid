@@ -21,7 +21,7 @@ gem 'erb2haml'
 gem 'annotate'
 gem 'carrierwave', '~> 0.10.0'
 gem 'carrierwave-crop'
-gem 'zeroclipboard-rails'
+gem 'clipboard-rails'
 
 # Data
 gem 'pg', '~> 0.20.0'

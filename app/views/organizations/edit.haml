@@ -8,7 +8,7 @@
 		.section-container
 			.links-container
 				.header="Your invite link:"
-				%button#organization-link-button.brand-btn{'data-clipboard-target' => 'organization-link-text'}
+				%button#organization-link-button.brand-btn{ 'data-clipboard-action' => 'copy', 'data-clipboard-target' => '#organization-link-text'}
 					Copy link
 				%span#organization-link-text= "#{request.host}/?invite=#{@organization.code}"
 				%br
