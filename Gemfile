@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
-ruby "~> 2.3.0"
+ruby "2.4.0"
 
 git_source(:github) do |repo_name|
-	repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-	"https://github.com/#{repo_name}.git"
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
 end
 
 # Base
@@ -49,19 +49,19 @@ gem 'jquery-turbolinks'
 gem 'local_time'
 
 group :development, :test do
-	gem 'byebug', platform: :mri
+  gem 'byebug', platform: :mri
 end
 
 gem 'spring'
 group :development do
-	gem 'web-console', '>= 3.3.0'
-	gem 'listen', '~> 3.0.5'
-	gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '~> 3.0.5'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :production do
-	gem 'fog', require: 'fog/aws'
-	gem 'rails_12factor'
+  gem 'fog', require: 'fog/aws'
+  gem 'rails_12factor'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

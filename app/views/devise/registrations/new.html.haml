@@ -1,44 +1,44 @@
 #users
-	.container
-		.form.light-form.user-form
-			%h3 Sign up
+  .container
+    .form.light-form.user-form
+      %h3 Sign up
 
-			= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
 
-				= devise_error_messages!
-				.col-md-6
-					%span{class:"user-type-radios"}
-						%label#client-radio
-							=f.radio_button :type, 'Client', id: 'client-radio-btn', checked: true
-							Client
+        = devise_error_messages!
+        .col-md-6
+          %span{class:"user-type-radios"}
+            %label#client-radio
+              =f.radio_button :type, 'Client', id: 'client-radio-btn', checked: true
+              Client
 
-				.col-md-6
-					%span{class:"user-type-radios"}
-						%label#barber-radio
-							=f.radio_button :type, 'Barber', id: 'barber-radio-btn'
-							Barber
+        .col-md-6
+          %span{class:"user-type-radios"}
+            %label#barber-radio
+              =f.radio_button :type, 'Barber', id: 'barber-radio-btn'
+              Barber
 
-				.col-md-12
-					.user-field
-						.fa-icon
-							%i.fa.fa-user
-						= f.email_field :email, autofocus: true, placeholder: "Email", class: 'user-input input email'
-				.col-md-12
-					.user-field
-						.fa-icon
-							%i.fa.fa-lock
-						= f.password_field :password, autocomplete: "off", placeholder: "Password (#{@minimum_password_length} character minimum)", class: 'user-input input password'
-				.col-md-12
-					.user-field
-						.fa-icon
-							%i.fa.fa-lock
-						= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation", class: 'user-input input password'
-				#barbershop-info{style: 'display:none'}
-					-if @organization.present?
-						%i="You'll be joining #{@organization.name}"
-					-else
-						%i="You'll be creating a new barber shop."
-						%br/
-						%i="If you already belong to a barber shop, please ask them to invite you."
-				= f.submit "Create Account", class: 'brand-btn med-btn light-brand-btn'
-			= render "devise/shared/links"
+        .col-md-12
+          .user-field
+            .fa-icon
+              %i.fa.fa-user
+            = f.email_field :email, autofocus: true, placeholder: "Email", class: 'user-input input email'
+        .col-md-12
+          .user-field
+            .fa-icon
+              %i.fa.fa-lock
+            = f.password_field :password, autocomplete: "off", placeholder: "Password (#{@minimum_password_length} character minimum)", class: 'user-input input password'
+        .col-md-12
+          .user-field
+            .fa-icon
+              %i.fa.fa-lock
+            = f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation", class: 'user-input input password'
+        #barbershop-info{style: 'display:none'}
+          -if @organization.present?
+            %i="You'll be joining #{@organization.name}"
+          -else
+            %i="You'll be creating a new barber shop."
+            %br/
+            %i="If you already belong to a barber shop, please ask them to invite you."
+        = f.submit "Create Account", class: 'brand-btn med-btn light-brand-btn'
+      = render "devise/shared/links"

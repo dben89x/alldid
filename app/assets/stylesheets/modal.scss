@@ -1,14 +1,14 @@
 @import 'variables';
 
 .event-modal-body {
-	.head {
-		font-weight: 700;
-	}
-	.text {
-		padding: 10px 0;
-		&.rate {
-			font-weight: 800;
-			font-size: 20px;
-		}
-	}
+  .head {
+    font-weight: 700;
+  }
+  .text {
+    padding: 10px 0;
+    &.rate {
+      font-weight: 800;
+      font-size: 20px;
+    }
+  }
 }

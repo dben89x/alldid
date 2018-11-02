@@ -8,10 +8,13 @@
   },
   "scripts": {
     "postinstall": "cd client && yarn install",
-		"lint": "cd client && yarn run lint --silent",
-		"build:test": "cd client && yarn run build:test --silent",
-		"build:production": "cd client && yarn run build:production --silent",
-		"build:development": "cd client && yarn run build:development --silent"
+    "lint": "cd client && yarn run lint --silent",
+    "build:test": "cd client && yarn run build:test --silent",
+    "build:production": "cd client && yarn run build:production --silent",
+    "build:development": "cd client && yarn run build:development --silent"
   },
-	"cacheDirectories": ["node_modules", "client/node_modules"]
+  "cacheDirectories": ["node_modules", "client/node_modules"],
+  "scripts": {
+    "dev": "foreman start -f Procfile.dev"
+  }
 }
