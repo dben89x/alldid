@@ -4,8 +4,8 @@ CarrierWave.configure do |config|
 	# if Rails.env.production?
 		config.fog_credentials = {
 			:provider               => 'AWS',                        # required
-			:aws_access_key_id      => ENV['aws_access_key'],                        # required
-			:aws_secret_access_key  => ENV['aws_secret_key'],                     # required
+			:aws_access_key_id      => ENV['AWS_ACCESS_KEY'],                        # required
+			:aws_secret_access_key  => ENV['AWS_SECRET_KEY'],                     # required
 			:region                 => 'us-west-1',                  # optional, defaults to 'us-east-1'
 		}
 		config.fog_directory  = 'alldid'                             # required

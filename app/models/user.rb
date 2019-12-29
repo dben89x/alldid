@@ -35,7 +35,7 @@ class User < ApplicationRecord
 
 	has_one :membership
 	delegate :organization, to: :membership
-	belongs_to :subscription
+	belongs_to :subscription, optional: true
 
 	validates_presence_of :type, :email, :password
 

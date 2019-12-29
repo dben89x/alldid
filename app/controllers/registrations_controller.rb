@@ -9,10 +9,8 @@ class RegistrationsController < Devise::RegistrationsController
 		if resource.type == "Barber"
 			organization = find_organization(cookies)
 			if organization.present?
-				puts "Not Things"
 				resource.membership = Membership.create(organization: organization)
 			else
-				puts "Things"
 				resource.barbershop_owner = true
 				puts resource.inspect
 			end
