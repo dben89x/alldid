@@ -8,7 +8,7 @@ end
 
 # Base
 gem 'rails', '~> 5.0.1'
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 3.12'
 gem 'uglifier'
 gem 'therubyracer', '~> 0.12.3'
 
